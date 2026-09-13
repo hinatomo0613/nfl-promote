@@ -1,0 +1,2726 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アメリカンフットボール 推しチーム編｜32チームから、ひとつを選ぶ</title>
+<meta name="description" content="NFLの32チームを「攻撃型」「守備型」「スター・ドラマ性」「伝統」「成長枠」の5タイプに分けて紹介します。2025シーズンの実績と2026シーズン開幕時点の最新情報から、あなたに合うチームを見つけてください。">
+<style>
+/* ===== 基本設定（入門編・深掘り編と共通） ===== */
+:root{
+  --navy:#0a1a2f;
+  --navy-2:#12293f;
+  --field:#166d3b;
+  --field-dark:#0e4a28;
+  --accent:#ffc23c;      /* ファーストダウンラインの黄色 */
+  --accent-2:#ff7a45;
+  --paper:#faf8f3;
+  --ink:#1c2430;
+  --ink-soft:#4a5665;
+  --line:#e2ddd2;
+  --white:#fff;
+  --radius:14px;
+  --shadow:0 6px 24px rgba(10,26,47,.10);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:system-ui,-apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  font-size:17px;
+  line-height:1.9;
+  -webkit-text-size-adjust:100%;
+}
+img,svg{max-width:100%;}
+p{margin:0 0 1.2em;}
+a{color:#0b6ea8;}
+
+/* ===== スクロール進捗バー ===== */
+#progress{
+  position:fixed;top:0;left:0;height:4px;width:0%;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  z-index:100;transition:width .1s linear;
+}
+
+/* ===== レイアウト ===== */
+.wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+section{padding:64px 0;}
+section.tight{padding:44px 0;}
+.dark{background:var(--navy);color:#e8eef5;}
+.dark h2{color:var(--white);}
+.dark .lead{color:#b9c9d9;}
+.dark a{color:var(--accent);}
+
+/* ===== 見出し ===== */
+.eyebrow{
+  display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.18em;
+  color:var(--accent-2);background:rgba(255,122,69,.10);
+  padding:5px 12px;border-radius:99px;margin-bottom:14px;
+}
+.dark .eyebrow{color:var(--accent);background:rgba(255,194,60,.14);}
+h2{
+  font-size:clamp(1.5rem,5vw,2.1rem);line-height:1.45;margin:0 0 .6em;
+  letter-spacing:.01em;
+}
+h3{font-size:1.15rem;margin:2em 0 .6em;line-height:1.6;}
+.lead{font-size:1.05rem;color:var(--ink-soft);margin-bottom:2em;}
+
+/* ページ冒頭の見出し（ヒーローを置かない構成のため） */
+.page-h1{
+  font-size:clamp(1.7rem,6vw,2.5rem);line-height:1.35;margin:0 0 .5em;
+  letter-spacing:.01em;font-weight:800;
+}
+.page-sub{font-size:1.02rem;color:var(--ink-soft);margin-bottom:0;}
+
+/* ===== ヒーロー ===== */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(10,26,47,.86),rgba(10,26,47,.94)),
+    repeating-linear-gradient(90deg,var(--field) 0 58px,var(--field-dark) 58px 60px);
+  color:var(--white);padding:96px 0 80px;text-align:center;
+}
+.hero h1{
+  font-size:clamp(2rem,7.5vw,3.4rem);line-height:1.3;margin:0 0 .5em;
+  letter-spacing:.01em;font-weight:800;
+}
+.hero h1 .hl{color:var(--accent);}
+.hero p{font-size:clamp(1rem,3.4vw,1.15rem);color:#c6d5e3;max-width:34em;margin:0 auto 2em;}
+.hero .sub{font-size:.8rem;letter-spacing:.22em;color:var(--accent);margin-bottom:20px;font-weight:700;}
+.hero .vs{
+  color:#fff;font-weight:800;font-size:clamp(1.05rem,4vw,1.35rem);
+  line-height:1.75;margin:0 auto 1.4em;letter-spacing:.01em;
+}
+.hero .vs .u{background:linear-gradient(transparent 62%,rgba(255,194,60,.32) 62%);}
+.hero.sub-hero{padding:64px 0 56px;}
+.hero.sub-hero h1{font-size:clamp(1.7rem,6vw,2.7rem);}
+.scroll-cue{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid rgba(255,255,255,.35);border-radius:99px;
+  padding:11px 22px;color:#fff;text-decoration:none;font-size:.92rem;font-weight:600;
+  transition:background .2s,border-color .2s;
+}
+.scroll-cue:hover{background:rgba(255,255,255,.12);border-color:#fff;}
+.scroll-cue span{animation:bob 1.8s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}
+
+/* ===== 上部の行き先バー ===== */
+.topbar{background:var(--navy);color:#b9c9d9;font-size:.86rem;position:relative;z-index:5;}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 22px;}
+.topbar a{color:var(--accent);text-decoration:none;font-weight:700;}
+.topbar a:hover{text-decoration:underline;}
+.topbar span{letter-spacing:.14em;font-size:.74rem;font-weight:700;}
+
+/* ===== カード類 ===== */
+.card{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;box-shadow:var(--shadow);margin:24px 0;
+}
+.dark .card{background:var(--navy-2);border-color:rgba(255,255,255,.12);box-shadow:none;}
+.card h3:first-child{margin-top:0;}
+.grid{display:grid;gap:16px;}
+@media(min-width:620px){.grid.g2{grid-template-columns:1fr 1fr;}}
+
+/* ===== 目次 ===== */
+.toc{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 24px;box-shadow:var(--shadow);margin:30px 0;}
+.toc h3{margin:0 0 .9em;font-size:1.05rem;}
+.toc ol{margin:0;padding-left:1.4em;}
+.toc li{margin-bottom:.7em;font-size:.97rem;}
+.toc li:last-child{margin-bottom:0;}
+.toc a{text-decoration:none;font-weight:700;}
+.toc a:hover{text-decoration:underline;}
+.toc small{display:block;color:var(--ink-soft);font-size:.87rem;font-weight:400;line-height:1.7;}
+
+/* ===== 3行まとめ ===== */
+.three{counter-reset:t;list-style:none;padding:0;margin:0;}
+.three li{
+  counter-increment:t;position:relative;color:var(--ink);
+  background:var(--white);border:1px solid var(--line);border-left:5px solid var(--accent);
+  border-radius:10px;padding:18px 20px 18px 62px;margin-bottom:14px;box-shadow:var(--shadow);
+}
+.three li::before{
+  content:counter(t);position:absolute;left:18px;top:16px;
+  width:30px;height:30px;border-radius:50%;background:var(--navy);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;
+}
+.three li b{display:block;font-size:1.05rem;margin-bottom:2px;}
+.three li small{color:var(--ink-soft);font-size:.93rem;line-height:1.7;display:block;}
+
+/* ===== アコーディオン（もっと詳しく） ===== */
+details.more{
+  border:1px dashed #c9cfd8;border-radius:12px;background:rgba(255,255,255,.55);
+  margin:22px 0;overflow:hidden;
+}
+.dark details.more{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.05);}
+details.more>summary{
+  cursor:pointer;list-style:none;padding:14px 18px;font-weight:700;font-size:.95rem;
+  color:var(--ink-soft);display:flex;align-items:center;gap:10px;user-select:none;
+}
+.dark details.more>summary{color:#b9c9d9;}
+details.more>summary::-webkit-details-marker{display:none;}
+details.more>summary::before{
+  content:"＋";display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--navy);
+  font-weight:800;font-size:.85rem;flex:none;
+}
+details.more[open]>summary::before{content:"−";}
+details.more>summary:hover{color:var(--ink);}
+details.more .body{padding:0 18px 18px;font-size:.96rem;color:var(--ink-soft);}
+.dark details.more .body{color:#b9c9d9;}
+details.more .body p:last-child{margin-bottom:0;}
+details.more .body ul{margin:0 0 1.2em;padding-left:1.35em;}
+details.more .body li{margin-bottom:.5em;}
+details.more .body b{color:var(--ink);}
+.dark details.more .body b{color:#fff;}
+
+/* ===== 用語 ===== */
+.term{
+  border-bottom:2px dotted var(--accent-2);cursor:help;font-weight:600;
+  position:relative;white-space:nowrap;
+}
+.term:focus{outline:2px solid var(--accent-2);outline-offset:2px;}
+.term .tip{
+  visibility:hidden;opacity:0;position:absolute;bottom:calc(100% + 10px);left:50%;
+  transform:translateX(-50%);width:min(19em,74vw);
+  background:var(--navy);color:#eaf1f8;font-size:.83rem;line-height:1.7;font-weight:400;
+  padding:11px 14px;border-radius:10px;white-space:normal;z-index:20;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .16s;text-align:left;
+}
+.term:hover .tip,.term:focus .tip{visibility:visible;opacity:1;}
+
+/* ===== 引用風の強調 ===== */
+.pull{
+  border-left:5px solid var(--accent);padding:6px 0 6px 20px;margin:32px 0;
+  font-size:1.12rem;font-weight:700;line-height:1.8;
+}
+
+/* ===== 見どころの囲み ===== */
+.watch{background:rgba(255,194,60,.16);border-left:5px solid var(--accent);
+  border-radius:0 10px 10px 0;padding:13px 18px;margin:16px 0 0;font-size:.94rem;line-height:1.8;}
+.watch b{display:block;color:#8a5b00;font-size:.82rem;letter-spacing:.08em;margin-bottom:2px;}
+.dark .watch{background:rgba(255,194,60,.1);}
+.dark .watch b{color:var(--accent);}
+
+/* ===== ここからチーム紹介ページ固有 ===== */
+
+/* チーム紹介カード */
+.tc{
+  background:var(--white);border:1px solid var(--line);border-left:6px solid var(--tc,var(--navy));
+  border-radius:var(--radius);box-shadow:var(--shadow);margin:26px 0;overflow:hidden;
+}
+.dark .tc{background:var(--navy-2);border-color:rgba(255,255,255,.12);
+  border-left-color:var(--tc,var(--accent));box-shadow:none;}
+
+/* カード上部：ロゴとチーム名 */
+.tc-head{display:flex;align-items:center;gap:15px;padding:16px 20px;
+  background:#f6f4ef;border-bottom:1px solid var(--line);}
+.dark .tc-head{background:rgba(255,255,255,.05);border-bottom-color:rgba(255,255,255,.1);}
+.tc-logo{flex:none;width:66px;height:66px;background:var(--white);border-radius:13px;
+  padding:6px;box-shadow:0 2px 8px rgba(10,26,47,.13);}
+.tc-logo img{display:block;width:100%;height:100%;object-fit:contain;}
+.tc-name{min-width:0;}
+.tc-name b{display:block;font-size:1.12rem;line-height:1.5;letter-spacing:.01em;}
+.tc-name small{display:block;color:var(--ink-soft);font-size:.79rem;letter-spacing:.03em;line-height:1.6;}
+.dark .tc-name small{color:#9fb3c6;}
+@media(max-width:480px){
+  .tc-head{gap:12px;padding:14px 16px;}
+  .tc-logo{width:54px;height:54px;border-radius:11px;}
+  .tc-name b{font-size:1.04rem;}
+}
+
+/* カード本文 */
+.tc-body{padding:18px 20px 20px;}
+.tc-body>p{font-size:.97rem;}
+.tc-body>p:last-child{margin-bottom:0;}
+@media(max-width:480px){.tc-body{padding:16px;}}
+
+/* データのバッジ列 */
+.tc-data{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 17px;padding:0;list-style:none;}
+.tc-data li{
+  font-size:.8rem;font-weight:700;padding:5px 11px;border-radius:99px;
+  background:rgba(10,26,47,.06);color:var(--ink-soft);letter-spacing:.01em;
+}
+.dark .tc-data li{background:rgba(255,255,255,.09);color:#c6d5e3;}
+.tc-data li b{color:var(--ink);font-weight:800;}
+.dark .tc-data li b{color:#fff;}
+.tc-data li.hot{background:rgba(255,122,69,.13);color:#9c4418;}
+.tc-data li.hot b{color:#7d3512;}
+.dark .tc-data li.hot{background:rgba(255,194,60,.16);color:var(--accent);}
+.dark .tc-data li.hot b{color:#fff;}
+
+/* 5項目のレーダーチャート（外側ほどリーグ上位） */
+.tc-radar{margin:0 0 6px;text-align:center;}
+.rd{width:100%;max-width:340px;height:auto;}
+.rd-grid{fill:none;stroke:rgba(10,26,47,.14);stroke-width:1;}
+.rd-axis{stroke:rgba(10,26,47,.14);stroke-width:1;}
+.dark .rd-grid,.dark .rd-axis{stroke:rgba(255,255,255,.17);}
+.rd-area{
+  fill:var(--tc,var(--navy));fill-opacity:.2;
+  stroke:var(--tc,var(--navy));stroke-width:2.5;stroke-linejoin:round;
+}
+.rd-dot{fill:var(--tc,var(--navy));}
+/* 濃紺の背景ではチームカラーが沈むため、アクセント色に置き換える */
+.dark .rd-area{fill:var(--accent);fill-opacity:.18;stroke:var(--accent);}
+.dark .rd-dot{fill:var(--accent);}
+.rd-label{font-size:11.5px;font-weight:700;fill:var(--ink);}
+.rd-rank{font-size:10px;font-weight:700;fill:var(--ink-soft);}
+.dark .rd-label{fill:#e8eef5;}
+.dark .rd-rank{fill:#9fb3c6;}
+.rd-note{font-size:.78rem;color:var(--ink-soft);margin:0 0 16px;text-align:center;}
+.dark .rd-note{color:#9fb3c6;}
+
+/* 注目選手 */
+.tc-star-h{font-size:.76rem;font-weight:800;letter-spacing:.12em;color:var(--ink-soft);margin:0 0 3px;}
+.dark .tc-star-h{color:#9fb3c6;}
+.tc-star{margin:0;border-top:1px solid var(--line);}
+.dark .tc-star{border-top-color:rgba(255,255,255,.13);}
+.tc-star div{display:flex;gap:13px;padding:9px 2px;border-bottom:1px solid var(--line);
+  font-size:.92rem;line-height:1.7;}
+.dark .tc-star div{border-bottom-color:rgba(255,255,255,.13);}
+.tc-star b{flex:none;width:5.2em;color:var(--accent-2);font-weight:800;font-size:.86rem;letter-spacing:.02em;}
+.dark .tc-star b{color:var(--accent);}
+.tc-star span{color:var(--ink-soft);}
+.dark .tc-star span{color:#b9c9d9;}
+.tc-star em{font-style:normal;font-weight:700;color:var(--ink);}
+.dark .tc-star em{color:#fff;}
+@media(max-width:480px){
+  .tc-star div{display:block;padding:10px 2px;}
+  .tc-star b{width:auto;display:block;margin-bottom:1px;}
+}
+
+/* ===== フッター ===== */
+footer{background:var(--navy);color:#8ba0b4;text-align:center;padding:40px 22px;font-size:.85rem;}
+footer b{color:var(--accent);display:block;font-size:1.1rem;margin-bottom:8px;}
+footer .note{font-size:.78rem;line-height:1.85;max-width:44em;margin:1.4em auto 0;color:#7a8fa3;}
+
+/* ===== 推しチーム診断 ===== */
+.qz{
+  background:var(--navy);color:#e8eef5;border-radius:var(--radius);
+  padding:26px 24px;margin:28px 0 34px;box-shadow:0 10px 30px rgba(10,26,47,.20);
+}
+@media(max-width:480px){.qz{padding:22px 18px;}}
+.qz-eyebrow{
+  display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.18em;
+  color:var(--accent);background:rgba(255,194,60,.14);
+  padding:5px 12px;border-radius:99px;margin:0 0 12px;
+}
+.qz h2{font-size:clamp(1.25rem,4.4vw,1.6rem);color:var(--white);margin:0 0 .5em;line-height:1.5;}
+.qz-lead{font-size:.95rem;color:#b9c9d9;margin:0 0 1.5em;line-height:1.85;}
+.qz-lead b{color:var(--accent);}
+
+/* ボタン共通 */
+.qz-btn{
+  display:block;width:100%;border:none;border-radius:11px;padding:15px 18px;
+  font-family:inherit;font-size:1rem;font-weight:800;cursor:pointer;
+  background:var(--accent);color:var(--navy);transition:filter .18s,transform .12s;
+}
+.qz-btn:hover{filter:brightness(1.08);}
+.qz-btn:active{transform:translateY(1px);}
+.qz-skip{text-align:center;margin:14px 0 0;font-size:.88rem;}
+.qz-skip a{color:#9fb3c6;}
+
+/* 進行状況 */
+.qz-prog{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px;
+  font-size:.78rem;font-weight:700;letter-spacing:.1em;color:#9fb3c6;}
+.qz-bar{height:5px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden;margin-bottom:22px;}
+.qz-bar i{display:block;height:100%;width:25%;border-radius:99px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .3s ease;}
+
+/* 質問と選択肢 */
+.qz-title{font-size:clamp(1.1rem,4vw,1.32rem);font-weight:800;color:var(--white);
+  line-height:1.6;margin:0 0 1.1em;}
+.qz-choices{display:grid;gap:9px;}
+.qz-choice{
+  text-align:left;padding:14px 17px;border:1.5px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.05);border-radius:11px;color:#e8eef5;
+  font-family:inherit;font-size:.97rem;font-weight:700;line-height:1.6;cursor:pointer;
+  transition:border-color .16s,background .16s;
+}
+.qz-choice:hover{border-color:var(--accent);background:rgba(255,194,60,.12);}
+.qz-choice small{display:block;font-size:.85rem;font-weight:400;color:#9fb3c6;margin-top:2px;line-height:1.7;}
+.qz-choice.plain{font-weight:600;color:#9fb3c6;}
+.qz-back{
+  display:inline-block;margin:16px 0 0;padding:0;border:none;background:none;
+  font-family:inherit;font-size:.88rem;font-weight:700;color:#9fb3c6;cursor:pointer;
+}
+.qz-back:hover{color:var(--accent);text-decoration:underline;}
+.qz-back[hidden]{display:none;}
+
+/* 診断結果 */
+.qz-res-list{margin:0 0 20px;}
+.qz-item{
+  display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  border-left:5px solid var(--qc,var(--accent));border-radius:12px;
+  padding:14px 16px;margin-bottom:10px;transition:background .16s,transform .16s;
+}
+.qz-item:hover{background:rgba(255,255,255,.12);transform:translateX(3px);}
+.qz-item .qz-logo{flex:none;width:52px;height:52px;background:var(--white);
+  border-radius:11px;padding:5px;}
+.qz-item .qz-logo img{display:block;width:100%;height:100%;object-fit:contain;}
+.qz-item .qz-info{min-width:0;flex:1;}
+.qz-item .qz-nm{display:block;font-size:1.04rem;font-weight:800;color:var(--white);line-height:1.45;}
+.qz-item .qz-meta{display:block;font-size:.82rem;color:#9fb3c6;line-height:1.65;}
+.qz-item .qz-arrow{flex:none;color:var(--accent);font-weight:800;font-size:1.1rem;}
+/* 1位だけ大きく見せる */
+.qz-item.top{background:rgba(255,194,60,.13);border-color:rgba(255,194,60,.4);padding:18px 18px;}
+.qz-item.top .qz-logo{width:66px;height:66px;}
+.qz-item.top .qz-nm{font-size:1.18rem;}
+.qz-badge{
+  display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.08em;
+  background:var(--accent);color:var(--navy);border-radius:99px;padding:2px 9px;margin-bottom:3px;
+}
+@media(max-width:480px){
+  .qz-item{gap:11px;padding:12px 13px;}
+  .qz-item .qz-logo{width:44px;height:44px;}
+  .qz-item.top .qz-logo{width:54px;height:54px;}
+  .qz-item .qz-nm{font-size:.97rem;}
+  .qz-item.top .qz-nm{font-size:1.06rem;}
+}
+
+/* ===== フローティング：トップに戻る ===== */
+.totop{
+  position:fixed;right:18px;bottom:18px;z-index:90;
+  width:48px;height:48px;border:none;border-radius:50%;
+  background:var(--navy);color:var(--accent);
+  font-family:inherit;font-size:1.15rem;font-weight:800;line-height:1;
+  cursor:pointer;box-shadow:0 5px 18px rgba(10,26,47,.35);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity .25s,visibility .25s,transform .25s,background .18s;
+}
+.totop.show{opacity:1;visibility:visible;transform:none;}
+.totop:hover{background:var(--navy-2);}
+.totop:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+@media(max-width:480px){.totop{right:14px;bottom:14px;width:44px;height:44px;}}
+@media(prefers-reduced-motion:reduce){
+  .totop{transition:opacity .01s,visibility .01s;transform:none;}
+  .qz-bar i{transition:none;}
+}
+
+/* ===== 出現アニメーション ===== */
+body.js .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+body.js .rv.in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){
+  body.js .rv{opacity:1;transform:none;transition:none;}
+  html{scroll-behavior:auto;}
+  .scroll-cue span{animation:none;}
+}
+@media(max-width:480px){
+  body{font-size:16px;}
+  section{padding:52px 0;}
+  .wrap{padding:0 18px;}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<!-- ===== 行き先バー ===== -->
+<nav class="topbar">
+  <div class="wrap">
+    <a href="NFL-lecture.html">← 入門編にもどる</a>
+    <span>TEAM GUIDE</span>
+  </div>
+</nav>
+
+<!-- ===== 目次 ===== -->
+<section class="tight">
+  <div class="wrap">
+    <h1 class="page-h1">32チームから、ひとつを選ぶ</h1>
+    <p class="page-sub">好みのタイプから選べるように、32チームを5つに分けました。</p>
+
+    <!-- ===== 推しチーム診断（JavaScriptが動く環境でのみ表示する） ===== -->
+    <div class="qz" id="qz" hidden>
+      <!-- 導入 -->
+      <div id="qzIntro">
+        <p class="qz-eyebrow">DIAGNOSIS</p>
+        <h2>推しチーム診断</h2>
+        <p class="qz-lead">4つの質問に答えると、あなたにハマりそうな<b>3チーム</b>を選び出します。<br>迷ったらここから始めてください。</p>
+        <button class="qz-btn" id="qzStart" type="button">診断をはじめる</button>
+        <p class="qz-skip"><a href="#offense">診断せずに一覧を見る ↓</a></p>
+      </div>
+
+      <!-- 質問 -->
+      <div id="qzQ" hidden>
+        <div class="qz-prog">
+          <span>QUESTION <span id="qzStep">1</span> / 4</span>
+        </div>
+        <div class="qz-bar"><i id="qzBar"></i></div>
+        <p class="qz-title" id="qzTitle"></p>
+        <div class="qz-choices" id="qzChoices"></div>
+        <button class="qz-back" id="qzBack" type="button" hidden>← 前の質問にもどる</button>
+      </div>
+
+      <!-- 結果 -->
+      <div id="qzRes" hidden>
+        <p class="qz-eyebrow">RESULT</p>
+        <h2>あなたに合いそうな3チーム</h2>
+        <p class="qz-lead" id="qzSummary"></p>
+        <div class="qz-res-list" id="qzList"></div>
+        <button class="qz-btn" id="qzAgain" type="button">もう一度診断する</button>
+      </div>
+    </div>
+
+    <div class="toc">
+      <h3>5つのタイプ</h3>
+      <ol>
+        <li><a href="#offense">攻撃型</a>
+          <small>とにかく点が入る。派手な試合が見たい人へ。7チーム</small></li>
+        <li><a href="#defense">守備型</a>
+          <small>相手を止めて勝つ。渋い攻防に痺れる人へ。7チーム</small></li>
+        <li><a href="#star">スター・ドラマ性</a>
+          <small>スター選手や、今季ならではの物語で選びたい人へ。6チーム</small></li>
+        <li><a href="#legacy">伝統</a>
+          <small>歴史の重みで選びたい人へ。6チーム</small></li>
+        <li><a href="#growth">成長枠</a>
+          <small>若いチームが強くなる過程を見守りたい人へ。6チーム</small></li>
+      </ol>
+    </div>
+
+    <details class="more">
+      <summary>数字の読み方について（開かなくても読めます）</summary>
+      <div class="body">
+        <p>各チームに付けた数字は、すべて<b>2025年シーズン（2025年9月〜2026年2月）の実績</b>です。順位はリーグ32チーム中の順位を指します。</p>
+        <ul>
+          <li><b>得点◯位／失点◯位</b> ── 1試合あたりの平均で並べた順位です。得点1位なら「最も点を取ったチーム」、失点1位なら「最も点を取られなかったチーム」になります。</li>
+          <li><b>ヤード</b> ── 進んだ距離の単位です。1ヤードは約91cm。パスで4000ヤードを超えると一流の目安になります。</li>
+        </ul>
+        <p>各チームに載せている<b>五角形の図</b>は、5つの項目がリーグ32チームの中でどのくらいの位置にあるかを表したものです。<b>外側にふくらんでいるほど上位</b>だと思ってください。</p>
+        <ul>
+          <li><b>パス攻撃／ラン攻撃</b> ── 1試合あたり、投げて進んだ距離と、走って進んだ距離の順位です。</li>
+          <li><b>パス守備／ラン守備</b> ── 相手にどれだけ進ませなかったかの順位です。少なく抑えたチームほど外側になります。</li>
+          <li><b>いちばん上の項目</b> ── そのチームで特に目立つ長所を1つだけ選んで載せています。ここだけはチームごとに内容が変わります。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== 1. 攻撃型 ===== -->
+<section id="offense">
+  <div class="wrap">
+    <p class="eyebrow rv">TYPE 1 ｜ 7チーム</p>
+    <h2 class="rv">攻撃型</h2>
+
+    <!-- ラムズ -->
+    <article id="team-lar" class="tc rv" style="--tc:#003594">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/lar.png" alt="ロサンゼルス・ラムズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ロサンゼルス・ラムズ</b>
+          <small>Los Angeles Rams ｜ NFC 西地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>12勝5敗</b></li>
+          <li>得点 <b>1位</b></li>
+          <li>失点 <b>10位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ロサンゼルス・ラムズの5項目のリーグ内評価">
+          <title>ボール奪取リーグ5位、パス攻撃リーグ1位、ラン攻撃リーグ7位、ラン守備リーグ12位、パス守備リーグ19位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,67.2 241.8,115.4 200.9,198.4 127.1,187.2 125.6,130.8"/>
+          <circle class="rd-dot" cx="160.0" cy="67.2" r="3.4"/>
+          <circle class="rd-dot" cx="241.8" cy="115.4" r="3.4"/>
+          <circle class="rd-dot" cx="200.9" cy="198.4" r="3.4"/>
+          <circle class="rd-dot" cx="127.1" cy="187.2" r="3.4"/>
+          <circle class="rd-dot" cx="125.6" cy="130.8" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ボール奪取</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">5位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">1位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">7位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">12位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">19位</text>
+        </svg>
+        </div>
+
+        <p>リーグでいちばん点を取るチームです。2025年は1試合平均30.5点で得点1位でした。<br>
+        パス攻撃、ラン攻撃ともレベルが高く、相手ディフェンスに的を絞らせない破壊力が魅力です。<br>
+        弱点だった守備には今季、リーグ最多の<span class="term">サック<span class="tip">相手のパサーをボールを投げる前に倒すこと。攻撃側は大きく後退することになる。</span></span>を奪った選手が加わりました。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>マシュー・スタッフォード</em>：38歳のベテラン。2025年はパス4707ヤード・46タッチダウンと、共にリーグ1位の成績を残した。</span></div>
+          <div><b>WR</b><span><em>プーカ・ナクア</em>：リーグ最多の129回パスを捕った、パス攻撃の中心選手。</span></div>
+          <div><b>DE</b><span><em>マイルズ・ギャレット</em>：2025年に23サックでリーグ1位。今季クリーブランドから加入した"破壊神"。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ペイトリオッツ -->
+    <article id="team-ne" class="tc rv" style="--tc:#002a5c">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/ne.png" alt="ニューイングランド・ペイトリオッツのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ニューイングランド・ペイトリオッツ</b>
+          <small>New England Patriots ｜ AFC 東地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>14勝3敗</b></li>
+          <li>得点 <b>2位</b></li>
+          <li>失点 <b>4位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ニューイングランド・ペイトリオッツの5項目のリーグ内評価">
+          <title>パスの正確さリーグ1位、パス攻撃リーグ4位、ラン攻撃リーグ6位、ラン守備リーグ6位、パス守備リーグ9位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,56.0 233.6,118.1 202.5,200.4 117.5,200.4 99.5,122.3"/>
+          <circle class="rd-dot" cx="160.0" cy="56.0" r="3.4"/>
+          <circle class="rd-dot" cx="233.6" cy="118.1" r="3.4"/>
+          <circle class="rd-dot" cx="202.5" cy="200.4" r="3.4"/>
+          <circle class="rd-dot" cx="117.5" cy="200.4" r="3.4"/>
+          <circle class="rd-dot" cx="99.5" cy="122.3" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">パスの正確さ</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">1位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">4位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">6位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">6位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">9位</text>
+        </svg>
+        </div>
+
+        <p>2025年はスーパーボウルまで勝ち進み、あと一歩のところで頂点を逃したチームです。<br>
+        投げても走っても止まらない攻撃に、簡単には点を許さない守備。5つの項目すべてがリーグ上位という、隙のない布陣です。<br>
+        その中心にいるのは、24歳の若きエース。今季はリーグ屈指のレシーバーも加わりました。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ドレイク・メイ</em>：2025年はパス4394ヤード・31タッチダウン。パスの正確さでリーグ1位を記録した若きエース。</span></div>
+          <div><b>WR</b><span><em>A.J.ブラウン</em>：今季フィラデルフィアから加入。これまで6度も1000ヤード超えを達成してきた、実績十分のレシーバー。</span></div>
+          <div><b>S</b><span><em>ケビン・バイアード</em>：2025年に7<span class="term">インターセプト<span class="tip">相手のパスを空中で奪い取ること。攻守がその場で入れ替わるため、試合の流れを変える最大の見せ場になる。</span></span>でリーグ1位。相手のパスを狩る守備の要。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ビルズ -->
+    <article id="team-buf" class="tc rv" style="--tc:#00338d">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/buf.png" alt="バッファロー・ビルズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>バッファロー・ビルズ</b>
+          <small>Buffalo Bills ｜ AFC 東地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>12勝5敗</b></li>
+          <li>得点 <b>4位</b></li>
+          <li>失点 <b>12位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="バッファロー・ビルズの5項目のリーグ内評価">
+          <title>ボール支配リーグ1位、パス攻撃リーグ15位、ラン攻撃リーグ1位、ラン守備リーグ28位、パス守備リーグ1位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,56.0 205.0,127.4 210.5,211.6 153.4,151.0 78.2,115.4"/>
+          <circle class="rd-dot" cx="160.0" cy="56.0" r="3.4"/>
+          <circle class="rd-dot" cx="205.0" cy="127.4" r="3.4"/>
+          <circle class="rd-dot" cx="210.5" cy="211.6" r="3.4"/>
+          <circle class="rd-dot" cx="153.4" cy="151.0" r="3.4"/>
+          <circle class="rd-dot" cx="78.2" cy="115.4" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ボール支配</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">1位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">15位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">1位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">28位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">1位</text>
+        </svg>
+        </div>
+
+        <p>ラン攻撃に特化したチームです。2025年は「1試合あたりのラン獲得ヤード」と「攻撃を続けた時間（ポゼッションタイム）」でリーグ1位。<br>
+        そのかわり、相手のランに対する守備に課題がありました。<br>
+        中心にいるのは、自らボールを持って走るQBジョシュ・アレン。今季のMVP候補の筆頭に挙げられています。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ジョシュ・アレン</em>：投げるだけでなく自分で走り抜く異色のQB。2025年はランでのタッチダウン14本を記録し、並み居るRBたちを抑えてリーグ3位に入った。</span></div>
+          <div><b>RB</b><span><em>ジェームズ・クック3世</em>：2025年に1621ヤードを走り、ラン獲得ヤードでリーグ1位を獲得。</span></div>
+          <div><b>WR</b><span><em>DJムーア</em>：今季シカゴから加入。手薄だったパス攻撃を厚くして攻撃の幅を広げられるか。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ライオンズ -->
+    <article id="team-det" class="tc rv" style="--tc:#0076b6">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/det.png" alt="デトロイト・ライオンズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>デトロイト・ライオンズ</b>
+          <small>Detroit Lions ｜ NFC 北地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>9勝8敗</b></li>
+          <li>得点 <b>5位</b></li>
+          <li>失点 <b>22位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="デトロイト・ライオンズの5項目のリーグ内評価">
+          <title>パスラッシュリーグ4位、パス攻撃リーグ3位、ラン攻撃リーグ14位、ラン守備リーグ14位、パス守備リーグ20位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,64.6 236.9,117.0 189.3,182.4 130.7,182.4 128.1,131.6"/>
+          <circle class="rd-dot" cx="160.0" cy="64.6" r="3.4"/>
+          <circle class="rd-dot" cx="236.9" cy="117.0" r="3.4"/>
+          <circle class="rd-dot" cx="189.3" cy="182.4" r="3.4"/>
+          <circle class="rd-dot" cx="130.7" cy="182.4" r="3.4"/>
+          <circle class="rd-dot" cx="128.1" cy="131.6" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">パスラッシュ</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">4位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">3位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">14位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">14位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">20位</text>
+        </svg>
+        </div>
+
+        <p>パス攻撃を軸に点を取るチームです。2025年はQBジャレッド・ゴフがパス獲得ヤード・タッチダウンともにリーグ2位を記録しました。<br>
+        ただし相手のパスを止めるのが苦手で、9勝8敗と勝ち切れずプレーオフ進出を逃しています。<br>
+        守備の前線には<span class="term">パスラッシュ<span class="tip">相手のパサーに襲いかかること。倒せばサック、倒せなくても急いで投げさせることができる。</span></span>リーグ4位の破壊力があり、噛み合えば一気に上位へ伸びる要素は揃っています。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ジャレッド・ゴフ</em>：2025年はパス4564ヤード・34タッチダウンで、ともにリーグ2位。安定して投げ続けられる司令塔。</span></div>
+          <div><b>WR</b><span><em>アモンラー・セントブラウン</em>：キャッチ数・獲得ヤード・タッチダウンの3部門すべてでリーグ5位に入った、頼れるメインターゲット。</span></div>
+          <div><b>DE</b><span><em>エイダン・ハッチンソン</em>：2025年に14サックでリーグ4位。最優秀守備選手の候補にも挙げられる守備の柱。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- カウボーイズ -->
+    <article id="team-dal" class="tc rv" style="--tc:#002a5c">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/dal.png" alt="ダラス・カウボーイズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ダラス・カウボーイズ</b>
+          <small>Dallas Cowboys ｜ NFC 東地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>7勝9敗1分</b></li>
+          <li>得点 <b>7位</b></li>
+          <li>失点 <b>32位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ダラス・カウボーイズの5項目のリーグ内評価">
+          <title>総獲得ヤードリーグ1位、パス攻撃リーグ2位、ラン攻撃リーグ9位、ラン守備リーグ23位、パス守備リーグ32位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,56.0 239.3,116.2 197.4,193.5 145.3,162.2 160.0,142.0"/>
+          <circle class="rd-dot" cx="160.0" cy="56.0" r="3.4"/>
+          <circle class="rd-dot" cx="239.3" cy="116.2" r="3.4"/>
+          <circle class="rd-dot" cx="197.4" cy="193.5" r="3.4"/>
+          <circle class="rd-dot" cx="145.3" cy="162.2" r="3.4"/>
+          <circle class="rd-dot" cx="160.0" cy="142.0" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">総獲得ヤード</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">1位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">2位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">9位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">23位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">32位</text>
+        </svg>
+        </div>
+
+        <p>攻撃だけを見ればリーグ最強です。2025年に前へ進んだ距離（総獲得ヤード）は、32チーム中の1位でした。<br>
+        ところが守備がまるで機能せず、パス守備はリーグ最下位。取っても取り返される展開になり、勝ち星が伸びません。<br>
+        7勝9敗1分でプレーオフを逃した反省から、今季は守備の立て直しに本腰を入れました。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ダック・プレスコット</em>：2025年はパス4552ヤードでリーグ3位。33歳を迎えてなお、投げる量と精度は落ちていない。</span></div>
+          <div><b>WR</b><span><em>ジョージ・ピケンズ</em>：2025年に1429ヤードを稼いでレシーブ獲得ヤード3位。同僚のシーディー・ラムと組む二枚看板。</span></div>
+          <div><b>S</b><span><em>ケイレブ・ダウンズ</em>：今季ドラフト全体11位で加入した21歳。最下位の守備を建て直す期待を背負い、守備新人王の候補にも挙がる。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- コルツ -->
+    <article id="team-ind" class="tc rv" style="--tc:#003b75">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/ind.png" alt="インディアナポリス・コルツのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>インディアナポリス・コルツ</b>
+          <small>Indianapolis Colts ｜ AFC 南地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>8勝9敗</b></li>
+          <li>得点 <b>8位</b></li>
+          <li>失点 <b>20位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="インディアナポリス・コルツの5項目のリーグ内評価">
+          <title>ラン得点力リーグ2位、パス攻撃リーグ9位、ラン攻撃リーグ17位、ラン守備リーグ7位、パス守備リーグ31位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,58.6 220.5,122.3 184.3,175.4 119.1,198.4 157.5,141.2"/>
+          <circle class="rd-dot" cx="160.0" cy="58.6" r="3.4"/>
+          <circle class="rd-dot" cx="220.5" cy="122.3" r="3.4"/>
+          <circle class="rd-dot" cx="184.3" cy="175.4" r="3.4"/>
+          <circle class="rd-dot" cx="119.1" cy="198.4" r="3.4"/>
+          <circle class="rd-dot" cx="157.5" cy="141.2" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ラン得点力</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">2位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">9位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">17位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">7位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">31位</text>
+        </svg>
+        </div>
+
+        <p>ゴール前まで運んだら、あとは走って押し込むチームです。2025年のランによるタッチダウン27本はリーグ2位でした。<br>
+        相手のランを止める力は7位と堅い一方、パス守備は31位。投げ合いに持ち込まれると苦しくなります。<br>
+        すべての中心にいるのは、走るために生まれてきたようなRBジョナサン・テイラーです。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>RB</b><span><em>ジョナサン・テイラー</em>：2025年はランで1585ヤードを稼いでリーグ3位、さらにランでのタッチダウン18本はリーグ1位。得点源そのもの。</span></div>
+          <div><b>QB</b><span><em>ダニエル・ジョーンズ</em>：2025年は13試合の出場でパス3101ヤード。パサーとしての効率はリーグ9位と、堅実に試合を運ぶ。</span></div>
+          <div><b>DE</b><span><em>ライアトゥ・ラトゥ</em>：2025年に8.5サックを記録した若手。手薄なパス守備を前から助ける存在。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ベンガルズ -->
+    <article id="team-cin" class="tc rv" style="--tc:#fb4f14">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/cin.png" alt="シンシナティ・ベンガルズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>シンシナティ・ベンガルズ</b>
+          <small>Cincinnati Bengals ｜ AFC 北地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>6勝11敗</b></li>
+          <li>得点 <b>12位</b></li>
+          <li>失点 <b>30位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="シンシナティ・ベンガルズの5項目のリーグ内評価">
+          <title>パスTD数リーグ2位、パス攻撃リーグ6位、ラン攻撃リーグ29位、ラン守備リーグ32位、パス守備リーグ26位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,58.6 228.7,119.7 165.1,149.0 160.0,142.0 144.5,137.0"/>
+          <circle class="rd-dot" cx="160.0" cy="58.6" r="3.4"/>
+          <circle class="rd-dot" cx="228.7" cy="119.7" r="3.4"/>
+          <circle class="rd-dot" cx="165.1" cy="149.0" r="3.4"/>
+          <circle class="rd-dot" cx="160.0" cy="142.0" r="3.4"/>
+          <circle class="rd-dot" cx="144.5" cy="137.0" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">パスTD数</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">2位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">6位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">29位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">32位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">26位</text>
+        </svg>
+        </div>
+
+        <p>パスで点を取ることに振り切ったチームです。2025年のパスによるタッチダウン36本はリーグ2位でした。<br>
+        そのかわりランは29位、相手のランを止める力はリーグ最下位。守り合いになると勝ち目がありません。<br>
+        2025年はエースQBジョー・バロウが8試合を欠場して6勝11敗。今季は彼が戻ってこられるかが最大の分かれ目です。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ジョー・バロウ</em>：チームの命運を握るエース。2025年は負傷で8試合しか出られなかったが、パサーとしての効率はリーグ7位を維持した。</span></div>
+          <div><b>WR</b><span><em>ジャマー・チェイス</em>：2025年はキャッチ数リーグ3位、獲得ヤード4位。バロウとは大学時代からの相棒。</span></div>
+          <div><b>DT</b><span><em>デクスター・ローレンス2世</em>：今季ニューヨーク・ジャイアンツから加入。ドラフト1巡目指名権を手放して迎えた、守備の中央を支える大型補強。</span></div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== 2. 守備型 ===== -->
+<section id="defense" class="dark">
+  <div class="wrap">
+    <p class="eyebrow rv">TYPE 2 ｜ 7チーム</p>
+    <h2 class="rv">守備型</h2>
+
+    <!-- シーホークス -->
+    <article id="team-sea" class="tc rv" style="--tc:#002a5c">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/sea.png" alt="シアトル・シーホークスのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>シアトル・シーホークス</b>
+          <small>Seattle Seahawks ｜ NFC 西地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>14勝3敗</b></li>
+          <li>得点 <b>3位</b></li>
+          <li>失点 <b>1位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="シアトル・シーホークスの5項目のリーグ内評価">
+          <title>守備TD数リーグ1位、パス攻撃リーグ8位、ラン攻撃リーグ11位、ラン守備リーグ3位、パス守備リーグ10位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,56.0 223.0,121.5 194.4,189.3 112.5,207.4 101.9,123.1"/>
+          <circle class="rd-dot" cx="160.0" cy="56.0" r="3.4"/>
+          <circle class="rd-dot" cx="223.0" cy="121.5" r="3.4"/>
+          <circle class="rd-dot" cx="194.4" cy="189.3" r="3.4"/>
+          <circle class="rd-dot" cx="112.5" cy="207.4" r="3.4"/>
+          <circle class="rd-dot" cx="101.9" cy="123.1" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">守備TD数</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">1位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">8位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">11位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">3位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">10位</text>
+        </svg>
+        </div>
+
+        <p>2025年のスーパーボウル王者です。失点はリーグ最少で、「守って勝つ」を地でいくチームです。<br>
+        相手のランを止める力は3位。さらに、奪ったボールをそのまま得点に変えた回数（守備タッチダウン）はリーグ1位でした。<br>
+        攻撃も得点3位と侮れません。QBサム・ダーノルドは、他球団で伸び悩んだ末にこのチームで頂点に立ちました。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>WR</b><span><em>ジャクソン・スミスンジグバ</em>：2025年に1793ヤードを稼ぎ、レシーブ獲得ヤードでリーグ1位。王者の攻撃を引っ張る絶対的な的。</span></div>
+          <div><b>LB</b><span><em>アーネスト・ジョーンズ4世</em>：126タックルに加えてインターセプト5本。本来は前で守る選手なのに、パスを奪う数までリーグ2位タイ。</span></div>
+          <div><b>S</b><span><em>ニック・エマンウォリ</em>：最後方を守る22歳。相手のパスを叩き落とした回数はリーグ上位に食い込む。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ヒューストン・テキサンズ -->
+    <article id="team-hou" class="tc rv" style="--tc:#021018">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/hou.png" alt="ヒューストン・テキサンズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ヒューストン・テキサンズ</b>
+          <small>Houston Texans ｜ AFC 南地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>12勝5敗</b></li>
+          <li>得点 <b>13位</b></li>
+          <li>失点 <b>2位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ヒューストン・テキサンズの5項目のリーグ内評価">
+          <title>ボール奪取リーグ3位、パス攻撃リーグ14位、ラン攻撃リーグ22位、ラン守備リーグ4位、パス守備リーグ6位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,61.2 207.4,126.6 176.2,164.3 114.5,204.6 91.3,119.7"/>
+          <circle class="rd-dot" cx="160.0" cy="61.2" r="3.4"/>
+          <circle class="rd-dot" cx="207.4" cy="126.6" r="3.4"/>
+          <circle class="rd-dot" cx="176.2" cy="164.3" r="3.4"/>
+          <circle class="rd-dot" cx="114.5" cy="204.6" r="3.4"/>
+          <circle class="rd-dot" cx="91.3" cy="119.7" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ボール奪取</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">3位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">14位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">22位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">4位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">6位</text>
+        </svg>
+        </div>
+
+        <p>相手からボールを奪い取って勝つチームです。2025年にインターセプトやファンブルで奪った回数はリーグ3位、失点は2位でした。<br>
+        一方で攻撃は得点13位と伸び悩み、守備の頑張りを活かしきれませんでした。<br>
+        今季は走る攻撃を補強し、24歳のQBを中心に一段上を狙います。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>C.J.ストラウド</em>：24歳。2025年はパス3041ヤード・19タッチダウン。若くしてチームの顔を担う。</span></div>
+          <div><b>DE</b><span><em>ダニエル・ハンター</em>：2025年に15サックでリーグ3位。31歳になってもパサーを追い続ける。</span></div>
+          <div><b>WR</b><span><em>ニコ・コリンズ</em>：1117ヤードを稼いだ、攻撃で最も頼れる的。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- デンバー・ブロンコス -->
+    <article id="team-den" class="tc rv" style="--tc:#0a2343">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/den.png" alt="デンバー・ブロンコスのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>デンバー・ブロンコス</b>
+          <small>Denver Broncos ｜ AFC 西地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>14勝3敗</b></li>
+          <li>得点 <b>14位</b></li>
+          <li>失点 <b>3位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="デンバー・ブロンコスの5項目のリーグ内評価">
+          <title>サック数リーグ1位、パス攻撃リーグ11位、ラン攻撃リーグ16位、ラン守備リーグ2位、パス守備リーグ7位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,56.0 215.6,123.9 186.3,178.2 111.0,209.5 93.7,120.5"/>
+          <circle class="rd-dot" cx="160.0" cy="56.0" r="3.4"/>
+          <circle class="rd-dot" cx="215.6" cy="123.9" r="3.4"/>
+          <circle class="rd-dot" cx="186.3" cy="178.2" r="3.4"/>
+          <circle class="rd-dot" cx="111.0" cy="209.5" r="3.4"/>
+          <circle class="rd-dot" cx="93.7" cy="120.5" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">サック数</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">1位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">11位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">16位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">2位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">7位</text>
+        </svg>
+        </div>
+
+        <p>とにかく相手のパサーを潰すチームです。2025年のサック68本はリーグ1位で、2位に11本もの差をつけました。<br>
+        相手のランを止める力も2位。14勝3敗はリーグ最高タイの成績で、優勝の一歩手前まで勝ち進みました。<br>
+        課題は得点14位の攻撃。今季はマイアミから強力な受け手を迎え、そこを埋めにきています。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>LB</b><span><em>ニック・ボニート</em>：2025年に14サックでリーグ4位。リーグ最強のパスラッシュを引っ張る主役。</span></div>
+          <div><b>QB</b><span><em>ボー・ニックス</em>：26歳。2025年はパス3931ヤード・25タッチダウン。派手さより堅実さで試合を運ぶ。</span></div>
+          <div><b>WR</b><span><em>ジェイレン・ワドル</em>：今季マイアミから加入。物足りなかった攻撃を変える切り札。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- フィラデルフィア・イーグルス -->
+    <article id="team-phi" class="tc rv" style="--tc:#06424d">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/phi.png" alt="フィラデルフィア・イーグルスのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>フィラデルフィア・イーグルス</b>
+          <small>Philadelphia Eagles ｜ NFC 東地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>11勝6敗</b></li>
+          <li>得点 <b>19位</b></li>
+          <li>失点 <b>5位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="フィラデルフィア・イーグルスの5項目のリーグ内評価">
+          <title>ゴール前TD率リーグ1位、パス攻撃リーグ23位、ラン攻撃リーグ18位、ラン守備リーグ22位、パス守備リーグ8位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,56.0 183.7,134.3 182.7,173.3 143.8,164.3 97.0,121.5"/>
+          <circle class="rd-dot" cx="160.0" cy="56.0" r="3.4"/>
+          <circle class="rd-dot" cx="183.7" cy="134.3" r="3.4"/>
+          <circle class="rd-dot" cx="182.7" cy="173.3" r="3.4"/>
+          <circle class="rd-dot" cx="143.8" cy="164.3" r="3.4"/>
+          <circle class="rd-dot" cx="97.0" cy="121.5" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ゴール前TD率</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">1位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">23位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">18位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">22位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">8位</text>
+        </svg>
+        </div>
+
+        <p>2024年のスーパーボウル王者です。ゴール前まで運んだときにタッチダウンで決め切る確率は、リーグ1位でした。<br>
+        相手のパスを止める力も8位と堅い一方、総合的な得点は19位。王者になった翌年は攻撃が停滞しました。<br>
+        QBジェイレン・ハーツは自ら走ってねじ込むタイプ。RBセイコン・バークリーとの二本柱が持ち味です。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ジェイレン・ハーツ</em>：投げるだけでなく自ら走って押し込むQB。2025年もランで8タッチダウンを奪った。</span></div>
+          <div><b>RB</b><span><em>セイコン・バークリー</em>：2025年に1140ヤードを走った看板ランナー。一度抜ければ止まらない。</span></div>
+          <div><b>LB</b><span><em>ザック・バウン</em>：123タックルを記録した守備の中心。相手の攻撃を読み切って潰す。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ミネソタ・バイキングス -->
+    <article id="team-min" class="tc rv" style="--tc:#4f2683">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/min.png" alt="ミネソタ・バイキングスのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ミネソタ・バイキングス</b>
+          <small>Minnesota Vikings ｜ NFC 北地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>9勝8敗</b></li>
+          <li>得点 <b>26位</b></li>
+          <li>失点 <b>7位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ミネソタ・バイキングスの5項目のリーグ内評価">
+          <title>ロスタックルリーグ2位、パス攻撃リーグ29位、ラン攻撃リーグ23位、ラン守備リーグ21位、パス守備リーグ2位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,58.6 168.2,139.3 174.7,162.2 142.3,166.4 80.7,116.2"/>
+          <circle class="rd-dot" cx="160.0" cy="58.6" r="3.4"/>
+          <circle class="rd-dot" cx="168.2" cy="139.3" r="3.4"/>
+          <circle class="rd-dot" cx="174.7" cy="162.2" r="3.4"/>
+          <circle class="rd-dot" cx="142.3" cy="166.4" r="3.4"/>
+          <circle class="rd-dot" cx="80.7" cy="116.2" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ロスタックル</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">2位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">29位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">23位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">21位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">2位</text>
+        </svg>
+        </div>
+
+        <p>相手のパスを封じることに長けたチームです。2025年のパス守備はリーグ2位、<span class="term">相手を後退させたプレー<span class="tip">ランやパスを、始まった位置より後ろで止めること（タックル・フォー・ロス）。攻撃側は前進どころか下がるため、大きな痛手になる。</span></span>の数も2位でした。<br>
+        ところが攻撃は得点26位と深刻で、守備が耐えても点が取れず、9勝8敗でプレーオフを逃しています。<br>
+        今季はアリゾナからカイラー・マレーを迎え、攻撃の建て直しに踏み切りました。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>WR</b><span><em>ジャスティン・ジェファーソン</em>：リーグ屈指の受け手。攻撃が停滞した2025年も1048ヤードを稼いだ。</span></div>
+          <div><b>QB</b><span><em>カイラー・マレー</em>：今季アリゾナから加入。小柄ながら足が速く、止まった攻撃を動かす役割を担う。</span></div>
+          <div><b>LB</b><span><em>ブレイク・キャッシュマン</em>：144タックルでリーグ上位の守備を支えた中心選手。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ロサンゼルス・チャージャーズ -->
+    <article id="team-lac" class="tc rv" style="--tc:#0080c6">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/lac.png" alt="ロサンゼルス・チャージャーズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ロサンゼルス・チャージャーズ</b>
+          <small>Los Angeles Chargers ｜ AFC 西地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>11勝6敗</b></li>
+          <li>得点 <b>20位</b></li>
+          <li>失点 <b>9位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ロサンゼルス・チャージャーズの5項目のリーグ内評価">
+          <title>ボール支配リーグ2位、パス攻撃リーグ18位、ラン攻撃リーグ12位、ラン守備リーグ8位、パス守備リーグ5位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,58.6 196.8,130.0 192.9,187.2 121.1,195.6 88.8,118.9"/>
+          <circle class="rd-dot" cx="160.0" cy="58.6" r="3.4"/>
+          <circle class="rd-dot" cx="196.8" cy="130.0" r="3.4"/>
+          <circle class="rd-dot" cx="192.9" cy="187.2" r="3.4"/>
+          <circle class="rd-dot" cx="121.1" cy="195.6" r="3.4"/>
+          <circle class="rd-dot" cx="88.8" cy="118.9" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ボール支配</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">2位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">18位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">12位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">8位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">5位</text>
+        </svg>
+        </div>
+
+        <p>時間をかけて確実に前へ進むチームです。1試合でボールを持っていた時間はリーグ2位、3回目の攻撃を成功させる率も3位でした。<br>
+        守備も崩れにくく失点は9位。派手さはありませんが、負けにくい構成になっています。<br>
+        大学の名将として知られたジム・ヘッドコーチのもと、QBジャスティン・ハーバートが着実に試合を運びます。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ジャスティン・ハーバート</em>：2025年はパス3727ヤード・26タッチダウン。強い腕と落ち着きを併せ持つ。</span></div>
+          <div><b>LB</b><span><em>トゥリ・トゥイプロツ</em>：13サックでリーグ6位。24歳にして守備の柱を務める。</span></div>
+          <div><b>WR</b><span><em>ラッド・マッコンキー</em>：体は小さいが動きが細かく、守備の隙間に必ず顔を出す。ハーバートの相棒。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- クリーブランド・ブラウンズ -->
+    <article id="team-cle" class="tc rv" style="--tc:#472a08">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/cle.png" alt="クリーブランド・ブラウンズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>クリーブランド・ブラウンズ</b>
+          <small>Cleveland Browns ｜ AFC 北地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>5勝12敗</b></li>
+          <li>得点 <b>31位</b></li>
+          <li>失点 <b>14位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="クリーブランド・ブラウンズの5項目のリーグ内評価">
+          <title>ロスタックルリーグ1位、パス攻撃リーグ31位、ラン攻撃リーグ27位、ラン守備リーグ16位、パス守備リーグ3位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,56.0 162.5,141.2 168.1,153.1 133.7,178.2 83.1,117.0"/>
+          <circle class="rd-dot" cx="160.0" cy="56.0" r="3.4"/>
+          <circle class="rd-dot" cx="162.5" cy="141.2" r="3.4"/>
+          <circle class="rd-dot" cx="168.1" cy="153.1" r="3.4"/>
+          <circle class="rd-dot" cx="133.7" cy="178.2" r="3.4"/>
+          <circle class="rd-dot" cx="83.1" cy="117.0" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ロスタックル</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">1位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">31位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">27位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">16位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">3位</text>
+        </svg>
+        </div>
+
+        <p>守備だけで試合を作っているチームです。相手を後退させたプレーの数はリーグ1位、サックは3位、パス守備も3位でした。<br>
+        ところが攻撃が壊滅していて、得点は31位。どれだけ守っても点が入らず、5勝12敗に終わりました。<br>
+        20代前半の選手が多く、今季はドラフトで加えた面々がどこまで攻撃を動かせるかにかかっています。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>LB</b><span><em>カーソン・シュウェジンガー</em>：23歳で156タックル。リーグ1位の守備を引っ張る若き中心。</span></div>
+          <div><b>DE</b><span><em>ジャレッド・バース</em>：今季ロサンゼルス・ラムズから加入。前線の圧力をさらに高める。</span></div>
+          <div><b>RB</b><span><em>クインション・ジャドキンス</em>：22歳。827ヤードを走り、乏しい攻撃の中で光を見せた。</span></div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== 3. スター・ドラマ性 ===== -->
+<section id="star">
+  <div class="wrap">
+    <p class="eyebrow rv">TYPE 3 ｜ 6チーム</p>
+    <h2 class="rv">スター・ドラマ性</h2>
+    <p class="lead rv">成績ではなく、物語で選ぶチームです。<br>誰もが知るスター選手がいる、名将が動いた、王朝が崩れた。今季ならではの事情を抱えた6チームを集めました。</p>
+
+    <!-- ボルチモア・レイブンズ -->
+    <article id="team-bal" class="tc rv" style="--tc:#29126f">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/bal.png" alt="ボルチモア・レイブンズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ボルチモア・レイブンズ</b>
+          <small>Baltimore Ravens ｜ AFC 北地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>8勝9敗</b></li>
+          <li>得点 <b>11位</b></li>
+          <li>失点 <b>18位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ボルチモア・レイブンズの5項目のリーグ内評価">
+          <title>ラン得点力リーグ3位、パス攻撃リーグ27位、ラン攻撃リーグ2位、ラン守備リーグ10位、パス守備リーグ30位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,61.2 173.1,137.7 209.0,209.5 124.1,191.4 155.1,140.4"/>
+          <circle class="rd-dot" cx="160.0" cy="61.2" r="3.4"/>
+          <circle class="rd-dot" cx="173.1" cy="137.7" r="3.4"/>
+          <circle class="rd-dot" cx="209.0" cy="209.5" r="3.4"/>
+          <circle class="rd-dot" cx="124.1" cy="191.4" r="3.4"/>
+          <circle class="rd-dot" cx="155.1" cy="140.4" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ラン得点力</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">3位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">27位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">2位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">10位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">30位</text>
+        </svg>
+        </div>
+
+        <p>ラン攻撃がリーグ2位のチームです。QBもRBも走れるため、地上戦では簡単に止まりません。<br>
+        ところが守備が崩れて失点18位、さらにエースのラマー・ジャクソンが4試合を欠場し、8勝9敗でプレーオフを逃しました。<br>
+        今季は18年間チームを率いた監督が去り、新監督のもとで再出発。守備には最高のパスラッシャーを迎えています。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ラマー・ジャクソン</em>：走るQBの代表格。2025年は13試合の出場でパス21タッチダウン。最優秀選手の候補にも挙がる。</span></div>
+          <div><b>RB</b><span><em>デリック・ヘンリー</em>：32歳。2025年は1595ヤードを走ってリーグ2位、ランでのタッチダウンは16本。歴代の記録に迫る大型ランナー。</span></div>
+          <div><b>LB</b><span><em>トレイ・ヘンドリクソン</em>：今季シンシナティから加入。手薄だったパスラッシュを一人で変えられる実力者。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- カンザスシティ・チーフス -->
+    <article id="team-kc" class="tc rv" style="--tc:#e31837">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/kc.png" alt="カンザスシティ・チーフスのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>カンザスシティ・チーフス</b>
+          <small>Kansas City Chiefs ｜ AFC 西地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>6勝11敗</b></li>
+          <li>得点 <b>21位</b></li>
+          <li>失点 <b>6位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="カンザスシティ・チーフスの5項目のリーグ内評価">
+          <title>4thダウンリーグ1位、パス攻撃リーグ16位、ラン攻撃リーグ25位、ラン守備リーグ9位、パス守備リーグ12位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,56.0 202.5,128.2 171.6,158.0 122.6,193.5 106.8,124.7"/>
+          <circle class="rd-dot" cx="160.0" cy="56.0" r="3.4"/>
+          <circle class="rd-dot" cx="202.5" cy="128.2" r="3.4"/>
+          <circle class="rd-dot" cx="171.6" cy="158.0" r="3.4"/>
+          <circle class="rd-dot" cx="122.6" cy="193.5" r="3.4"/>
+          <circle class="rd-dot" cx="106.8" cy="124.7" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">4thダウン</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">1位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">16位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">25位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">9位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">12位</text>
+        </svg>
+        </div>
+
+        <p>2019年以降に3度も優勝した、この10年で最も強かったチームです。<br>
+        ところが2025年はQBパトリック・マホームズが3試合を欠場し、6勝11敗と大きく崩れました。守備は失点6位と健在でしたが、攻撃が21位まで落ちています。<br>
+        それでも4回目の攻撃で勝負をかけて成功させた率はリーグ1位。攻める姿勢は失っていません。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>パトリック・マホームズ</em>：3度の優勝を導いた現役最高のQB。2025年は3試合を欠場し、チームも6勝11敗に沈んだ。</span></div>
+          <div><b>TE</b><span><em>トラビス・ケルシー</em>：36歳。マホームズと組んで王朝を築いた相棒。2025年も76回パスを捕っている。</span></div>
+          <div><b>DT</b><span><em>クリス・ジョーンズ</em>：守備の中央に居座る大黒柱。相手の攻撃を根元から潰す。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ピッツバーグ・スティーラーズ -->
+    <article id="team-pit" class="tc rv" style="--tc:#000000">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/pit.png" alt="ピッツバーグ・スティーラーズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ピッツバーグ・スティーラーズ</b>
+          <small>Pittsburgh Steelers ｜ AFC 北地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>10勝7敗</b></li>
+          <li>得点 <b>15位</b></li>
+          <li>失点 <b>17位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ピッツバーグ・スティーラーズの5項目のリーグ内評価">
+          <title>ボール奪取リーグ4位、パス攻撃リーグ22位、ラン攻撃リーグ26位、ラン守備リーグ13位、パス守備リーグ29位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,64.6 186.2,133.5 169.6,155.2 129.2,184.4 151.8,139.3"/>
+          <circle class="rd-dot" cx="160.0" cy="64.6" r="3.4"/>
+          <circle class="rd-dot" cx="186.2" cy="133.5" r="3.4"/>
+          <circle class="rd-dot" cx="169.6" cy="155.2" r="3.4"/>
+          <circle class="rd-dot" cx="129.2" cy="184.4" r="3.4"/>
+          <circle class="rd-dot" cx="151.8" cy="139.3" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ボール奪取</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">4位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">22位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">26位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">13位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">29位</text>
+        </svg>
+        </div>
+
+        <p>リーグで最も長く同じ監督が続いたチームでしたが、2025年限りでその18年が終わりました。<br>
+        守備は相手からボールを奪った回数がリーグ4位。派手さはないものの10勝7敗でプレーオフに進んでいます。<br>
+        QBは42歳のアーロン・ロジャース。新監督のもと、大ベテランがどこまで戦えるかが今季の見どころです。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>アーロン・ロジャース</em>：42歳。2025年もパス3322ヤード・24タッチダウンを記録し、まだ第一線で投げ続けている。</span></div>
+          <div><b>LB</b><span><em>T.J.ワット</em>：長年チームを支えてきた守備の顔。最優秀守備選手の候補にも名前が挙がる。</span></div>
+          <div><b>WR</b><span><em>DKメトカフ</em>：体格と速さを兼ね備えた大型の受け手。強引にでもボールをもぎ取る。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ニューヨーク・ジャイアンツ -->
+    <article id="team-nyg" class="tc rv" style="--tc:#003c7f">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/nyg.png" alt="ニューヨーク・ジャイアンツのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ニューヨーク・ジャイアンツ</b>
+          <small>New York Giants ｜ NFC 東地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>4勝13敗</b></li>
+          <li>得点 <b>17位</b></li>
+          <li>失点 <b>26位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ニューヨーク・ジャイアンツの5項目のリーグ内評価">
+          <title>ロスタックルリーグ6位、パス攻撃リーグ21位、ラン攻撃リーグ5位、ラン守備リーグ31位、パス守備リーグ16位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,69.8 188.6,132.7 204.0,202.5 158.5,144.1 117.5,128.2"/>
+          <circle class="rd-dot" cx="160.0" cy="69.8" r="3.4"/>
+          <circle class="rd-dot" cx="188.6" cy="132.7" r="3.4"/>
+          <circle class="rd-dot" cx="204.0" cy="202.5" r="3.4"/>
+          <circle class="rd-dot" cx="158.5" cy="144.1" r="3.4"/>
+          <circle class="rd-dot" cx="117.5" cy="128.2" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ロスタックル</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">6位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">21位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">5位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">31位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">16位</text>
+        </svg>
+        </div>
+
+        <p>2025年は4勝13敗と、リーグ最低クラスの成績に終わりました。<br>
+        ところが今季、18年間ボルチモアを率いた名将ジョン・ハーボーが監督に就任。リーグ全体が驚いた人事です。<br>
+        23歳のQBジャクソン・ダートを軸にここから作り直します。ラン攻撃は5位と、土台がないわけではありません。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ジャクソン・ダート</em>：23歳。2025年はパスで15タッチダウン、さらに自ら走って9タッチダウンを奪った動けるQB。</span></div>
+          <div><b>LB</b><span><em>ブライアン・バーンズ</em>：2025年に16.5サックでリーグ2位。負けが続く中でも一人で圧力をかけ続けた。</span></div>
+          <div><b>LB</b><span><em>アーベル・リース</em>：今季ドラフト全体5位で加入。新監督が守備の中心に据える若手。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- アトランタ・ファルコンズ -->
+    <article id="team-atl" class="tc rv" style="--tc:#a71930">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/atl.png" alt="アトランタ・ファルコンズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>アトランタ・ファルコンズ</b>
+          <small>Atlanta Falcons ｜ NFC 南地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>8勝9敗</b></li>
+          <li>得点 <b>24位</b></li>
+          <li>失点 <b>19位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="アトランタ・ファルコンズの5項目のリーグ内評価">
+          <title>サック数リーグ2位、パス攻撃リーグ19位、ラン攻撃リーグ8位、ラン守備リーグ24位、パス守備リーグ13位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,58.6 194.4,130.8 198.9,195.6 146.9,160.1 110.1,125.8"/>
+          <circle class="rd-dot" cx="160.0" cy="58.6" r="3.4"/>
+          <circle class="rd-dot" cx="194.4" cy="130.8" r="3.4"/>
+          <circle class="rd-dot" cx="198.9" cy="195.6" r="3.4"/>
+          <circle class="rd-dot" cx="146.9" cy="160.1" r="3.4"/>
+          <circle class="rd-dot" cx="110.1" cy="125.8" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">サック数</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">2位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">19位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">8位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">24位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">13位</text>
+        </svg>
+        </div>
+
+        <p>2025年のサック57本はリーグ2位。前線から相手を叩き潰す守備が武器です。<br>
+        ところが攻撃は得点24位と苦しく、8勝9敗でプレーオフを逃しました。<br>
+        今季はマイアミからトゥア・タゴバイロアを迎えましたが、その直後に本来の先発QBが大怪我で全休。開幕から想定外の展開になっています。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>RB</b><span><em>ビジャン・ロビンソン</em>：2025年に1478ヤードを走ってリーグ4位。攻撃で唯一の絶対的な存在。</span></div>
+          <div><b>QB</b><span><em>トゥア・タゴバイロア</em>：今季マイアミから加入。先発QBの離脱により、いきなり開幕から任されることになった。</span></div>
+          <div><b>LB</b><span><em>ジェームズ・ピアースJr.</em>：22歳で10.5サック。リーグ2位のパスラッシュを担う若手。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ラスベガス・レイダース -->
+    <article id="team-lv" class="tc rv" style="--tc:#000000">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/lv.png" alt="ラスベガス・レイダースのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ラスベガス・レイダース</b>
+          <small>Las Vegas Raiders ｜ AFC 西地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>3勝14敗</b></li>
+          <li>得点 <b>32位</b></li>
+          <li>失点 <b>25位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ラスベガス・レイダースの5項目のリーグ内評価">
+          <title>ロスタックルリーグ3位、パス攻撃リーグ28位、ラン攻撃リーグ32位、ラン守備リーグ17位、パス守備リーグ14位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,61.2 170.6,138.5 160.0,142.0 135.7,175.4 112.6,126.6"/>
+          <circle class="rd-dot" cx="160.0" cy="61.2" r="3.4"/>
+          <circle class="rd-dot" cx="170.6" cy="138.5" r="3.4"/>
+          <circle class="rd-dot" cx="160.0" cy="142.0" r="3.4"/>
+          <circle class="rd-dot" cx="135.7" cy="175.4" r="3.4"/>
+          <circle class="rd-dot" cx="112.6" cy="126.6" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ロスタックル</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">3位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">28位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">32位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">17位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">14位</text>
+        </svg>
+        </div>
+
+        <p>2025年は3勝14敗、得点はリーグ最下位。攻撃がまったく機能しませんでした。<br>
+        それでも相手を後退させたプレーの数はリーグ3位。守備には見どころが残っています。<br>
+        今季はドラフト全体1位でQBを指名し、監督も新任。ゼロから作り直す1年目です。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>DE</b><span><em>マックス・クロスビー</em>：どれだけ負けても全力で走り続ける、チームの象徴。2025年も10サックを記録した。</span></div>
+          <div><b>RB</b><span><em>アシュトン・ジェンティ</em>：22歳。975ヤードを走り、崩壊した攻撃の中で唯一の光となった。</span></div>
+          <div><b>QB</b><span><em>フェルナンド・メンドーサ</em>：今季ドラフト全体1位で加入した新人。開幕はベテランのカーク・カズンズが務めるが、再建の主役は彼になる。</span></div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== 4. 伝統 ===== -->
+<section id="legacy" class="dark">
+  <div class="wrap">
+    <p class="eyebrow rv">TYPE 4 ｜ 6チーム</p>
+    <h2 class="rv">伝統</h2>
+    <p class="lead rv">歴史の重みで選ぶチームです。<br>優勝の実績や創設の古さには、今の成績では測れない価値があります。長く待っているファンがいる、という理由で選ぶのも十分な動機です。</p>
+
+    <!-- サンフランシスコ・フォーティナイナーズ -->
+    <article id="team-sf" class="tc rv" style="--tc:#aa0000">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/sf.png" alt="サンフランシスコ・フォーティナイナーズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>サンフランシスコ・フォーティナイナーズ</b>
+          <small>San Francisco 49ers ｜ NFC 西地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>12勝5敗</b></li>
+          <li>得点 <b>10位</b></li>
+          <li>失点 <b>13位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="サンフランシスコ・フォーティナイナーズの5項目のリーグ内評価">
+          <title>3rdダウンリーグ1位、パス攻撃リーグ5位、ラン攻撃リーグ24位、ラン守備リーグ11位、パス守備リーグ25位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,56.0 231.2,118.9 173.1,160.1 125.6,189.3 141.2,135.9"/>
+          <circle class="rd-dot" cx="160.0" cy="56.0" r="3.4"/>
+          <circle class="rd-dot" cx="231.2" cy="118.9" r="3.4"/>
+          <circle class="rd-dot" cx="173.1" cy="160.1" r="3.4"/>
+          <circle class="rd-dot" cx="125.6" cy="189.3" r="3.4"/>
+          <circle class="rd-dot" cx="141.2" cy="135.9" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">3rdダウン</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">1位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">5位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">24位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">11位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">25位</text>
+        </svg>
+        </div>
+
+        <p>5度の優勝を誇る名門ですが、最後に頂点に立ったのは1994年。30年以上遠ざかっています。<br>
+        2025年は3回目の攻撃を成功させた率がリーグ1位。細かく、確実に前へ進む攻撃が持ち味です。<br>
+        一方でサックはリーグ最下位。守備の前線から圧力をかけられないのが泣きどころです。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>RB</b><span><em>クリスチャン・マッキャフリー</em>：走って1202ヤード、捕って924ヤード。走者としても受け手としても一級品という稀有な選手。</span></div>
+          <div><b>QB</b><span><em>ブロック・パーディ</em>：ドラフトで262番目に指名された選手が、名門の先発の座をつかんだ。</span></div>
+          <div><b>WR</b><span><em>マイク・エバンス</em>：今季タンパベイから加入。長年リーグを代表してきた大型の受け手が、この地にやってきた。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- グリーンベイ・パッカーズ -->
+    <article id="team-gb" class="tc rv" style="--tc:#204e32">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/gb.png" alt="グリーンベイ・パッカーズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>グリーンベイ・パッカーズ</b>
+          <small>Green Bay Packers ｜ NFC 北地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>9勝7敗1分</b></li>
+          <li>得点 <b>16位</b></li>
+          <li>失点 <b>11位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="グリーンベイ・パッカーズの5項目のリーグ内評価">
+          <title>3rdダウンリーグ2位、パス攻撃リーグ17位、ラン攻撃リーグ15位、ラン守備リーグ18位、パス守備リーグ11位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,58.6 199.3,129.2 187.8,180.3 137.3,173.3 104.4,123.9"/>
+          <circle class="rd-dot" cx="160.0" cy="58.6" r="3.4"/>
+          <circle class="rd-dot" cx="199.3" cy="129.2" r="3.4"/>
+          <circle class="rd-dot" cx="187.8" cy="180.3" r="3.4"/>
+          <circle class="rd-dot" cx="137.3" cy="173.3" r="3.4"/>
+          <circle class="rd-dot" cx="104.4" cy="123.9" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">3rdダウン</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">2位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">17位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">15位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">18位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">11位</text>
+        </svg>
+        </div>
+
+        <p>1919年創設、リーグ最古の球団です。株主が市民で、特定のオーナーがいない唯一のチームでもあります。<br>
+        2025年は3回目の攻撃を成功させた率がリーグ2位。攻守どちらにも大きな穴がない、安定した構成でした。<br>
+        守備にはリーグ最高峰のパスラッシャー、ミカ・パーソンズが在籍しています。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>DE</b><span><em>ミカ・パーソンズ</em>：2025年も12.5サック。デビューから6年連続で12サック以上という記録に挑む、リーグ最高峰の破壊力。</span></div>
+          <div><b>QB</b><span><em>ジョーダン・ラブ</em>：伝説的なQBの後を継いだ男。2025年はパス3381ヤード・23タッチダウン。</span></div>
+          <div><b>RB</b><span><em>ジョシュ・ジェイコブス</em>：2025年はランで13タッチダウン。ゴール前で必ず呼ばれる主軸。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ワシントン・コマンダーズ -->
+    <article id="team-wsh" class="tc rv" style="--tc:#5a1414">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/wsh.png" alt="ワシントン・コマンダーズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ワシントン・コマンダーズ</b>
+          <small>Washington Commanders ｜ NFC 東地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>5勝12敗</b></li>
+          <li>得点 <b>23位</b></li>
+          <li>失点 <b>27位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ワシントン・コマンダーズの5項目のリーグ内評価">
+          <title>ゴール前TD率リーグ4位、パス攻撃リーグ24位、ラン攻撃リーグ4位、ラン守備リーグ30位、パス守備リーグ28位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,64.6 181.3,135.1 205.5,204.6 157.0,146.2 149.4,138.5"/>
+          <circle class="rd-dot" cx="160.0" cy="64.6" r="3.4"/>
+          <circle class="rd-dot" cx="181.3" cy="135.1" r="3.4"/>
+          <circle class="rd-dot" cx="205.5" cy="204.6" r="3.4"/>
+          <circle class="rd-dot" cx="157.0" cy="146.2" r="3.4"/>
+          <circle class="rd-dot" cx="149.4" cy="138.5" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ゴール前TD率</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">4位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">24位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">4位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">30位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">28位</text>
+        </svg>
+        </div>
+
+        <p>3度の優勝を持つ古豪ですが、最後の栄冠は1991年。こちらも30年以上が経ちました。<br>
+        2025年はラン攻撃が4位と走る力はあったものの、守備が崩れて5勝12敗。エースQBジェイデン・ダニエルズも7試合しか出られませんでした。<br>
+        ゴール前まで運べばタッチダウンで決める率は4位。あと一歩を積み上げられれば形は見えてきます。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ジェイデン・ダニエルズ</em>：走れる25歳のエース。2025年は負傷で7試合の出場に終わり、チームも崩れた。復帰が最大の鍵。</span></div>
+          <div><b>WR</b><span><em>テリー・マクローリン</em>：長くこのチームを支えてきた看板の受け手。2025年は10試合の出場に留まり、エースQBとともに苦しい年を過ごした。</span></div>
+          <div><b>LB</b><span><em>ソニー・スタイルズ</em>：今季ドラフト全体7位で加入。崩壊した守備を建て直す期待を背負う。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- マイアミ・ドルフィンズ -->
+    <article id="team-mia" class="tc rv" style="--tc:#008e97">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/mia.png" alt="マイアミ・ドルフィンズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>マイアミ・ドルフィンズ</b>
+          <small>Miami Dolphins ｜ AFC 東地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>7勝10敗</b></li>
+          <li>得点 <b>25位</b></li>
+          <li>失点 <b>24位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="マイアミ・ドルフィンズの5項目のリーグ内評価">
+          <title>FG成功率リーグ4位、パス攻撃リーグ25位、ラン攻撃リーグ13位、ラン守備リーグ26位、パス守備リーグ18位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,64.6 178.8,135.9 190.8,184.4 150.4,155.2 123.2,130.0"/>
+          <circle class="rd-dot" cx="160.0" cy="64.6" r="3.4"/>
+          <circle class="rd-dot" cx="178.8" cy="135.9" r="3.4"/>
+          <circle class="rd-dot" cx="190.8" cy="184.4" r="3.4"/>
+          <circle class="rd-dot" cx="150.4" cy="155.2" r="3.4"/>
+          <circle class="rd-dot" cx="123.2" cy="130.0" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">FG成功率</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">4位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">25位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">13位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">26位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">18位</text>
+        </svg>
+        </div>
+
+        <p>1972年に14戦全勝でシーズンを終え、そのままスーパーボウルも制した唯一のチームです。その記録は今も破られていません。<br>
+        ただし近年は苦しく、2025年は7勝10敗。長年エースだったQBトゥア・タゴバイロアもアトランタへ去りました。<br>
+        今季は監督もQBも新しい顔ぶれ。開幕前の下馬評は32チーム中の最下位です。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>RB</b><span><em>デボン・アシェイン</em>：2025年に1350ヤードを走り、さらに67回パスも捕った万能ランナー。攻撃の中心。</span></div>
+          <div><b>LB</b><span><em>ジョーディン・ブルックス</em>：183タックルでリーグ1位。負けが続く試合でも最後まで守り続けた。</span></div>
+          <div><b>QB</b><span><em>マリク・ウィリス</em>：今季グリーンベイから加入。控えとして過ごしてきた選手が、初めて先発を託される。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- タンパベイ・バッカニアーズ -->
+    <article id="team-tb" class="tc rv" style="--tc:#bd1c36">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/tb.png" alt="タンパベイ・バッカニアーズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>タンパベイ・バッカニアーズ</b>
+          <small>Tampa Bay Buccaneers ｜ NFC 南地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>8勝9敗</b></li>
+          <li>得点 <b>18位</b></li>
+          <li>失点 <b>21位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="タンパベイ・バッカニアーズの5項目のリーグ内評価">
+          <title>ボール支配リーグ4位、パス攻撃リーグ20位、ラン攻撃リーグ21位、ラン守備リーグ5位、パス守備リーグ27位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,64.6 191.9,131.6 177.7,166.4 116.0,202.5 146.9,137.7"/>
+          <circle class="rd-dot" cx="160.0" cy="64.6" r="3.4"/>
+          <circle class="rd-dot" cx="191.9" cy="131.6" r="3.4"/>
+          <circle class="rd-dot" cx="177.7" cy="166.4" r="3.4"/>
+          <circle class="rd-dot" cx="116.0" cy="202.5" r="3.4"/>
+          <circle class="rd-dot" cx="146.9" cy="137.7" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ボール支配</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">4位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">20位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">21位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">5位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">27位</text>
+        </svg>
+        </div>
+
+        <p>2020年にトム・ブレイディを迎えて優勝した、記憶に新しい名門です。<br>
+        2025年は相手のランを止める力が5位、ボールを持っていた時間も4位と、試合を落ち着かせる力がありました。<br>
+        ただし攻撃が伸びず8勝9敗。パス守備27位という穴も残っています。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ベイカー・メイフィールド</em>：2025年はパス3693ヤード・26タッチダウン。移籍を繰り返した末に、この地で完全に立ち直った。</span></div>
+          <div><b>WR</b><span><em>エメカ・エグブカ</em>：23歳で938ヤードを稼いだ、次のエース候補。</span></div>
+          <div><b>DE</b><span><em>ルーベン・ベインJr.</em>：今季ドラフト1巡目で加入。手薄なパス守備を前線から助ける役割を担う。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ニューヨーク・ジェッツ -->
+    <article id="team-nyj" class="tc rv" style="--tc:#115740">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/nyj.png" alt="ニューヨーク・ジェッツのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ニューヨーク・ジェッツ</b>
+          <small>New York Jets ｜ AFC 東地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>3勝14敗</b></li>
+          <li>得点 <b>29位</b></li>
+          <li>失点 <b>31位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ニューヨーク・ジェッツの5項目のリーグ内評価">
+          <title>FG成功率リーグ1位、パス攻撃リーグ32位、ラン攻撃リーグ10位、ラン守備リーグ29位、パス守備リーグ17位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,56.0 160.0,142.0 195.9,191.4 154.9,149.0 120.7,129.2"/>
+          <circle class="rd-dot" cx="160.0" cy="56.0" r="3.4"/>
+          <circle class="rd-dot" cx="160.0" cy="142.0" r="3.4"/>
+          <circle class="rd-dot" cx="195.9" cy="191.4" r="3.4"/>
+          <circle class="rd-dot" cx="154.9" cy="149.0" r="3.4"/>
+          <circle class="rd-dot" cx="120.7" cy="129.2" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">FG成功率</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">1位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">32位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">10位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">29位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">17位</text>
+        </svg>
+        </div>
+
+        <p>最後に優勝したのは1968年。リーグで最も長く栄冠から遠ざかっているチームです。<br>
+        2025年はパス攻撃が最下位、相手からボールを奪った回数もわずか4回でこちらも最下位。3勝14敗に沈みました。<br>
+        それでもフィールドゴールの成功率だけはリーグ1位。今季は守備を大きく補強し、下から積み上げ直します。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>RB</b><span><em>ブリース・ホール</em>：2025年に1065ヤードを走った、乏しい攻撃の柱。</span></div>
+          <div><b>S</b><span><em>ミンカ・フィッツパトリック</em>：今季マイアミから加入。リーグ屈指の守備の要として最後方を締める。</span></div>
+          <div><b>LB</b><span><em>デイビッド・ベイリー</em>：今季ドラフト全体2位で加入。守備新人王の一番人気に挙げられている。</span></div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== 5. 成長枠 ===== -->
+<section id="growth">
+  <div class="wrap">
+    <p class="eyebrow rv">TYPE 5 ｜ 6チーム</p>
+    <h2 class="rv">成長枠</h2>
+    <p class="lead rv">若い選手が育っていく過程を、一緒に見守るチームです。<br>強くなる前から応援していたという事実は、あとから振り返ると特別なものになります。</p>
+
+    <!-- シカゴ・ベアーズ -->
+    <article id="team-chi" class="tc rv" style="--tc:#0b1c3a">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/chi.png" alt="シカゴ・ベアーズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>シカゴ・ベアーズ</b>
+          <small>Chicago Bears ｜ NFC 北地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>11勝6敗</b></li>
+          <li>得点 <b>9位</b></li>
+          <li>失点 <b>23位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="シカゴ・ベアーズの5項目のリーグ内評価">
+          <title>ボール奪取リーグ1位、パス攻撃リーグ10位、ラン攻撃リーグ3位、ラン守備リーグ27位、パス守備リーグ22位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,56.0 218.1,123.1 207.5,207.4 151.9,153.1 133.8,133.5"/>
+          <circle class="rd-dot" cx="160.0" cy="56.0" r="3.4"/>
+          <circle class="rd-dot" cx="218.1" cy="123.1" r="3.4"/>
+          <circle class="rd-dot" cx="207.5" cy="207.4" r="3.4"/>
+          <circle class="rd-dot" cx="151.9" cy="153.1" r="3.4"/>
+          <circle class="rd-dot" cx="133.8" cy="133.5" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">ボール奪取</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">1位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">10位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">3位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">27位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">22位</text>
+        </svg>
+        </div>
+
+        <p>2025年は11勝6敗で地区優勝を果たし、プレーオフでも1勝しました。<br>
+        最大の武器はボールの奪い合いの強さです。相手から奪った回数はリーグ1位、自分たちがミスで失った回数の少なさも1位でした。<br>
+        QBケイレブ・ウィリアムズは3年目の24歳、監督も2年目。ここから伸びる余地が大きいチームです。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ケイレブ・ウィリアムズ</em>：24歳。2025年はパス3942ヤード・27タッチダウン。3年目でチームを地区優勝に導いた。</span></div>
+          <div><b>RB</b><span><em>ダンドレ・スウィフト</em>：1087ヤードを走り、ランでのタッチダウンも9本。リーグ3位のラン攻撃を支えた。</span></div>
+          <div><b>TE</b><span><em>コルストン・ラブランド</em>：22歳で713ヤードを稼いだ、これからの中心候補。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ジャクソンビル・ジャガーズ -->
+    <article id="team-jax" class="tc rv" style="--tc:#007487">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/jax.png" alt="ジャクソンビル・ジャガーズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ジャクソンビル・ジャガーズ</b>
+          <small>Jacksonville Jaguars ｜ AFC 南地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>13勝4敗</b></li>
+          <li>得点 <b>6位</b></li>
+          <li>失点 <b>8位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ジャクソンビル・ジャガーズの5項目のリーグ内評価">
+          <title>パスカットリーグ1位、パス攻撃リーグ12位、ラン攻撃リーグ20位、ラン守備リーグ1位、パス守備リーグ21位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,56.0 213.2,124.7 179.7,169.1 109.5,211.6 131.4,132.7"/>
+          <circle class="rd-dot" cx="160.0" cy="56.0" r="3.4"/>
+          <circle class="rd-dot" cx="213.2" cy="124.7" r="3.4"/>
+          <circle class="rd-dot" cx="179.7" cy="169.1" r="3.4"/>
+          <circle class="rd-dot" cx="109.5" cy="211.6" r="3.4"/>
+          <circle class="rd-dot" cx="131.4" cy="132.7" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">パスカット</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">1位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">12位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">20位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">1位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">21位</text>
+        </svg>
+        </div>
+
+        <p>2025年に13勝4敗と大きく伸びたチームです。攻撃は得点6位、守備は失点8位で、どちらにも穴がありません。<br>
+        とくに相手のランを止める力はリーグ1位、パスをはたき落とした回数も1位でした。<br>
+        QBトレバー・ローレンスが26歳で本格的に開花。監督も2年目で、ここから数年の主役になる可能性があります。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>トレバー・ローレンス</em>：2025年はパス4007ヤード・29タッチダウン。さらに自ら走って9タッチダウン。ようやく実力を出し切った。</span></div>
+          <div><b>LB</b><span><em>フォイエサデ・オルオクン</em>：143タックルでリーグ上位。ラン守備リーグ1位を組み立てる中心。</span></div>
+          <div><b>WR</b><span><em>パーカー・ワシントン</em>：847ヤードを稼いだ、伸び盛りの受け手。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- カロライナ・パンサーズ -->
+    <article id="team-car" class="tc rv" style="--tc:#0085ca">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/car.png" alt="カロライナ・パンサーズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>カロライナ・パンサーズ</b>
+          <small>Carolina Panthers ｜ NFC 南地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>8勝9敗</b></li>
+          <li>得点 <b>27位</b></li>
+          <li>失点 <b>15位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="カロライナ・パンサーズの5項目のリーグ内評価">
+          <title>4thダウンリーグ4位、パス攻撃リーグ26位、ラン攻撃リーグ19位、ラン守備リーグ20位、パス守備リーグ15位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,64.6 175.5,137.0 181.2,171.2 140.3,169.1 115.0,127.4"/>
+          <circle class="rd-dot" cx="160.0" cy="64.6" r="3.4"/>
+          <circle class="rd-dot" cx="175.5" cy="137.0" r="3.4"/>
+          <circle class="rd-dot" cx="181.2" cy="171.2" r="3.4"/>
+          <circle class="rd-dot" cx="140.3" cy="169.1" r="3.4"/>
+          <circle class="rd-dot" cx="115.0" cy="127.4" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">4thダウン</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">4位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">26位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">19位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">20位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">15位</text>
+        </svg>
+        </div>
+
+        <p>2025年は8勝9敗ながら地区優勝を果たし、プレーオフに進みました。<br>
+        得点は27位と低調でしたが、4回目の攻撃で勝負をかけて成功させた率は4位。少ない手数で粘り勝つ形でした。<br>
+        25歳のQBブライス・ヤングと23歳の受け手が育ちつつあり、伸びしろは十分にあります。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>ブライス・ヤング</em>：25歳。期待外れと言われた時期を越え、2025年はパス3011ヤード・23タッチダウンでチームを地区優勝に導いた。</span></div>
+          <div><b>WR</b><span><em>テテイロア・マクミラン</em>：23歳で1014ヤード。ヤングと組む次のエース候補。</span></div>
+          <div><b>CB</b><span><em>ジェイシー・ホーン</em>：インターセプト5本でリーグ上位。守備の要として相手の的を封じる。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ニューオーリンズ・セインツ -->
+    <article id="team-no" class="tc rv" style="--tc:#d3bc8d">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/no.png" alt="ニューオーリンズ・セインツのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>ニューオーリンズ・セインツ</b>
+          <small>New Orleans Saints ｜ NFC 南地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>6勝11敗</b></li>
+          <li>得点 <b>28位</b></li>
+          <li>失点 <b>16位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="ニューオーリンズ・セインツの5項目のリーグ内評価">
+          <title>守備TD数リーグ8位、パス攻撃リーグ13位、ラン攻撃リーグ28位、ラン守備リーグ19位、パス守備リーグ4位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,75.8 209.9,125.8 166.6,151.0 138.8,171.2 86.4,118.1"/>
+          <circle class="rd-dot" cx="160.0" cy="75.8" r="3.4"/>
+          <circle class="rd-dot" cx="209.9" cy="125.8" r="3.4"/>
+          <circle class="rd-dot" cx="166.6" cy="151.0" r="3.4"/>
+          <circle class="rd-dot" cx="138.8" cy="171.2" r="3.4"/>
+          <circle class="rd-dot" cx="86.4" cy="118.1" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">守備TD数</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">8位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">13位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">28位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">19位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">4位</text>
+        </svg>
+        </div>
+
+        <p>2025年はパス守備が4位と健闘したものの、攻撃が得点28位と沈み、6勝11敗に終わりました。<br>
+        26歳のQBタイラー・ショーが先発を担い、若い選手を中心にした構成へ切り替わっています。<br>
+        監督のケレン・ムーアは今季の最優秀コーチの一番人気。評価の低いチームをどこまで押し上げるかが見どころです。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>WR</b><span><em>クリス・オレイブ</em>：2025年に1163ヤード、100回のキャッチ。伸び悩む攻撃をほぼ一人で担った。</span></div>
+          <div><b>QB</b><span><em>タイラー・ショー</em>：26歳。2025年から先発に定着し、チームの再建を託されている。</span></div>
+          <div><b>DE</b><span><em>キャメロン・ジョーダン</em>：37歳。15年以上このチームに在籍し、2025年もなお10.5サックを記録した鉄人。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- テネシー・タイタンズ -->
+    <article id="team-ten" class="tc rv" style="--tc:#4495d2">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/ten.png" alt="テネシー・タイタンズのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>テネシー・タイタンズ</b>
+          <small>Tennessee Titans ｜ AFC 南地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>3勝14敗</b></li>
+          <li>得点 <b>30位</b></li>
+          <li>失点 <b>28位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="テネシー・タイタンズの5項目のリーグ内評価">
+          <title>長距離FGリーグ7位、パス攻撃リーグ30位、ラン攻撃リーグ30位、ラン守備リーグ15位、パス守備リーグ23位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,72.3 164.9,140.4 163.0,146.2 132.2,180.3 136.3,134.3"/>
+          <circle class="rd-dot" cx="160.0" cy="72.3" r="3.4"/>
+          <circle class="rd-dot" cx="164.9" cy="140.4" r="3.4"/>
+          <circle class="rd-dot" cx="163.0" cy="146.2" r="3.4"/>
+          <circle class="rd-dot" cx="132.2" cy="180.3" r="3.4"/>
+          <circle class="rd-dot" cx="136.3" cy="134.3" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">長距離FG</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">7位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">30位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">30位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">15位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">23位</text>
+        </svg>
+        </div>
+
+        <p>2025年は3勝14敗。得点30位、失点28位と、攻守どちらも苦しいシーズンでした。<br>
+        ドラフト全体1位で入団したQBキャム・ワードは2年目の24歳。3169ヤードを投げ、土台を作りつつあります。<br>
+        今季はドラフト全体4位で受け手を補強。若い選手が育つのを見守る時期です。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>QB</b><span><em>キャム・ワード</em>：24歳。2025年に全体1位指名で入団し、いきなり3169ヤードを投げた次世代の顔。</span></div>
+          <div><b>DT</b><span><em>ジェフリー・シモンズ</em>：2025年に11サック。負けが続く中でも守備の中央を守り続けた。</span></div>
+          <div><b>WR</b><span><em>カーネル・テイト</em>：今季ドラフト全体4位で加入。ワードの新しい標的として期待される。</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- アリゾナ・カージナルス -->
+    <article id="team-ari" class="tc rv" style="--tc:#a40227">
+      <div class="tc-head">
+        <div class="tc-logo"><img src="assets/logos/ari.png" alt="アリゾナ・カージナルスのロゴ" width="66" height="66" loading="lazy"></div>
+        <div class="tc-name">
+          <b>アリゾナ・カージナルス</b>
+          <small>Arizona Cardinals ｜ NFC 西地区</small>
+        </div>
+      </div>
+      <div class="tc-body">
+        <ul class="tc-data">
+          <li>2025年 <b>3勝14敗</b></li>
+          <li>得点 <b>22位</b></li>
+          <li>失点 <b>29位</b></li>
+        </ul>
+
+        <div class="tc-radar">
+        <svg class="rd" viewBox="0 0 320 284" role="img" aria-label="アリゾナ・カージナルスの5項目のリーグ内評価">
+          <title>パスTD数リーグ7位、パス攻撃リーグ7位、ラン攻撃リーグ31位、ラン守備リーグ25位、パス守備リーグ24位</title>
+          <polygon class="rd-grid" points="160.0,120.5 180.4,135.4 172.6,159.4 147.4,159.4 139.6,135.4"/>
+          <polygon class="rd-grid" points="160.0,99.0 200.9,128.7 185.3,176.8 134.7,176.8 119.1,128.7"/>
+          <polygon class="rd-grid" points="160.0,77.5 221.3,122.1 197.9,194.2 122.1,194.2 98.7,122.1"/>
+          <polygon class="rd-grid" points="160.0,56.0 241.8,115.4 210.5,211.6 109.5,211.6 78.2,115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="160.0" y2="56.0"/>
+          <line class="rd-axis" x1="160" y1="142" x2="241.8" y2="115.4"/>
+          <line class="rd-axis" x1="160" y1="142" x2="210.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="109.5" y2="211.6"/>
+          <line class="rd-axis" x1="160" y1="142" x2="78.2" y2="115.4"/>
+          <polygon class="rd-area" points="160.0,72.3 226.3,120.5 161.5,144.1 148.4,158.0 138.7,135.1"/>
+          <circle class="rd-dot" cx="160.0" cy="72.3" r="3.4"/>
+          <circle class="rd-dot" cx="226.3" cy="120.5" r="3.4"/>
+          <circle class="rd-dot" cx="161.5" cy="144.1" r="3.4"/>
+          <circle class="rd-dot" cx="148.4" cy="158.0" r="3.4"/>
+          <circle class="rd-dot" cx="138.7" cy="135.1" r="3.4"/>
+          <text class="rd-label" x="160.0" y="28.0" text-anchor="middle">パスTD数</text>
+          <text class="rd-rank" x="160.0" y="41.0" text-anchor="middle">7位</text>
+          <text class="rd-label" x="262.7" y="108.6" text-anchor="start">パス攻撃</text>
+          <text class="rd-rank" x="262.7" y="121.6" text-anchor="start">7位</text>
+          <text class="rd-label" x="223.5" y="243.4" text-anchor="start">ラン攻撃</text>
+          <text class="rd-rank" x="223.5" y="256.4" text-anchor="start">31位</text>
+          <text class="rd-label" x="96.5" y="243.4" text-anchor="end">ラン守備</text>
+          <text class="rd-rank" x="96.5" y="256.4" text-anchor="end">25位</text>
+          <text class="rd-label" x="57.3" y="108.6" text-anchor="end">パス守備</text>
+          <text class="rd-rank" x="57.3" y="121.6" text-anchor="end">24位</text>
+        </svg>
+        </div>
+
+        <p>2025年は3勝14敗。長年エースだったQBカイラー・マレーが去り、今季から監督も新しくなりました。<br>
+        パス攻撃は7位と、実は悪くありません。一方でラン攻撃は31位と、極端に偏った構成でした。<br>
+        そのランを立て直すため、ドラフト全体3位でRBを指名。ここから作り直す1年です。</p>
+
+        <p class="tc-star-h">注目選手</p>
+        <div class="tc-star">
+          <div><b>TE</b><span><em>トレイ・マクブライド</em>：2025年に126回パスを捕って1239ヤード。TEとしてリーグ最高クラスの成績を残した。</span></div>
+          <div><b>LB</b><span><em>ジョシュ・スウェット</em>：12サックを記録した守備の主軸。数少ない計算できる存在。</span></div>
+          <div><b>RB</b><span><em>ジェレマイア・ラブ</em>：今季ドラフト全体3位で加入。リーグ31位のラン攻撃を立て直す期待の新人。</span></div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<footer>
+  <b>Enjoy Football</b>
+  <p>成績・記録は2025年シーズンの確定値、選手やコーチの所属は2026年9月時点のものです。</p>
+  <p class="note">
+    数値はESPNの公開データをもとにしています。ロゴは各チームの商標であり、チームの紹介を目的として掲載しています。<br>
+    選手の移籍や負傷でチームの姿は日々変わります。観戦の際は最新の情報もあわせてご確認ください。
+  </p>
+</footer>
+
+<!-- ===== フローティング：ページ先頭にもどる ===== -->
+<button class="totop" id="toTop" type="button" aria-label="ページの先頭にもどる">↑</button>
+
+<script>
+/* ===== ページ全体の共通処理（入門編・深掘り編と同じ） ===== */
+(function(){
+  // JavaScriptが動く環境でのみ、出現アニメーションを有効にする
+  document.body.classList.add('js');
+
+  var items = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          entries[i].target.classList.add('in');
+          io.unobserve(entries[i].target);
+        }
+      }
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.04 });
+    for (var i = 0; i < items.length; i++) io.observe(items[i]);
+  } else {
+    // 古いブラウザではアニメーションなしで全部表示する
+    for (var j = 0; j < items.length; j++) items[j].classList.add('in');
+  }
+
+  // 上部のスクロール進捗バー
+  var bar = document.getElementById('progress');
+  function draw(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? (window.pageYOffset / h) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', draw, { passive:true });
+  window.addEventListener('resize', draw);
+  draw();
+})();
+</script>
+<script>
+/* ===== 推しチーム診断 ===== */
+(function(){
+  var box = document.getElementById('qz');
+  if (!box) return;
+
+  /* チームデータ：[略称, チーム名, タイプ, カラー, 2025年成績,
+     パス攻撃, ラン攻撃, パス守備, ラン守備, 強さ, SB制覇数, QBの年齢, 新任HCか, スター在籍か, 得意分野]
+     数値はいずれもリーグ内の位置を0〜100に直したもの（100が1位） */
+  var RAW = [["lar","ロサンゼルス・ラムズ","攻撃型","#003594","12勝5敗",100,81,42,65,100,2,38,0,100,"パス攻撃 リーグ1位"],["ne","ニューイングランド・ペイトリオッツ","攻撃型","#002a5c","14勝3敗",90,84,74,84,84,6,24,0,29,"パス攻撃 リーグ4位"],["buf","バッファロー・ビルズ","攻撃型","#00338d","12勝5敗",55,100,100,13,94,0,30,1,58,"ラン攻撃 リーグ1位"],["det","デトロイト・ライオンズ","攻撃型","#0076b6","9勝8敗",94,58,39,58,68,0,31,0,94,"パス攻撃 リーグ3位"],["dal","ダラス・カウボーイズ","攻撃型","#002a5c","7勝9敗1分",97,74,0,29,55,5,33,1,61,"パス攻撃 リーグ2位"],["ind","インディアナポリス・コルツ","攻撃型","#003b75","8勝9敗",74,48,3,81,42,2,29,0,11,"パス攻撃 リーグ9位"],["cin","シンシナティ・ベンガルズ","攻撃型","#fb4f14","6勝11敗",84,10,19,0,52,0,29,0,88,"パス攻撃 リーグ6位"],["sea","シアトル・シーホークス","守備型","#002a5c","14勝3敗",77,68,71,94,97,2,29,0,45,"ラン守備 リーグ3位"],["hou","ヒューストン・テキサンズ","守備型","#021018","12勝5敗",58,32,84,90,71,0,24,0,62,"ラン守備 リーグ4位"],["den","デンバー・ブロンコス","守備型","#0a2343","14勝3敗",68,52,81,97,90,3,26,0,34,"ラン守備 リーグ2位"],["phi","フィラデルフィア・イーグルス","守備型","#06424d","11勝6敗",29,45,77,32,87,2,28,0,21,"パス守備 リーグ8位"],["min","ミネソタ・バイキングス","守備型","#4f2683","9勝8敗",10,29,97,35,32,0,29,0,31,"パス守備 リーグ2位"],["lac","ロサンゼルス・チャージャーズ","守備型","#0080c6","11勝6敗",45,65,87,77,58,0,28,0,52,"パス守備 リーグ5位"],["cle","クリーブランド・ブラウンズ","守備型","#472a08","5勝12敗",3,16,94,52,3,0,30,1,20,"パス守備 リーグ3位"],["bal","ボルチモア・レイブンズ","スター・ドラマ性","#29126f","8勝9敗",16,97,6,71,77,2,29,1,96,"ラン攻撃 リーグ2位"],["kc","カンザスシティ・チーフス","スター・ドラマ性","#e31837","6勝11敗",52,23,65,74,61,4,30,0,66,"ラン守備 リーグ9位"],["pit","ピッツバーグ・スティーラーズ","スター・ドラマ性","#000000","10勝7敗",32,19,10,61,35,6,42,0,35,"ラン守備 リーグ13位"],["nyg","ニューヨーク・ジャイアンツ","スター・ドラマ性","#003c7f","4勝13敗",35,87,52,3,26,4,23,0,21,"ラン攻撃 リーグ5位"],["atl","アトランタ・ファルコンズ","スター・ドラマ性","#a71930","8勝9敗",42,77,61,26,19,0,28,0,47,"ラン攻撃 リーグ8位"],["lv","ラスベガス・レイダース","スター・ドラマ性","#000000","3勝14敗",13,0,58,48,16,3,38,1,54,"パス守備 リーグ14位"],["sf","サンフランシスコ・フォーティナイナーズ","伝統","#aa0000","12勝5敗",87,26,23,68,74,5,26,0,63,"パス攻撃 リーグ5位"],["gb","グリーンベイ・パッカーズ","伝統","#204e32","9勝7敗1分",48,55,68,45,81,4,27,0,0,"パス守備 リーグ11位"],["wsh","ワシントン・コマンダーズ","伝統","#5a1414","5勝12敗",26,90,13,6,39,3,25,0,35,"ラン攻撃 リーグ4位"],["mia","マイアミ・ドルフィンズ","伝統","#008e97","7勝10敗",23,61,45,19,0,2,27,1,14,"ラン攻撃 リーグ13位"],["tb","タンパベイ・バッカニアーズ","伝統","#bd1c36","8勝9敗",39,35,16,87,45,2,31,0,0,"ラン守備 リーグ5位"],["nyj","ニューヨーク・ジェッツ","伝統","#115740","3勝14敗",0,71,48,10,10,1,35,1,43,"ラン攻撃 リーグ10位"],["chi","シカゴ・ベアーズ","成長枠","#0b1c3a","11勝6敗",71,94,32,16,65,1,24,1,26,"ラン攻撃 リーグ3位"],["jax","ジャクソンビル・ジャガーズ","成長枠","#007487","13勝4敗",65,39,35,100,48,0,26,1,0,"ラン守備 リーグ1位"],["car","カロライナ・パンサーズ","成長枠","#0085ca","8勝9敗",19,42,55,39,29,0,25,0,0,"パス守備 リーグ15位"],["no","ニューオーリンズ・セインツ","成長枠","#d3bc8d","6勝11敗",61,13,90,42,23,1,26,1,0,"パス守備 リーグ4位"],["ten","テネシー・タイタンズ","成長枠","#4495d2","3勝14敗",6,6,29,55,13,0,24,0,3,"ラン守備 リーグ15位"],["ari","アリゾナ・カージナルス","成長枠","#a40227","3勝14敗",81,3,26,23,6,0,33,1,0,"パス攻撃 リーグ7位"]];
+
+  var TEAMS = RAW.map(function(r){
+    return { ab:r[0], name:r[1], genre:r[2], color:r[3], rec:r[4],
+             pass:r[5], run:r[6], pd:r[7], rd:r[8], str:r[9],
+             sb:r[10], age:r[11], newhc:r[12], star:r[13], best:r[14] };
+  });
+
+  /* 質問。w は「どの持ち味を何倍で評価するか」 */
+  var QUESTIONS = [
+    { q:'どんな試合が見たいですか？', a:[
+      { t:'点が入り続ける、派手な試合', s:'30点、40点の打ち合いになることも', w:{off:1.1}, tag:'派手な試合' },
+      { t:'1点を守り合う、緊張感のある試合', s:'守備が止めるたびに沸く展開', w:{def:1.1}, tag:'守り合い' },
+      { t:'どちらでもいい', w:{}, tag:'試合展開は問わず', plain:true }
+    ]},
+    { q:'応援するチームは、どちらがいいですか？', a:[
+      { t:'今シーズン優勝を狙える強豪', s:'勝つ喜びを味わいたい', w:{strong:0.9}, tag:'強豪' },
+      { t:'弱くても、勝ち上がる過程を見たい', s:'成長を見守りたい', w:{weak:0.9}, tag:'これから強くなるチーム' },
+      { t:'強さは気にしない', w:{}, tag:'強さは問わず', plain:true }
+    ]},
+    { q:'いちばん気になるのはどれですか？', a:[
+      { t:'誰でも知っているスター選手', s:'その選手を追うだけで楽しめます', w:{star:1.0}, tag:'スター選手' },
+      { t:'長い歴史と優勝の実績', s:'名門を背負う重み', w:{legacy:1.0}, tag:'歴史と実績' },
+      { t:'若い選手が育っていく過程', s:'数年後を一緒に待つ楽しみ', w:{youth:1.0}, tag:'若手の成長' },
+      { t:'監督交代や大型移籍の話題', s:'今季いちばん動きがあるチーム', w:{drama:1.0}, tag:'今季の話題' }
+    ]},
+    { q:'攻め方は、どちらが好みですか？', a:[
+      { t:'空中戦（ロングパスが飛び交う）', s:'一発で長いヤードを狙います', w:{pass:0.8}, tag:'パス攻撃' },
+      { t:'地上戦（力で押し込んで前進）', s:'少しずつ着実に進みます', w:{run:0.8}, tag:'ラン攻撃' },
+      { t:'こだわらない', w:{}, tag:'攻め方は問わず', plain:true }
+    ]}
+  ];
+
+  /* チームの持ち味を0〜100で返す */
+  function attr(t, key){
+    if (key === 'off')    return (t.pass + t.run) / 2;
+    if (key === 'def')    return (t.pd + t.rd) / 2;
+    if (key === 'pass')   return t.pass;
+    if (key === 'run')    return t.run;
+    if (key === 'strong') return t.str;
+    if (key === 'weak')   return 100 - t.str;
+    // 以下の4つは、実データを主軸にしてタイプ分けの加点は控えめにする
+    // （加点を大きくすると、そのタイプのチームばかりが結果に出てしまう）
+    if (key === 'star')   return t.star;
+    if (key === 'legacy') return t.sb / 6 * 75 + (t.genre === '伝統' ? 25 : 0);
+    if (key === 'drama')  return t.newhc * 55 + (t.genre === 'スター・ドラマ性' ? 45 : 0);
+    if (key === 'youth') {
+      // 23歳で100点、34歳以上で0点になるように換算する
+      var y = Math.max(0, Math.min(100, (34 - t.age) / 11 * 100));
+      return y * 0.75 + (t.genre === '成長枠' ? 25 : 0);
+    }
+    return 0;
+  }
+
+  var elIntro   = document.getElementById('qzIntro');
+  var elQ       = document.getElementById('qzQ');
+  var elRes     = document.getElementById('qzRes');
+  var elStep    = document.getElementById('qzStep');
+  var elBar     = document.getElementById('qzBar');
+  var elTitle   = document.getElementById('qzTitle');
+  var elChoices = document.getElementById('qzChoices');
+  var elBack    = document.getElementById('qzBack');
+  var elList    = document.getElementById('qzList');
+  var elSummary = document.getElementById('qzSummary');
+
+  var step = 0;      // 今何問目か
+  var picked = [];   // 各問で選んだ選択肢の番号
+
+  box.hidden = false;   // JavaScriptが動いたので診断を表示する
+
+  function show(which){
+    elIntro.hidden = (which !== 'intro');
+    elQ.hidden     = (which !== 'q');
+    elRes.hidden   = (which !== 'res');
+  }
+
+  function render(){
+    var Q = QUESTIONS[step];
+    elStep.textContent = step + 1;
+    elBar.style.width = ((step + 1) / QUESTIONS.length * 100) + '%';
+    elTitle.textContent = Q.q;
+    elChoices.textContent = '';
+
+    Q.a.forEach(function(choice, i){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'qz-choice' + (choice.plain ? ' plain' : '');
+      b.appendChild(document.createTextNode(choice.t));
+      if (choice.s) {
+        var s = document.createElement('small');
+        s.textContent = choice.s;
+        b.appendChild(s);
+      }
+      b.addEventListener('click', function(){
+        picked[step] = i;
+        if (step < QUESTIONS.length - 1) { step++; render(); }
+        else { result(); }
+      });
+      elChoices.appendChild(b);
+    });
+
+    elBack.hidden = (step === 0);
+    show('q');
+  }
+
+  function result(){
+    // 選んだ選択肢の重みを合計して、チームごとに点数を出す
+    var scored = TEAMS.map(function(t){
+      var total = 0;
+      picked.forEach(function(pi, qi){
+        var w = QUESTIONS[qi].a[pi].w;
+        for (var key in w) total += attr(t, key) * w[key];
+      });
+      return { t:t, score:total };
+    });
+
+    // 点数の高い順。同点なら評価が高いチームを先に出す
+    scored.sort(function(a, b){
+      return (b.score - a.score) || (b.t.str - a.t.str);
+    });
+
+    var tags = picked.map(function(pi, qi){ return QUESTIONS[qi].a[pi].tag; });
+    elSummary.textContent = 'あなたが選んだのは「' + tags.join('」「') + '」。この条件にいちばん近いのは次の3チームです。';
+
+    elList.textContent = '';
+    scored.slice(0, 3).forEach(function(row, i){
+      var t = row.t;
+      var a = document.createElement('a');
+      a.className = 'qz-item' + (i === 0 ? ' top' : '');
+      a.href = '#team-' + t.ab;
+      a.style.setProperty('--qc', t.color);
+
+      var logo = document.createElement('div');
+      logo.className = 'qz-logo';
+      var img = document.createElement('img');
+      img.src = 'assets/logos/' + t.ab + '.png';
+      img.alt = '';
+      img.width = 66; img.height = 66;
+      logo.appendChild(img);
+
+      var info = document.createElement('div');
+      info.className = 'qz-info';
+      if (i === 0) {
+        var badge = document.createElement('span');
+        badge.className = 'qz-badge';
+        badge.textContent = 'いちばん近い';
+        info.appendChild(badge);
+      }
+      var nm = document.createElement('span');
+      nm.className = 'qz-nm';
+      nm.textContent = t.name;
+      var meta = document.createElement('span');
+      meta.className = 'qz-meta';
+      meta.textContent = t.genre + '　2025年 ' + t.rec + '　' + t.best;
+      info.appendChild(nm);
+      info.appendChild(meta);
+
+      var arrow = document.createElement('span');
+      arrow.className = 'qz-arrow';
+      arrow.textContent = '→';
+
+      a.appendChild(logo);
+      a.appendChild(info);
+      a.appendChild(arrow);
+      elList.appendChild(a);
+    });
+
+    show('res');
+  }
+
+  document.getElementById('qzStart').addEventListener('click', function(){
+    step = 0; picked = []; render();
+  });
+  elBack.addEventListener('click', function(){
+    if (step > 0) { step--; render(); }
+  });
+  document.getElementById('qzAgain').addEventListener('click', function(){
+    step = 0; picked = []; show('intro');
+    box.scrollIntoView({ block:'start', behavior:'smooth' });
+  });
+})();
+
+/* ===== フローティング：ページ先頭にもどる ===== */
+(function(){
+  var btn = document.getElementById('toTop');
+  if (!btn) return;
+  var slow = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function toggle(){
+    if (window.pageYOffset > 600) btn.classList.add('show');
+    else btn.classList.remove('show');
+  }
+  window.addEventListener('scroll', toggle, { passive:true });
+  toggle();
+
+  btn.addEventListener('click', function(){
+    window.scrollTo({ top:0, behavior: slow ? 'auto' : 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>

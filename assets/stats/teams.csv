@@ -1,0 +1,33 @@
+略称,チーム名,チーム名_英語,本拠地,ニックネーム,カンファレンス,地区,スタジアム,スタジアム所在地,屋内外,メインカラー,サブカラー,ロゴファイル,SB制覇回数,最終制覇シーズン
+ARI,アリゾナ・カージナルス,Arizona Cardinals,Arizona,Cardinals,NFC,NFC West,State Farm Stadium,"Glendale, AZ",屋内,#a40227,#ffffff,logos/ari.png,0,未制覇
+ATL,アトランタ・ファルコンズ,Atlanta Falcons,Atlanta,Falcons,NFC,NFC South,Mercedes-Benz Stadium,"Atlanta, GA",屋内,#a71930,#000000,logos/atl.png,0,未制覇
+BAL,ボルチモア・レイブンズ,Baltimore Ravens,Baltimore,Ravens,AFC,AFC North,M&T Bank Stadium,"Baltimore, MD",屋外,#29126f,#000000,logos/bal.png,2,2012
+BUF,バッファロー・ビルズ,Buffalo Bills,Buffalo,Bills,AFC,AFC East,Highmark Stadium,"Orchard Park, NY",屋外,#00338d,#d50a0a,logos/buf.png,0,未制覇
+CAR,カロライナ・パンサーズ,Carolina Panthers,Carolina,Panthers,NFC,NFC South,Bank of America Stadium,"Charlotte, NC",屋外,#0085ca,#000000,logos/car.png,0,未制覇
+CHI,シカゴ・ベアーズ,Chicago Bears,Chicago,Bears,NFC,NFC North,Soldier Field,"Chicago, IL",屋外,#0b1c3a,#e64100,logos/chi.png,1,1985
+CIN,シンシナティ・ベンガルズ,Cincinnati Bengals,Cincinnati,Bengals,AFC,AFC North,Paycor Stadium,"Cincinnati, OH",屋外,#fb4f14,#000000,logos/cin.png,0,未制覇
+CLE,クリーブランド・ブラウンズ,Cleveland Browns,Cleveland,Browns,AFC,AFC North,Huntington Bank Field,"Cleveland, OH",屋外,#472a08,#ff3c00,logos/cle.png,0,未制覇
+DAL,ダラス・カウボーイズ,Dallas Cowboys,Dallas,Cowboys,NFC,NFC East,AT&T Stadium,"Arlington, TX",屋内,#002a5c,#b0b7bc,logos/dal.png,5,1995
+DEN,デンバー・ブロンコス,Denver Broncos,Denver,Broncos,AFC,AFC West,Empower Field at Mile High,"Denver, CO",屋外,#0a2343,#fc4c02,logos/den.png,3,2015
+DET,デトロイト・ライオンズ,Detroit Lions,Detroit,Lions,NFC,NFC North,Ford Field,"Detroit, MI",屋内,#0076b6,#bbbbbb,logos/det.png,0,未制覇
+GB,グリーンベイ・パッカーズ,Green Bay Packers,Green Bay,Packers,NFC,NFC North,Lambeau Field,"Green Bay, WI",屋外,#204e32,#ffb612,logos/gb.png,4,2010
+HOU,ヒューストン・テキサンズ,Houston Texans,Houston,Texans,AFC,AFC South,NRG Stadium,"Houston, TX",開閉式屋根,#021018,#eb0028,logos/hou.png,0,未制覇
+IND,インディアナポリス・コルツ,Indianapolis Colts,Indianapolis,Colts,AFC,AFC South,Lucas Oil Stadium,"Indianapolis, IN",屋内,#003b75,#ffffff,logos/ind.png,2,2006
+JAX,ジャクソンビル・ジャガーズ,Jacksonville Jaguars,Jacksonville,Jaguars,AFC,AFC South,EverBank Stadium,"Jacksonville, FL",屋外,#007487,#d7a22a,logos/jax.png,0,未制覇
+KC,カンザスシティ・チーフス,Kansas City Chiefs,Kansas City,Chiefs,AFC,AFC West,Arrowhead Stadium,"Kansas City, MO",屋外,#e31837,#ffb612,logos/kc.png,4,2023
+LAC,ロサンゼルス・チャージャーズ,Los Angeles Chargers,Los Angeles,Chargers,AFC,AFC West,SoFi Stadium,"Inglewood, CA",屋根付き,#0080c6,#ffc20e,logos/lac.png,0,未制覇
+LAR,ロサンゼルス・ラムズ,Los Angeles Rams,Los Angeles,Rams,NFC,NFC West,SoFi Stadium,"Inglewood, CA",屋根付き,#003594,#ffd100,logos/lar.png,2,2021
+LV,ラスベガス・レイダース,Las Vegas Raiders,Las Vegas,Raiders,AFC,AFC West,Allegiant Stadium,"Las Vegas, NV",屋内,#000000,#a5acaf,logos/lv.png,3,1983
+MIA,マイアミ・ドルフィンズ,Miami Dolphins,Miami,Dolphins,AFC,AFC East,Hard Rock Stadium,"Miami Gardens, FL",屋外,#008e97,#fc4c02,logos/mia.png,2,1973
+MIN,ミネソタ・バイキングス,Minnesota Vikings,Minnesota,Vikings,NFC,NFC North,U.S. Bank Stadium,"Minneapolis, MN",屋内,#4f2683,#ffc62f,logos/min.png,0,未制覇
+NE,ニューイングランド・ペイトリオッツ,New England Patriots,New England,Patriots,AFC,AFC East,Gillette Stadium,"Foxborough, MA",屋外,#002a5c,#c60c30,logos/ne.png,6,2018
+NO,ニューオーリンズ・セインツ,New Orleans Saints,New Orleans,Saints,NFC,NFC South,Caesars Superdome,"New Orleans, LA",屋内,#d3bc8d,#000000,logos/no.png,1,2009
+NYG,ニューヨーク・ジャイアンツ,New York Giants,New York,Giants,NFC,NFC East,MetLife Stadium,"East Rutherford, NJ",屋外,#003c7f,#c9243f,logos/nyg.png,4,2011
+NYJ,ニューヨーク・ジェッツ,New York Jets,New York,Jets,AFC,AFC East,MetLife Stadium,"East Rutherford, NJ",屋外,#115740,#ffffff,logos/nyj.png,1,1968
+PHI,フィラデルフィア・イーグルス,Philadelphia Eagles,Philadelphia,Eagles,NFC,NFC East,Lincoln Financial Field,"Philadelphia, PA",屋外,#06424d,#000000,logos/phi.png,2,2024
+PIT,ピッツバーグ・スティーラーズ,Pittsburgh Steelers,Pittsburgh,Steelers,AFC,AFC North,Acrisure Stadium,"Pittsburgh, PA",屋外,#000000,#ffb612,logos/pit.png,6,2008
+SEA,シアトル・シーホークス,Seattle Seahawks,Seattle,Seahawks,NFC,NFC West,Lumen Field,"Seattle, WA",屋外,#002a5c,#69be28,logos/sea.png,2,2025
+SF,サンフランシスコ・フォーティナイナーズ,San Francisco 49ers,San Francisco,49ers,NFC,NFC West,Levi's Stadium,"Santa Clara, CA",屋外,#aa0000,#b3995d,logos/sf.png,5,1994
+TB,タンパベイ・バッカニアーズ,Tampa Bay Buccaneers,Tampa Bay,Buccaneers,NFC,NFC South,Raymond James Stadium,"Tampa, FL",屋外,#bd1c36,#3e3a35,logos/tb.png,2,2020
+TEN,テネシー・タイタンズ,Tennessee Titans,Tennessee,Titans,AFC,AFC South,Nissan Stadium,"Nashville, TN",屋外,#4495d2,#001532,logos/ten.png,0,未制覇
+WSH,ワシントン・コマンダーズ,Washington Commanders,Washington,Commanders,NFC,NFC East,Northwest Stadium,"Landover, MD",屋外,#5a1414,#ffb612,logos/wsh.png,3,1991

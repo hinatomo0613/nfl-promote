@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>はじめてのアメリカンフットボール</title>
+<meta name="description" content="アメフトを見たことがない人へ。基本的なルールから始める、NFL観戦の入り口。">
+<style>
+/* ===== 基本設定 ===== */
+:root{
+  --navy:#0a1a2f;
+  --navy-2:#12293f;
+  --field:#166d3b;
+  --field-dark:#0e4a28;
+  --accent:#ffc23c;      /* ファーストダウンラインの黄色 */
+  --accent-2:#ff7a45;
+  --paper:#faf8f3;
+  --ink:#1c2430;
+  --ink-soft:#4a5665;
+  --line:#e2ddd2;
+  --white:#fff;
+  --radius:14px;
+  --shadow:0 6px 24px rgba(10,26,47,.10);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:system-ui,-apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  font-size:17px;
+  line-height:1.9;
+  -webkit-text-size-adjust:100%;
+}
+img,svg{max-width:100%;}
+p{margin:0 0 1.2em;}
+a{color:#0b6ea8;}
+
+/* ===== スクロール進捗バー ===== */
+#progress{
+  position:fixed;top:0;left:0;height:4px;width:0%;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  z-index:100;transition:width .1s linear;
+}
+
+/* ===== レイアウト ===== */
+.wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+section{padding:64px 0;}
+section.tight{padding:44px 0;}
+.dark{background:var(--navy);color:#e8eef5;}
+.dark h2{color:var(--white);}
+.dark .lead{color:#b9c9d9;}
+.dark a{color:var(--accent);}
+
+/* ===== 見出し ===== */
+.eyebrow{
+  display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.18em;
+  color:var(--accent-2);background:rgba(255,122,69,.10);
+  padding:5px 12px;border-radius:99px;margin-bottom:14px;
+}
+.dark .eyebrow{color:var(--accent);background:rgba(255,194,60,.14);}
+h2{
+  font-size:clamp(1.5rem,5vw,2.1rem);line-height:1.45;margin:0 0 .6em;
+  letter-spacing:.01em;
+}
+h3{font-size:1.15rem;margin:2em 0 .6em;line-height:1.6;}
+.lead{font-size:1.05rem;color:var(--ink-soft);margin-bottom:2em;}
+
+/* ===== ヒーロー ===== */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(10,26,47,.86),rgba(10,26,47,.94)),
+    repeating-linear-gradient(90deg,var(--field) 0 58px,var(--field-dark) 58px 60px);
+  color:var(--white);padding:96px 0 80px;text-align:center;
+}
+.hero h1{
+  font-size:clamp(2rem,7.5vw,3.4rem);line-height:1.3;margin:0 0 .5em;
+  letter-spacing:.01em;font-weight:800;
+}
+.hero h1 .hl{color:var(--accent);}
+.hero p{font-size:clamp(1rem,3.4vw,1.15rem);color:#c6d5e3;max-width:34em;margin:0 auto 2em;}
+.hero .sub{font-size:.8rem;letter-spacing:.22em;color:var(--accent);margin-bottom:20px;font-weight:700;}
+.scroll-cue{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid rgba(255,255,255,.35);border-radius:99px;
+  padding:11px 22px;color:#fff;text-decoration:none;font-size:.92rem;font-weight:600;
+  transition:background .2s,border-color .2s;
+}
+.scroll-cue:hover{background:rgba(255,255,255,.12);border-color:#fff;}
+.scroll-cue span{animation:bob 1.8s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}
+
+/* ===== カード類 ===== */
+.card{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;box-shadow:var(--shadow);margin:24px 0;
+}
+.dark .card{background:var(--navy-2);border-color:rgba(255,255,255,.12);box-shadow:none;}
+.grid{display:grid;gap:16px;}
+@media(min-width:620px){.grid.g2{grid-template-columns:1fr 1fr;}}
+
+/* 3行まとめ */
+.three{counter-reset:t;list-style:none;padding:0;margin:0;}
+.three li{
+  counter-increment:t;position:relative;color:var(--ink);
+  background:var(--white);border:1px solid var(--line);border-left:5px solid var(--accent);
+  border-radius:10px;padding:18px 20px 18px 62px;margin-bottom:14px;box-shadow:var(--shadow);
+}
+.three li::before{
+  content:counter(t);position:absolute;left:18px;top:16px;
+  width:30px;height:30px;border-radius:50%;background:var(--navy);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;
+}
+.three li b{display:block;font-size:1.05rem;margin-bottom:2px;}
+.three li small{color:var(--ink-soft);font-size:.93rem;line-height:1.7;display:block;}
+
+/* ===== アコーディオン（もっと詳しく） ===== */
+details.more{
+  border:1px dashed #c9cfd8;border-radius:12px;background:rgba(255,255,255,.55);
+  margin:22px 0;overflow:hidden;
+}
+.dark details.more{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.05);}
+details.more>summary{
+  cursor:pointer;list-style:none;padding:14px 18px;font-weight:700;font-size:.95rem;
+  color:var(--ink-soft);display:flex;align-items:center;gap:10px;user-select:none;
+}
+.dark details.more>summary{color:#b9c9d9;}
+details.more>summary::-webkit-details-marker{display:none;}
+details.more>summary::before{
+  content:"＋";display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--navy);
+  font-weight:800;font-size:.85rem;flex:none;
+}
+details.more[open]>summary::before{content:"−";}
+details.more>summary:hover{color:var(--ink);}
+details.more .body{padding:0 18px 18px;font-size:.96rem;color:var(--ink-soft);}
+.dark details.more .body{color:#b9c9d9;}
+details.more .body p:last-child{margin-bottom:0;}
+
+/* ===== 用語 ===== */
+.term{
+  border-bottom:2px dotted var(--accent-2);cursor:help;font-weight:600;
+  position:relative;white-space:nowrap;
+}
+.term:focus{outline:2px solid var(--accent-2);outline-offset:2px;}
+.term .tip{
+  visibility:hidden;opacity:0;position:absolute;bottom:calc(100% + 10px);left:50%;
+  transform:translateX(-50%);width:min(19em,74vw);
+  background:var(--navy);color:#eaf1f8;font-size:.83rem;line-height:1.7;font-weight:400;
+  padding:11px 14px;border-radius:10px;white-space:normal;z-index:20;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .16s;text-align:left;
+}
+.term:hover .tip,.term:focus .tip{visibility:visible;opacity:1;}
+
+/* ===== 図まわり ===== */
+figure{margin:26px 0;}
+figcaption{font-size:.85rem;color:var(--ink-soft);text-align:center;margin-top:10px;}
+.dark figcaption{color:#9fb3c6;}
+
+/* ===== ダウン体験ウィジェット ===== */
+.sim{background:var(--navy-2);border-radius:16px;padding:20px;margin:28px 0;color:#e8eef5;}
+.sim-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+.sim-status{font-size:1.3rem;font-weight:800;color:var(--accent);letter-spacing:.02em;}
+.sim-note{font-size:.85rem;color:#a9bdd0;}
+.sim-log{
+  background:rgba(0,0,0,.28);border-radius:10px;padding:12px 14px;min-height:4.6em;
+  font-size:.92rem;line-height:1.75;margin:14px 0;
+}
+.sim-log .hit{color:var(--accent);font-weight:700;}
+.sim-log .miss{color:#ff9d84;font-weight:700;}
+.sim-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn{
+  flex:1 1 130px;border:none;border-radius:10px;padding:13px 14px;font-size:.95rem;font-weight:700;
+  cursor:pointer;font-family:inherit;transition:transform .12s,filter .2s;
+}
+.btn:active{transform:translateY(1px);}
+.btn:disabled{opacity:.4;cursor:not-allowed;}
+.btn-run{background:var(--accent);color:var(--navy);}
+.btn-pass{background:#4aa3e0;color:#06263c;}
+.btn-reset{background:transparent;color:#9fb3c6;border:1px solid rgba(255,255,255,.3);flex:1 1 100%;}
+.btn:not(:disabled):hover{filter:brightness(1.08);}
+
+/* ===== ポジション図 ===== */
+.pos-wrap{background:var(--field-dark);border-radius:16px;padding:16px 12px;margin:24px 0;}
+.pos-tabs{display:flex;gap:8px;margin-bottom:12px;}
+.pos-tab{
+  flex:1;padding:10px;border:none;border-radius:9px;font-family:inherit;font-weight:700;
+  font-size:.92rem;cursor:pointer;background:rgba(255,255,255,.14);color:#dce7f1;
+}
+.pos-tab[aria-selected="true"]{background:var(--accent);color:var(--navy);}
+.player{cursor:pointer;}
+.player circle,.player rect{transition:fill .18s,stroke .18s;}
+.player:hover circle,.player:hover rect,.player.on circle,.player.on rect{stroke:var(--accent);stroke-width:3;}
+.pos-info{
+  background:rgba(0,0,0,.3);border-radius:10px;padding:14px 16px;margin-top:12px;color:#e8eef5;
+  font-size:.93rem;line-height:1.8;min-height:5.4em;
+}
+.pos-info b{color:var(--accent);display:block;font-size:1.02rem;margin-bottom:2px;}
+.pos-info .en{color:#9fb3c6;font-size:.8rem;font-weight:400;letter-spacing:.06em;}
+
+/* ===== 得点表 ===== */
+.score-list{list-style:none;padding:0;margin:24px 0;}
+.score-list li{
+  display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);
+}
+.dark .score-list li{border-color:rgba(255,255,255,.14);}
+.score-list li:last-child{border-bottom:none;}
+.pts{
+  flex:none;width:62px;text-align:center;font-weight:800;font-size:1.5rem;color:var(--accent-2);
+  line-height:1.2;
+}
+.pts small{display:block;font-size:.68rem;color:var(--ink-soft);font-weight:600;letter-spacing:.05em;}
+.dark .pts{color:var(--accent);}
+.dark .pts small{color:#9fb3c6;}
+.score-list b{display:block;margin-bottom:1px;}
+.score-list span{font-size:.93rem;color:var(--ink-soft);}
+.dark .score-list span{color:#b9c9d9;}
+
+/* ===== 引用風の強調 ===== */
+.pull{
+  border-left:5px solid var(--accent);padding:6px 0 6px 20px;margin:32px 0;
+  font-size:1.12rem;font-weight:700;line-height:1.8;
+}
+
+/* ===== クイズ ===== */
+.quiz{background:var(--white);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--line);}
+.q{margin-bottom:26px;}
+.q:last-of-type{margin-bottom:14px;}
+.q p{font-weight:700;margin-bottom:12px;}
+.choices{display:grid;gap:8px;}
+.choice{
+  text-align:left;padding:12px 15px;border:1.5px solid var(--line);background:var(--white);
+  border-radius:10px;font-family:inherit;font-size:.95rem;cursor:pointer;transition:.15s;color:var(--ink);
+}
+.choice:hover:not(.done){border-color:var(--accent-2);background:#fff8f2;}
+.choice.ok{border-color:var(--field);background:#eaf7ef;font-weight:700;}
+.choice.ng{border-color:#e07a5f;background:#fdeeea;}
+.q-fb{font-size:.9rem;color:var(--ink-soft);margin-top:10px;display:none;}
+.q-fb.show{display:block;}
+.quiz-score{text-align:center;font-weight:800;font-size:1.05rem;padding-top:14px;border-top:1px solid var(--line);}
+
+/* ===== フッター ===== */
+footer{background:var(--navy);color:#8ba0b4;text-align:center;padding:40px 22px;font-size:.85rem;}
+footer b{color:var(--accent);display:block;font-size:1.1rem;margin-bottom:8px;}
+
+/* ===== 出現アニメーション ===== */
+body.js .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+body.js .rv.in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){
+  body.js .rv{opacity:1;transform:none;transition:none;}
+  html{scroll-behavior:auto;}
+  .scroll-cue span{animation:none;}
+}
+@media(max-width:480px){
+  body{font-size:16px;}
+  section{padding:52px 0;}
+  .wrap{padding:0 18px;}
+}
+.hero .vs{
+  color:#fff;font-weight:800;font-size:clamp(1.05rem,4vw,1.35rem);
+  line-height:1.75;margin:0 auto 1.4em;letter-spacing:.01em;
+}
+.hero .vs .u{
+  background:linear-gradient(transparent 62%,rgba(255,194,60,.32) 62%);
+}
+/* ===== フィールド図 ===== */
+.field-svg{display:block;width:100%;height:auto;}
+details.more .body ul{margin:0 0 1.2em;padding-left:1.35em;}
+details.more .body li{margin-bottom:.5em;}
+details.more .body b{color:var(--ink);}
+.dark details.more .body b{color:#fff;}.card h3:first-child{margin-top:0;}
+
+/* ===== ダウン解説 ===== */
+.sim-field{display:block;width:100%;height:auto;margin:2px 0 12px;}
+.slide{transition:transform .5s cubic-bezier(.25,.85,.35,1);}
+#simFdG{transition-delay:.12s;}
+@media(prefers-reduced-motion:reduce){.slide{transition:none;}#simFdG{transition-delay:0s;}}
+.notes{list-style:none;margin:20px 0;padding:0;}
+.notes li{padding:11px 0;border-bottom:1px solid var(--line);font-size:.95rem;line-height:1.8;}
+.notes li:last-child{border-bottom:none;}
+.notes li b{
+  display:inline-block;min-width:6.2em;color:var(--accent-2);font-weight:800;
+  letter-spacing:.02em;margin-right:.4em;
+}
+@media(max-width:480px){.notes li b{display:block;min-width:0;margin-bottom:1px;}}
+
+.downs{margin:0;}
+.downs dt{
+  font-weight:800;color:var(--accent-2);font-size:.92rem;letter-spacing:.05em;
+  display:flex;align-items:center;gap:8px;
+}
+.downs dt small{color:var(--ink-soft);font-weight:600;font-size:.82rem;letter-spacing:0;}
+.downs dd{
+  margin:2px 0 14px;padding-bottom:14px;border-bottom:1px solid var(--line);
+  font-size:.95rem;color:var(--ink-soft);line-height:1.8;
+}
+.downs dd:last-of-type{border-bottom:none;padding-bottom:0;margin-bottom:0;}
+/* ===== プレーの流れ（タイムライン） ===== */
+.flow{list-style:none;margin:24px 0;padding:0;counter-reset:f;}
+.flow li{
+  counter-increment:f;position:relative;padding:0 0 24px 52px;
+}
+.flow li::before{
+  content:counter(f);position:absolute;left:0;top:0;
+  width:32px;height:32px;border-radius:50%;background:var(--navy);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;z-index:1;
+}
+.flow li::after{
+  content:"";position:absolute;left:15px;top:34px;bottom:0;width:2px;background:var(--line);
+}
+.flow li:last-child{padding-bottom:0;}
+.flow li:last-child::after{display:none;}
+.flow b{display:block;font-size:1.05rem;margin-bottom:2px;padding-top:4px;}
+.flow small{display:block;font-size:.94rem;color:var(--ink-soft);line-height:1.8;}
+.dark .flow li::before{background:var(--accent);color:var(--navy);}
+.dark .flow li::after{background:rgba(255,255,255,.18);}
+.dark .flow small{color:#b9c9d9;}
+.flow .tick{
+  display:inline-block;margin-top:6px;font-size:.82rem;font-weight:700;
+  color:var(--accent-2);background:rgba(255,122,69,.1);padding:3px 10px;border-radius:99px;
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<!-- ===== 1. ヒーロー ===== -->
+<header class="hero">
+  <div class="wrap">
+    <p class="sub">AMERICAN FOOTBALL</p>
+    <h1>フィジカルモンスター<br>による<span class="hl">頭脳戦</span></h1>
+    <p>100kgを超える巨体が全力でぶつかり合う世界。<br>しかしその中身は、1プレーごとに全員で作戦を組み直す<br>極めて緻密な頭脳戦。</p>
+    <p class="vs"><span class="u">作戦で個の力を封じる</span><br><span class="u">個の力で作戦をねじ伏せる</span></p>
+    <p>1プレーたった5秒の攻防に、そのすべてが詰まっています。</p>
+    <a class="scroll-cue" href="#basics">さあ、フットボールの世界へ <span>↓</span></a>
+  </div>
+</header>
+
+<!-- ===== 2. 何をするゲームか ===== -->
+<section id="basics">
+  <div class="wrap">
+    <p class="eyebrow rv">RULE 01</p>
+    <h2 class="rv">様々な作戦を駆使して、<br>ボールを前へ運ぶ</h2>
+    <p class="lead rv">アメフトがやっていることは、突き詰めればこれだけです。<br>相手陣地の一番奥にある<span class="term" tabindex="0">エンドゾーン<span class="tip">フィールドの両端にある、奥行き10ヤードの区画。<br>ここにボールを持ち込むと「タッチダウン」となり、6点が入ります。</span></span>までボールを運び込めば得点。<br>ボールを運ぶときは抱えて走っても、投げて渡しても構いません。</p>
+
+    <div class="card rv">
+      <h3>実はサッカーより野球に近い</h3>
+      <p>アメフトは、サッカーやバスケットボールのようにボールを奪い合いながら攻守が入れ替わるスポーツではありません。<br>アメフトの攻守は、むしろ<b>野球に近い形</b>で分かれています。<br>「いまはこちらが攻撃、そちらが守備」と攻守がはっきり決まっていて、攻撃側はボールを持って前へ進もうとし、守備側はそれを止めようとする、という構造になっています。
+    </div>
+
+    <figure class="rv">
+      <svg class="field-svg" viewBox="0 0 600 350" role="img" aria-labelledby="fldT fldD">
+        <title id="fldT">アメリカンフットボールのフィールド</title>
+        <desc id="fldD">全長120ヤードのフィールド。両端に奥行き10ヤードのエンドゾーンがあり、中央の100ヤードには5ヤードごとに白い線が引かれ、10ヤードごとに数字が書かれている。攻撃チームは右方向のエンドゾーンを目指す。</desc>
+        <defs>
+          <marker id="arw" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+            <path d="M0 0 L9 4.5 L0 9 Z" fill="#ff7a45"/>
+          </marker>
+        </defs>
+
+        <!-- 進行方向 -->
+        <text x="300" y="17" text-anchor="middle" fill="#4a5665" font-size="15" font-weight="700">攻撃チームの進行方向</text>
+        <line x1="205" y1="40" x2="395" y2="40" stroke="#ff7a45" stroke-width="3" marker-end="url(#arw)"/>
+
+        <!-- 芝 -->
+        <rect x="0" y="60" width="600" height="267" rx="5" fill="#166d3b"/>
+        <rect x="0" y="60" width="50" height="267" rx="5" fill="#0e4a28"/>
+        <rect x="40" y="60" width="10" height="267" fill="#0e4a28"/>
+        <rect x="550" y="60" width="50" height="267" rx="5" fill="#0e4a28"/>
+        <rect x="550" y="60" width="10" height="267" fill="#0e4a28"/>
+
+        <!-- 5ヤードごとの白線 -->
+        <g stroke="#ffffff" stroke-opacity=".45" stroke-width="1.5">
+          <line x1="75" y1="60" x2="75" y2="327"/><line x1="100" y1="60" x2="100" y2="327"/>
+          <line x1="125" y1="60" x2="125" y2="327"/><line x1="150" y1="60" x2="150" y2="327"/>
+          <line x1="175" y1="60" x2="175" y2="327"/><line x1="200" y1="60" x2="200" y2="327"/>
+          <line x1="225" y1="60" x2="225" y2="327"/><line x1="250" y1="60" x2="250" y2="327"/>
+          <line x1="275" y1="60" x2="275" y2="327"/><line x1="325" y1="60" x2="325" y2="327"/>
+          <line x1="350" y1="60" x2="350" y2="327"/><line x1="375" y1="60" x2="375" y2="327"/>
+          <line x1="400" y1="60" x2="400" y2="327"/><line x1="425" y1="60" x2="425" y2="327"/>
+          <line x1="450" y1="60" x2="450" y2="327"/><line x1="475" y1="60" x2="475" y2="327"/>
+          <line x1="500" y1="60" x2="500" y2="327"/><line x1="525" y1="60" x2="525" y2="327"/>
+        </g>
+        <!-- 50ヤードライン -->
+        <line x1="300" y1="60" x2="300" y2="327" stroke="#fff" stroke-opacity=".8" stroke-width="2.5"/>
+        <!-- ゴールライン -->
+        <line x1="50" y1="60" x2="50" y2="327" stroke="#fff" stroke-width="3"/>
+        <line x1="550" y1="60" x2="550" y2="327" stroke="#fff" stroke-width="3"/>
+
+        <!-- ヤード数字 -->
+        <g fill="#fff" fill-opacity=".85" font-size="17" font-weight="700" text-anchor="middle">
+          <text x="100" y="115">10</text><text x="150" y="115">20</text><text x="200" y="115">30</text>
+          <text x="250" y="115">40</text><text x="300" y="115">50</text><text x="350" y="115">40</text>
+          <text x="400" y="115">30</text><text x="450" y="115">20</text><text x="500" y="115">10</text>
+          <text x="100" y="290">10</text><text x="150" y="290">20</text><text x="200" y="290">30</text>
+          <text x="250" y="290">40</text><text x="300" y="290">50</text><text x="350" y="290">40</text>
+          <text x="400" y="290">30</text><text x="450" y="290">20</text><text x="500" y="290">10</text>
+        </g>
+
+        <!-- ゴール地点の強調 -->
+        <rect x="550" y="60" width="50" height="267" rx="5" fill="#ffc23c" fill-opacity=".14" stroke="#ffc23c" stroke-width="2" stroke-dasharray="6 5"/>
+
+        <!-- エンドゾーン表記 -->
+        <text transform="rotate(-90 25 193)" x="25" y="199" text-anchor="middle" fill="#fff" fill-opacity=".7" font-size="15" font-weight="700" letter-spacing="2">エンドゾーン</text>
+        <text transform="rotate(90 575 193)" x="575" y="199" text-anchor="middle" fill="#ffc23c" font-size="15" font-weight="700" letter-spacing="2">エンドゾーン</text>
+
+        <text x="575" y="345" text-anchor="middle" fill="#ff7a45" font-size="13" font-weight="700">ゴール</text>
+        <text x="300" y="203" text-anchor="middle" fill="#fff" fill-opacity=".28" font-size="26" font-weight="800" letter-spacing="4">100 YARDS</text>
+      </svg>
+      <figcaption>フィールドは全長120ヤードで、両端の10ヤードがエンドゾーンです。<br>数字は「そこからエンドゾーンまでの距離」を表すため、中央の50から左右に向かって減っていきます。</figcaption>
+    </figure>
+
+    <ol class="three">
+      <li class="rv"><b>ゴールはエンドゾーン</b><small>ボールを持ち込めば<span class="term" tabindex="0">タッチダウン<span class="tip">エンドゾーンにボールを持ち込むこと。</span></span>で6点が入ります。</small></li>
+      <li class="rv"><b>ボールの運び方：持って走る</b><small>ボールを抱えたまま走って前進する方法で、「ラン」と呼びます。<br>前線の選手が相手を押しのけて作ったスペースを駆け抜けていきます。<br>確実に少しずつ進められる代わりに、一度で大きく稼ぐのは難しい手段です。</small></li>
+      <li class="rv"><b>ボールの運び方：投げて渡す</b><small>前方にいる味方へ投げて渡す方法で、「パス」と呼びます。<br>成功すれば一度で数十ヤードを稼げる代わりに、失敗すれば1ヤードも進めません。</small></li>
+      <li class="rv"><b>攻撃と守備はまったく別の選手</b><small>攻撃専門の11人と守備専門の11人がそっくり入れ替わります。<br>だから全員が自分の役割だけに特化できるのです。</small></li>
+    </ol>
+
+    <details class="more rv">
+      <summary>もっと詳しく：アメフトで使われる単位</summary>
+      <div class="body">
+        <p>アメフトはアメリカ生まれのスポーツなので、距離も体重もメートル法ではなくヤード・ポンド法で表されます。次の換算だけ頭に入れておくと、中継の数字が一気に読めるようになります。</p>
+        <ul>
+          <li><b>ヤード（yard）</b>… 1ヤード＝約91cm。10ヤードで約9m、100ヤードで約91m。<br>主にフィールド上で距離を表すのに使われます。</li>
+          <li><b>フィート（feet）</b>… 1フィート＝約30.5cm。主に選手の身長を表す際に使われます。</li>
+          <li><b>インチ（inch）</b>… 1インチ＝約2.5cm。主に選手の身長を表す際に使われます。<br>例えば選手プロフィールで「6'2"」と書かれていれば6フィート2インチ＝約188cmを意味します。</li>
+          <li><b>ポンド（lbs）</b>… 重さの単位。1ポンド＝約454g。例えば選手プロフィールで「200 lbs」と書かれていれば200ポンド＝約91kgです。</li>
+        </ul>
+        <p>アメフトではプロ入り前の測定会で「40ヤード走」を行います。40ヤードは約36.6mで、速い選手は4.2秒台で走り抜けます。<br>100kgを超える選手でも4秒台後半で走ってくるのが、アメフト選手の恐ろしさです。</p>
+      </div>
+    </details>
+
+    <details class="more rv">
+
+      <summary>もっと詳しく：フィールドの数字の読み方</summary>
+      <div class="body">
+        <p>中継を見ていると「自陣30ヤード」「敵陣45ヤード」といった言い方が出てきます。<br>フィールドの数字は<b>両端のゴールラインからの距離</b>なので、同じ「30」がフィールド上に2か所あります。<br>そこで、自分たちが守っている側を「自陣」、攻め込んでいる側を「敵陣」と呼び分けています。</p>
+        <p>つまり「自陣20ヤード」はゴールまで残り80ヤードの苦しい位置、「敵陣20ヤード」は得点まであと一息、という意味になります。</p>
+        <p>ちなみにフィールドの幅は約53ヤード（およそ49m）。<br>サッカーコートより一回り小さい長方形の中で、100kg超の選手たちが走り回っていることになります。</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== 3. 4回で10ヤード ===== -->
+<section id="downs">
+  <div class="wrap">
+    <p class="eyebrow rv">RULE 02</p>
+    <h2 class="rv">4回の攻撃で10ヤード</h2>
+    <p class="lead rv">攻撃側は好きなだけ攻め続けられるわけではありません。<br>攻撃側に与えられるのは<b>4回</b>の攻撃だけ。この1回1回の攻撃のことを<b>「ダウン」</b>と言います。<br>4回の攻撃で10ヤード進めなければ、野球の「3アウト」のように攻撃権は相手に移ります。<br>逆に10ヤード進めれば、そこからまた新しく4回の攻撃権が得られます。<br>この繰り返しで、エンドゾーンへと迫っていきます。</p>
+
+    <figure class="rv">
+      <svg class="field-svg" viewBox="0 0 600 190" role="img" aria-labelledby="dnT dnD">
+        <title id="dnT">ダウンの仕組み</title>
+        <desc id="dnD">ボールがある位置から10ヤード先に目標ラインが引かれ、4回の攻撃でそこへ到達することを目指す。</desc>
+        <defs>
+          <marker id="arw2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+            <path d="M0 0 L9 4.5 L0 9 Z" fill="#fff"/>
+          </marker>
+        </defs>
+        <rect x="0" y="40" width="600" height="110" fill="#166d3b"/>
+        <!-- 5ヤードごとの白線。10ヤードの区間には1本だけ入る -->
+        <g stroke="#fff" stroke-opacity=".55" stroke-width="2.5">
+          <line x1="30" y1="40" x2="30" y2="150"/>
+          <line x1="310" y1="40" x2="310" y2="150"/>
+          <line x1="590" y1="40" x2="590" y2="150"/>
+        </g>
+        <!-- 現在地 -->
+        <line x1="170" y1="30" x2="170" y2="160" stroke="#4aa3e0" stroke-width="4"/>
+        <text x="170" y="22" text-anchor="middle" fill="#0b6ea8" font-size="14" font-weight="700">いまボールがある線</text>
+        <!-- 目標 -->
+        <line x1="450" y1="30" x2="450" y2="160" stroke="#ffc23c" stroke-width="4"/>
+        <text x="450" y="22" text-anchor="middle" fill="#c98800" font-size="14" font-weight="700">10ヤード先の目標ライン</text>
+        <!-- 区間 -->
+        <line x1="176" y1="95" x2="442" y2="95" stroke="#fff" stroke-width="2.5" marker-end="url(#arw2)"/>
+        <text x="310" y="83" text-anchor="middle" fill="#fff" font-size="16" font-weight="800">この10ヤードを4回の攻撃で進む</text>
+        <text x="310" y="122" text-anchor="middle" fill="#fff" fill-opacity=".75" font-size="13">届かなければ攻守交替</text>
+        <text x="310" y="178" text-anchor="middle" fill="#4a5665" font-size="13">※ テレビ中継で引かれる黄色い線は、この目標ラインです</text>
+      </svg>
+    </figure>
+
+    <h3 class="rv">実際にやってみましょう</h3>
+    <p class="rv">言葉で読むだけでは分かりにくいので、実際に動かしてみましょう。<br>自陣30ヤードから攻撃開始。ボタンを押して、攻撃を1回ずつ進めてみてください。</p>
+
+    <div class="sim rv">
+      <div class="sim-head">
+        <div class="sim-status" id="simStatus">1st &amp; 10</div>
+        <div class="sim-note" id="simSpot">自陣30ヤード</div>
+      </div>
+
+      <svg class="sim-field" viewBox="0 0 560 96" role="img" aria-label="攻撃状況を表すフィールド図">
+        <rect x="0" y="18" width="560" height="60" fill="#166d3b"/>
+        <rect x="0" y="18" width="30" height="60" fill="#0e4a28"/>
+        <rect x="530" y="18" width="30" height="60" fill="#ffc23c" fill-opacity=".22"/>
+        <g stroke="#fff" stroke-opacity=".3" stroke-width="1">
+          <line x1="80" y1="18" x2="80" y2="78"/><line x1="130" y1="18" x2="130" y2="78"/>
+          <line x1="180" y1="18" x2="180" y2="78"/><line x1="230" y1="18" x2="230" y2="78"/>
+          <line x1="280" y1="18" x2="280" y2="78"/><line x1="330" y1="18" x2="330" y2="78"/>
+          <line x1="380" y1="18" x2="380" y2="78"/><line x1="430" y1="18" x2="430" y2="78"/>
+          <line x1="480" y1="18" x2="480" y2="78"/>
+        </g>
+        <line x1="30" y1="18" x2="30" y2="78" stroke="#fff" stroke-width="2"/>
+        <line x1="530" y1="18" x2="530" y2="78" stroke="#fff" stroke-width="2"/>
+        <text transform="rotate(90 545 48)" x="545" y="52" text-anchor="middle" fill="#ffc23c" font-size="9" font-weight="700">エンドゾーン</text>
+        <!-- 目標ライン（transformで左右にスライドさせる） -->
+        <g id="simFdG" class="slide">
+          <line x1="0" y1="14" x2="0" y2="82" stroke="#ffc23c" stroke-width="3"/>
+        </g>
+        <!-- スクリメージラインとボール（同じくスライドさせる） -->
+        <g id="simLosG" class="slide">
+          <line x1="0" y1="14" x2="0" y2="82" stroke="#4aa3e0" stroke-width="3"/>
+          <ellipse cx="0" cy="48" rx="7" ry="4.6" fill="#8b4a1f" stroke="#fff" stroke-width="1.4"/>
+        </g>
+        <text x="0" y="92" fill="#9fb3c6" font-size="9">自陣</text>
+        <text x="560" y="92" text-anchor="end" fill="#ffc23c" font-size="9">敵陣エンドゾーン</text>
+      </svg>
+
+      <div class="sim-log" id="simLog">ボタンを押すと、1回の攻撃（＝1ダウン）が実行されます。</div>
+
+      <div class="sim-btns">
+        <button class="btn btn-run" id="btnRun" type="button">ランで攻める</button>
+        <button class="btn btn-pass" id="btnPass" type="button">パスで攻める</button>
+        <button class="btn btn-reset" id="btnReset" type="button">最初からやり直す</button>
+      </div>
+    </div>
+
+    <p class="rv">さて、いま動かしたウィジェットの左上に「1st &amp; 10」「2nd &amp; 7」などの表示が出ていたことに気が付いたでしょうか。<br>これは実際の試合中継でも常に画面に出ている表示で、アメフトを見るうえで非常に大事な情報でもあります。</p>
+
+    <figure class="rv">
+      <svg class="field-svg" viewBox="0 0 600 175" role="img" aria-labelledby="ntT ntD">
+        <title id="ntT">中継の表示の読み方</title>
+        <desc id="ntD">画面に出る「2nd &amp; 7」などの表示は、左の数字が何回目の攻撃かを、右の数字が目標まで残り何ヤードかを表す。</desc>
+
+        <!-- 中継のスコア表示風 -->
+        <rect x="140" y="12" width="320" height="44" rx="8" fill="#0a1a2f"/>
+        <text x="160" y="31" fill="#b9c9d9" font-size="11" font-weight="700">TEAM A</text>
+        <text x="235" y="31" fill="#fff" font-size="13" font-weight="800">14</text>
+        <text x="160" y="48" fill="#b9c9d9" font-size="11" font-weight="700">TEAM B</text>
+        <text x="235" y="48" fill="#fff" font-size="13" font-weight="800">21</text>
+        <line x1="252" y1="20" x2="252" y2="48" stroke="#fff" stroke-opacity=".25" stroke-width="1"/>
+        <text x="325" y="43" text-anchor="middle" fill="#ffc23c" font-size="22" font-weight="800">2nd</text>
+        <text x="355" y="42" text-anchor="middle" fill="#ffc23c" fill-opacity=".6" font-size="16" font-weight="700">&amp;</text>
+        <text x="385" y="43" text-anchor="middle" fill="#ffc23c" font-size="22" font-weight="800">7</text>
+
+        <!-- 引き出し線 -->
+        <g stroke="#ff7a45" stroke-width="1.6" fill="none">
+          <polyline points="325,62 325,80 235,80 235,94"/>
+          <polyline points="385,62 385,80 455,80 455,94"/>
+        </g>
+
+        <!-- ラベル -->
+        <text x="235" y="118" text-anchor="middle" fill="#0b6ea8" font-size="15" font-weight="800">何回目の攻撃か</text>
+        <text x="455" y="118" text-anchor="middle" fill="#c98800" font-size="15" font-weight="800">更新まで残り何ヤードか</text>
+      </svg>
+    </figure>
+
+    <p class="rv">この表示は「<b>何回目の攻撃権か ＆ 更新まで残り何ヤードか</b>」を表しています。<br>例を見てみましょう。</p>
+
+    <ul class="notes rv">
+      <li><b>1st &amp; 10</b>1回目の攻撃で、残り10ヤード。攻撃権が更新されたばかりの状態です。</li>
+      <li><b>2nd &amp; 3</b>2回目で残り3ヤード。あと3回の攻撃で3ヤード進めばいいので、攻撃側にとって有利な展開です。</li>
+      <li><b>3rd &amp; 12</b>3回目で残り12ヤード。残りの2回の攻撃で12ヤード進む必要があり、守備側に有利な状況です。</li>
+      <li><b>4th &amp; 1</b>最後の1回で、残りわずか1ヤード。様々な判断を迫られる、スタジアムが最も沸く場面のひとつです。</li>
+      <li><b>1st &amp; Goal</b>エンドゾーンまで10ヤード以内に迫ると目標ラインがエンドゾーンそのものになるので、数字ではなく「Goal」と表示されます。</li>
+    </ul>
+
+    <details class="more rv">
+      <summary>もっと詳しく：4回目に迫られる「3つの選択」</summary>
+      <div class="body">
+        <p>4回目の攻撃（4thダウン）で目標ラインに到達できないとその地点で攻守交代となります。<br>ここでチームは次の3つの選択肢から1つを選ぶことになります。</p>
+        <ul>
+          <li><b>パント</b>… ボールを遠くへ蹴り返して攻撃権を渡す方法。<br>相手は自陣の深い位置から攻め始めることになるので、そのぶん守りが楽になります。<br>最も無難な選択で、実際に一番多く選ばれます。</li>
+          <li><b>フィールドゴール</b>… ゴールポストの間にボールを蹴り込んで<b>3点</b>を狙う方法。<br>目安としては敵陣35ヤード地点より先まで進んでいるときに選ばれることが多いです。<br>タッチダウンの6点は取り逃しますが、成功すれば点が入ります。</li>
+          <li><b>そのまま攻める</b>… 「ギャンブル」などとも呼ばれる選択。<br>成功すれば攻撃を続けられますが、失敗すればその場所から相手の攻撃が始まります。<br>残りヤード数が少ない時や試合終盤などに見られがちな勝負手です。</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="more rv">
+      <summary>もっと詳しく：インターセプトとファンブル</summary>
+      <div class="body">
+        <p>「攻守が移るのは4回の攻撃を使い切ったとき」と説明してきましたが、攻撃の途中でも<b>その瞬間に攻守が入れ替わってしまう</b>出来事が2つあります。<br>まとめて「ターンオーバー」と呼ばれ、試合の流れを一気にひっくり返すビッグプレーです。</p>
+        <ul>
+          <li><b>インターセプト（Interception）</b>… 投げたパスを、味方ではなく守備側の選手が空中で捕ってしまうこと。<br>捕った瞬間に攻守が入れ替わり、しかもその選手はそのまま走って前進できます。<br>そのままエンドゾーンまで走り切ってタッチダウンになることも珍しくありません。</li>
+          <li><b>ファンブル（Fumble）</b>… ボールを持っている選手が、タックルなどでボールを手放してしまうこと。<br>こぼれたボールは両チームが奪い合いになり、守備側が確保すればその場で攻守交代です。<br>逆に攻撃側が拾い直せれば、そのまま攻撃を続けられます。</li>
+        </ul>
+        <p>先ほどのウィジェットでパスを選び続けていると、まれに「インターセプト」で攻撃が打ち切られます。<br>パスは大きく前進できる魅力的な手段ですが、こうして一発で攻撃権を失う危険も抱えています。<br><b>安全なランを積み重ねるか、リスクを取ってパスを投げるか。</b><br>4回で10ヤードという制限の上に、さらにこの駆け引きが重なっています。</p>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<script>
+/* ===== ダウン体験ウィジェット ===== */
+(function(){
+  var X0 = 30, X100 = 530;              // SVG上の自陣ゴールライン／敵陣ゴールライン
+  var S = {};
+
+  function el(id){ return document.getElementById(id); }
+  function toX(pos){ return X0 + (X100 - X0) * pos / 100; }
+  function rnd(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+  // 位置を「自陣○○ヤード」の形に直す
+  function spot(pos){
+    var p = Math.round(pos);
+    if (p < 50) return '自陣' + p + 'ヤード';
+    if (p > 50) return '敵陣' + (100 - p) + 'ヤード';
+    return '中央50ヤード';
+  }
+
+  // ボールと2本の線を、dur秒かけて現在の位置までスライドさせる
+  function place(dur){
+    var los = el('simLosG'), fd = el('simFdG');
+    los.style.transitionDuration = dur + 's';
+    fd.style.transitionDuration  = dur + 's';
+    los.style.transform = 'translateX(' + toX(S.pos) + 'px)';
+    fd.style.transform  = 'translateX(' + toX(Math.min(S.target, 100)) + 'px)';
+  }
+
+  // ステータス表示とボタンの状態を更新
+  function board(){
+    var ord = ['1st','2nd','3rd','4th'][S.down - 1];
+    var remain = S.target >= 100 ? 'Goal' : Math.max(1, Math.ceil(S.target - S.pos));
+    el('simStatus').textContent = S.over ? '攻撃終了' : (ord + ' & ' + remain);
+    el('simSpot').textContent   = S.over ? '「最初からやり直す」で再開できます' : spot(S.pos);
+    el('btnRun').disabled  = S.over || S.busy;
+    el('btnPass').disabled = S.over || S.busy;
+  }
+
+  // ログは新しいものを上に、3件まで残す
+  function say(text, cls){
+    var line = cls ? '<span class="' + cls + '">' + text + '</span>' : text;
+    S.log.unshift(line);
+    if (S.log.length > 3) S.log.pop();
+    el('simLog').innerHTML = S.log.join('<br>');
+  }
+
+  function reset(){
+    S = { pos:30, target:40, down:1, over:false, busy:false, log:[] };
+    place(0);                            // 最初の配置は動かさずに置く
+    say('ボタンを押すと、1回の攻撃（＝1ダウン）が実行されます。', '');
+    board();
+  }
+
+  function play(kind){
+    if (S.over || S.busy) return;
+    var gain = 0, msg = '';
+
+    if (kind === 'run') {
+      var r = Math.random();
+      if (r < 0.18)      { gain = rnd(-3, 0); msg = 'ランを止められ、' + Math.abs(gain) + 'ヤードの後退。'; }
+      else if (r < 0.85) { gain = rnd(2, 6);  msg = 'ランで' + gain + 'ヤード獲得。'; }
+      else               { gain = rnd(8, 18); msg = 'ランが抜けた！ ' + gain + 'ヤードの大きな前進。'; }
+    } else {
+      var q = Math.random();
+      if (q < 0.05) {
+        say('パスを相手に奪われました（インターセプト）。攻撃はここで終わりです。', 'miss');
+        S.over = true; board(); return;
+      }
+      if (q < 0.40)      { gain = 0;           msg = 'パスは通らず。ボールは1ヤードも進みません。'; }
+      else if (q < 0.88) { gain = rnd(6, 17);  msg = 'パスが通って' + gain + 'ヤード獲得！'; }
+      else               { gain = rnd(20, 40); msg = '長いパスが決まった！ ' + gain + 'ヤードの大前進。'; }
+    }
+
+    var from = S.pos;
+    S.pos = Math.max(1, Math.min(100, S.pos + gain));
+
+    // 進んだ距離が長いほど、ゆっくり大きく動かす
+    var dist = Math.abs(S.pos - from);
+    var dur  = Math.round((0.32 + Math.min(0.58, dist * 0.03)) * 100) / 100;
+
+    S.busy = true;
+    board();                             // 動いている間はボタンを押せないようにする
+    say(msg, '');
+    place(dur);
+
+    setTimeout(function(){
+      S.busy = false;
+      judge();
+    }, dur * 1000 + 80);
+  }
+
+  // 移動が終わったあとに結果を告げる
+  function judge(){
+    if (S.pos >= 100) {
+      S.over = true;
+      S.pos = 103;                       // エンドゾーンの中まで運び込む
+      place(0.3);
+      say('タッチダウン！ エンドゾーンに到達して6点です。', 'hit');
+      board(); return;
+    }
+    if (S.pos >= S.target) {
+      S.down = 1; S.target = S.pos + 10;
+      place(0.45);                       // 目標ラインが10ヤード先へ移る
+      say('10ヤード到達！ ファーストダウン更新。また4回の攻撃権を得ました。', 'hit');
+      board(); return;
+    }
+    if (S.down === 4) {
+      S.over = true;
+      say('4回で10ヤードに届かず。攻撃権が相手に移ります。', 'miss');
+      board(); return;
+    }
+    S.down++;
+    board();
+  }
+
+  el('btnRun').addEventListener('click', function(){ play('run'); });
+  el('btnPass').addEventListener('click', function(){ play('pass'); });
+  el('btnReset').addEventListener('click', reset);
+  reset();
+})();
+</script>
+
+<!-- ===== 4. 得点の種類 ===== -->
+<section id="score" class="dark">
+  <div class="wrap">
+    <p class="eyebrow rv">RULE 03</p>
+    <h2 class="rv">得点は4種類。<br>基本は「7点」と「3点」</h2>
+    <p class="lead rv">アメフトのスコアは20点や30点台になることが珍しくありません。<br>1点ずつ積み上がるのではなく、得点の仕方によって得られる点数が違うからです。</p>
+
+    <ul class="score-list">
+      <li class="rv">
+        <div class="pts">6<small>POINTS</small></div>
+        <div>
+          <b>タッチダウン（TouchDown）</b>
+          <span>ボールを持ってエンドゾーンに入る、または味方が投げたボールをエンドゾーン内で受け取る。<br>アメフトで最大の得点で、すべての攻撃はこれを狙っています。</span>
+        </div>
+      </li>
+      <li class="rv">
+        <div class="pts">+1<small>OR +2</small></div>
+        <div>
+          <b>トライ フォー ポイント（Try For Point）</b>
+          <span>タッチダウンを取った直後に与えられるおまけの1回の攻撃。<br>ボールを蹴ってポストの間に通せば1点。<br>エンドゾーンの近くから1回だけ攻撃してエンドゾーンに入れれば2点。<br>ほとんどの場合は確実性の高い1点が選ばれます。</span>
+        </div>
+      </li>
+      <li class="rv">
+        <div class="pts">3<small>POINTS</small></div>
+        <div>
+          <b>フィールドゴール（Field Goal）</b>
+          <span>エンドゾーンの奥に立つゴールポストへボールを蹴り込む。<br>タッチダウンまで攻めきるのが難しいとき、無得点で終わらないための選択です。</span>
+        </div>
+      </li>
+      <li class="rv">
+        <div class="pts">2<small>POINTS</small></div>
+        <div>
+          <b>セーフティ（Safety）</b>
+          <span>守備側に点が入る珍しい得点。<br>攻撃側が自陣のエンドゾーン内でボールを持ったまま倒されると守っていた側に2点が入る、サッカーで言う「オウンゴール」のようなものです。</span>
+        </div>
+      </li>
+    </ul>
+
+    <figure class="rv">
+      <svg class="field-svg" viewBox="0 0 600 250" role="img" aria-labelledby="gpT gpD">
+        <title id="gpT">ゴールポストとフィールドゴール</title>
+        <desc id="gpD">エンドゾーンの奥に立つH型のゴールポスト。2本のポールの間、かつクロスバーより上をボールが通れば3点。</desc>
+
+        <!-- 通過エリア -->
+        <rect x="205" y="30" width="190" height="115" fill="#ffc23c" fill-opacity=".13"/>
+        <text x="300" y="70" text-anchor="middle" fill="#ffc23c" font-size="17" font-weight="800">この中を通せば</text>
+        <text x="300" y="96" text-anchor="middle" fill="#ffc23c" font-size="26" font-weight="800">3点</text>
+
+        <!-- 地面 -->
+        <rect x="0" y="215" width="600" height="35" fill="#166d3b"/>
+        <!-- 支柱とポスト -->
+        <g stroke="#f3d34a" stroke-width="7" stroke-linecap="round">
+          <line x1="300" y1="215" x2="300" y2="145"/>
+          <line x1="205" y1="145" x2="395" y2="145"/>
+          <line x1="205" y1="145" x2="205" y2="30"/>
+          <line x1="395" y1="145" x2="395" y2="30"/>
+        </g>
+
+        <!-- ボールの軌跡 -->
+        <path d="M95 210 Q200 105 300 118" stroke="#fff" stroke-width="2" stroke-dasharray="6 6" fill="none" stroke-opacity=".7"/>
+        <ellipse cx="95" cy="210" rx="8" ry="5" fill="#8b4a1f" stroke="#fff" stroke-width="1.5"/>
+
+        <!-- 寸法 -->
+        <text x="300" y="168" text-anchor="middle" fill="#b9c9d9" font-size="12">ポールの間隔 約5.6m</text>
+        <text x="440" y="150" fill="#b9c9d9" font-size="12">バーの高さ 約3m</text>
+        <text x="95" y="238" text-anchor="middle" fill="#9fb3c6" font-size="12">ここから蹴る</text>
+      </svg>
+      <figcaption>ゴールポストはエンドゾーンのさらに奥に立っています。<br>2本のポールの間、かつ横棒より上を通れば成功。</figcaption>
+    </figure>
+
+    <div class="card rv">
+      <h3>試合の展開を点差で読み解く</h3>
+      <p>得点の仕組みが分かると、点差による試合状況がより分かりやすくなります。</p>
+      <ul>
+        <li><b>3点差</b>… フィールドゴール1本で追いつける。まだまだ何が起こるか分からない僅差です。</li>
+        <li><b>7点差</b>… タッチダウン1本で追いつける。+2点選択で一気に逆転も…？</li>
+        <li><b>10点差</b>… タッチダウン1回＋フィールドゴール1回。攻撃を2回成功させる必要があり、試合終盤では残り時間が非常に重くなります。</li>
+      </ul>
+      <p>実際に試合の中継では、<b>8点差</b>なのか<b>9点差</b>なのかで実況の緊張感がまるで変わります。</p>
+    </div>
+
+    <details class="more rv">
+      <summary>もっと詳しく：確実な1点か、攻めの2点か</summary>
+      <div class="body">
+        <p>タッチダウン後のTFPは、ほとんどのチームが<b>蹴って1点</b>を選びます。<br>TFPのキックは距離の関係上、プロなら9割以上成功するからです。</p>
+        <p>一方、2点を狙う場合はエンドゾーンの手前2ヤード地点から1回だけ攻撃を仕掛けます。<br>距離は短いものの守備も密集しているため、成功率は5割ほど。<br>それでも点差や展開によっては、あえてこちらを選ぶ場面もあります。</p>
+        <p>たとえば15点差を追う展開で残り時間が少ない場合。7点＋7点では追いつけないので、どこかで2点を取りに行く必要があります。<br>この判断が試合の分かれ目になることも多く、慣れてくると「ここは2点だろう」と予想できるようになります。</p>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ===== 5. 攻撃のポジション ===== -->
+<section id="offense">
+  <div class="wrap">
+    <p class="eyebrow rv">POSITION 01 ／ OFFENSE</p>
+    <h2 class="rv">オフェンスのポジション</h2>
+    <p class="lead rv">アメフトのポジションは、役割が完全に分かれています。<br>投げる人、走る人、捕る人、味方を守る人……兼任はほとんどありません。<br>体格も役割もまるで違う選手たちが、タッチダウンのために各々の役割を全力で果たそうとします。</p>
+
+    <div class="pos-wrap rv">
+      <svg class="field-svg" viewBox="0 0 600 300" role="img" aria-label="攻撃側11人の配置図。丸を選ぶと役割の説明が表示されます。">
+        <!-- 芝 -->
+        <rect x="0" y="0" width="600" height="300" fill="#166d3b"/>
+        <g stroke="#fff" stroke-opacity=".18" stroke-width="1.5">
+          <line x1="0" y1="45" x2="600" y2="45"/>
+          <line x1="0" y1="250" x2="600" y2="250"/>
+        </g>
+        <!-- スクリメージライン -->
+        <line x1="0" y1="110" x2="600" y2="110" stroke="#fff" stroke-opacity=".8" stroke-width="3"/>
+        <text x="12" y="102" fill="#fff" fill-opacity=".8" font-size="12" font-weight="700">ボールが置かれている線</text>
+        <!-- 進行方向 -->
+        <text x="530" y="30" text-anchor="middle" fill="#ffc23c" font-size="13" font-weight="700">進む方向</text>
+        <path d="M530 40 L530 14" stroke="#ffc23c" stroke-width="3" fill="none"/>
+        <path d="M530 8 L536 20 L524 20 Z" fill="#ffc23c"/>
+        <text x="300" y="76" text-anchor="middle" fill="#fff" fill-opacity=".55" font-size="12">この線の向こうに、守備の11人が待ち構えています</text>
+
+        <!-- 選手 -->
+        <g class="player" data-pos="wr" tabindex="0" role="button" aria-label="ワイドレシーバー">
+          <circle cx="80" cy="125" r="17" fill="#4aa3e0"/>
+          <text x="80" y="130" text-anchor="middle" font-size="12" font-weight="800" fill="#06263c">WR</text>
+        </g>
+        <g class="player" data-pos="wr" tabindex="0" role="button" aria-label="ワイドレシーバー">
+          <circle cx="150" cy="148" r="17" fill="#4aa3e0"/>
+          <text x="150" y="153" text-anchor="middle" font-size="12" font-weight="800" fill="#06263c">WR</text>
+        </g>
+        <g class="player" data-pos="ol" tabindex="0" role="button" aria-label="オフェンスライン">
+          <circle cx="230" cy="128" r="17" fill="#64748b"/>
+          <text x="230" y="133" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">OL</text>
+        </g>
+        <g class="player" data-pos="ol" tabindex="0" role="button" aria-label="オフェンスライン">
+          <circle cx="265" cy="128" r="17" fill="#64748b"/>
+          <text x="265" y="133" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">OL</text>
+        </g>
+        <g class="player" data-pos="ol" tabindex="0" role="button" aria-label="オフェンスライン">
+          <circle cx="300" cy="128" r="17" fill="#64748b"/>
+          <text x="300" y="133" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">OL</text>
+        </g>
+        <g class="player" data-pos="ol" tabindex="0" role="button" aria-label="オフェンスライン">
+          <circle cx="335" cy="128" r="17" fill="#64748b"/>
+          <text x="335" y="133" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">OL</text>
+        </g>
+        <g class="player" data-pos="ol" tabindex="0" role="button" aria-label="オフェンスライン">
+          <circle cx="370" cy="128" r="17" fill="#64748b"/>
+          <text x="370" y="133" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">OL</text>
+        </g>
+        <g class="player" data-pos="te" tabindex="0" role="button" aria-label="タイトエンド">
+          <circle cx="410" cy="128" r="17" fill="#7dd3a0"/>
+          <text x="410" y="133" text-anchor="middle" font-size="12" font-weight="800" fill="#0b3a22">TE</text>
+        </g>
+        <g class="player" data-pos="wr" tabindex="0" role="button" aria-label="ワイドレシーバー">
+          <circle cx="510" cy="125" r="17" fill="#4aa3e0"/>
+          <text x="510" y="130" text-anchor="middle" font-size="12" font-weight="800" fill="#06263c">WR</text>
+        </g>
+        <g class="player" data-pos="qb" tabindex="0" role="button" aria-label="クォーターバック">
+          <circle cx="300" cy="180" r="18" fill="#ffc23c"/>
+          <text x="300" y="185" text-anchor="middle" font-size="12" font-weight="800" fill="#3d2a00">QB</text>
+        </g>
+        <g class="player" data-pos="rb" tabindex="0" role="button" aria-label="ランニングバック">
+          <circle cx="300" cy="228" r="17" fill="#ff7a45"/>
+          <text x="300" y="233" text-anchor="middle" font-size="12" font-weight="800" fill="#4a1a00">RB</text>
+        </g>
+      </svg>
+      <div class="pos-info" id="posInfoOff">丸をタップすると、その選手の役割が表示されます。</div>
+    </div>
+
+    <div class="card rv">
+      <h3>まずはQBだけを追う</h3>
+      <p>11人すべてをいきなり覚える必要はありません。<br>慣れないうちは、試合を見るときに追うべきなのは<b>QB（クォーターバック）</b>だけです。</p>
+      <p>プレーはほぼ必ずQBにボールが渡ることから始まります。<br>そのQBが、投げるのか、誰かに手渡すのか、自分で走るのか。まずそこだけ見ていれば、試合の筋は追えます。<br>残りのポジションは、見ているうちに自然と目に入ってきます。</p>
+    </div>
+
+    <details class="more rv">
+      <summary>もっと詳しく：オフェンスラインの5人は、実は3種類</summary>
+      <div class="body">
+        <p>まとめて「OL」と呼んだ5人は、実は立つ位置によって役割が違い、それぞれ別の名前が付いています。</p>
+        <ul>
+          <li><b>センター（C）</b>… 5人のちょうど中央。股の下からQBへボールを渡す「スナップ」で、すべてのプレーを始める役目を負っています。<br>相手の隊形を見て、ラインの5人に指示を出す司令塔でもあります。</li>
+          <li><b>ガード（G）</b>… センターの両隣に立つ2人。相手を正面から押しのけ、ランプレーで走る道をこじ開けるのが主な仕事です。</li>
+          <li><b>タックル（T）</b>… 5人の両端に立つ2人。外から回り込んでQBを狙ってくる、速くて厄介なディフェンスを食い止めます。</li>
+        </ul>
+        <p>このうち特別に重視されるのが<b>左側のタックル</b>です。<br>QBの多くは右利きで、投げるときは体を右にひねるため、左側が完全な死角になります。<br>そこから襲いかかってくる相手を止める左タックルは、「見えない場所（ブラインドサイド）を守る」役目を負っているわけです。<br>この役割の重要性から、オフェンスラインの中で最も高い報酬が支払われるポジションになっています。</p>
+      </div>
+    </details>
+
+    <details class="more rv">
+      <summary>もっと詳しく：11人の組み合わせは、毎プレー変えられる</summary>
+      <div class="body">
+        <p>11人のうち、QB1人とオフェンスライン5人はほぼ必ず入ります。<br>そして残る5人をどう振り分けるかは作戦ごとに異なります。</p>
+        <p>標準的なのはWR3人・TE1人・RB1人という組み合わせですが、パスを投げたいときはWRを4人に増やし、力で押し込みたいときはTEやRBを増やして体格のある選手を並べます。<br><b>この5人の構成を、プレーごとに入れ替えてよい</b>のがアメフトの特徴です。</p>
+        <p>そして守備側は、出てきた顔ぶれを見て「パスが来そうだ」「ランで来そうだ」と読み、自分たちの11人を組み替えて対抗します。<br>もちろん攻撃側はさらにその裏をかきにいくこともあります。<br>試合を見ていると選手が頻繁に入れ替わりますが、あれは疲れたからではなく、この読み合いを仕掛けているのです。</p>
+        <p>ちなみに、近年ではTEを多く配置するフォーメーションが流行してきています。<br>ポジションごとの説明で述べたように、TEは守備側からすると「何をしてくるか分からない選手」なので、TEを多く入れて作戦を予想しづらくさせるのです。</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<script>
+/* ===== 攻撃ポジションの解説表示 ===== */
+(function(){
+  var DATA = {
+    qb: {
+      name:'クォーターバック', en:'QB / Quarterback',
+      desc:'攻撃の司令塔。ほぼすべてのプレーは、この選手にボールが渡ることから始まります。<br>パスを投げる、味方に手渡す、自分で走る…… 現場での判断を担い、相手の隊形を見て直前で作戦を変更することもあります。<br>チームの勝敗に直結する、最も重要なポジションです。'
+    },
+    rb: {
+      name:'ランニングバック', en:'RB / Running Back',
+      desc:'ボールを抱えて走る役。QBから手渡されたボールを持ち、味方がこじ開けた隙間へ突っ込みます。<br>素早さと当たり負けしない強さの両方が要求され、正面衝突を最も多く受けるポジションです。<br>パスを受けたり、QBを守るために自ら壁になったりすることもあります。'
+    },
+    wr: {
+      name:'ワイドレシーバー', en:'WR / Wide Receiver',
+      desc:'パスを受け取る役。フィールドの外側に大きく開いて立ち、合図と同時に走り出して相手を振り切り、QBの投げたボールをつかみます。<br>他のどのポジションよりもスピードが求められます、近年ではサイズも重視される傾向があります。<br>一度で数十ヤードを稼ぐ、最も華やかなポジションの一つです。'
+    },
+    te: {
+      name:'タイトエンド', en:'TE / Tight End',
+      desc:'レシーバーとラインの中間にあたる役。ラインの隣に立ち、あるときは前へ出て相手を押しのけ、あるときはパスを受けに前に走り出ます。<br>守備側は「ブロックに来るのか、パスを受けに来るのか」を判断する必要があり、それだけで的が絞れなくなります。<br>体が大きく、その上でスピードやキャッチング技術も要求される、近年もっとも重視されるようになった役割です。'
+    },
+    ol: {
+      name:'オフェンスライン', en:'OL / Offensive Line',
+      desc:'攻撃の最前線をつくる5人。この5人はボールにほとんど触りません。<br>仕事はただひとつ、QBとRBを守り抜くことです。<br>パスの時は壁を作ってQBに投げる時間を与え、ランの時は相手を押しのけて走る道をこじ開けます。<br>この5人が崩れれば、どんな作戦も1ヤードも進みません。<br>記録にはほとんど残りませんが、勝敗を左右する縁の下の力持ちです。'
+    }
+  };
+
+  var info = document.getElementById('posInfoOff');
+  var players = document.querySelectorAll('#offense .player');
+
+  function show(node){
+    var d = DATA[node.getAttribute('data-pos')];
+    if (!d) return;
+    for (var i = 0; i < players.length; i++) players[i].classList.remove('on');
+    // 同じポジションの選手はまとめて光らせる
+    var same = document.querySelectorAll('#offense .player[data-pos="' + node.getAttribute('data-pos') + '"]');
+    for (var j = 0; j < same.length; j++) same[j].classList.add('on');
+    info.innerHTML = '<b>' + d.name + ' <span class="en">' + d.en + '</span></b>' + d.desc;
+  }
+
+  for (var k = 0; k < players.length; k++) {
+    players[k].addEventListener('click', function(){ show(this); });
+    players[k].addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(this); }
+    });
+  }
+})();
+</script>
+
+<!-- ===== 6. 守備のポジション ===== -->
+<section id="defense">
+  <div class="wrap">
+    <p class="eyebrow rv">POSITION 02 ／ DEFENSE</p>
+    <h2 class="rv">ディフェンスのポジション</h2>
+    <p class="lead rv">守備側のポジションは、立つ位置で考えると分かりやすくなります。<br>前線でぶつかる者、中間で読む者、外で張り付く者、最後方で構える者…… 前にいるほど体が大きく、後ろにいくほど足が速くなる傾向があります。</p>
+
+    <div class="pos-wrap rv">
+      <svg class="field-svg" viewBox="0 0 600 330" role="img" aria-label="守備側11人の配置図。攻撃側は薄い色で示しています。丸を選ぶと役割の説明が表示されます。">
+        <rect x="0" y="0" width="600" height="330" fill="#166d3b"/>
+        <g stroke="#fff" stroke-opacity=".16" stroke-width="1.5">
+          <line x1="0" y1="95" x2="600" y2="95"/>
+          <line x1="0" y1="285" x2="600" y2="285"/>
+        </g>
+
+        <!-- 攻撃が進もうとする方向 -->
+        <path d="M560 62 L560 26" stroke="#ffc23c" stroke-width="2.5" fill="none"/>
+        <path d="M560 20 L566 32 L554 32 Z" fill="#ffc23c"/>
+        <text x="560" y="80" text-anchor="middle" fill="#ffc23c" font-size="11" font-weight="700">攻撃が</text>
+        <text x="560" y="93" text-anchor="middle" fill="#ffc23c" font-size="11" font-weight="700">進む方向</text>
+
+        <!-- スクリメージライン -->
+        <line x1="0" y1="190" x2="600" y2="190" stroke="#fff" stroke-opacity=".8" stroke-width="3"/>
+
+        <!-- 攻撃側（薄く表示） -->
+        <g fill="#fff" fill-opacity=".2">
+          <circle cx="80" cy="210" r="15"/><circle cx="150" cy="232" r="15"/>
+          <circle cx="230" cy="212" r="15"/><circle cx="265" cy="212" r="15"/>
+          <circle cx="300" cy="212" r="15"/><circle cx="335" cy="212" r="15"/>
+          <circle cx="370" cy="212" r="15"/><circle cx="410" cy="212" r="15"/>
+          <circle cx="510" cy="210" r="15"/>
+          <circle cx="300" cy="256" r="15"/><circle cx="300" cy="298" r="15"/>
+        </g>
+        <text x="300" y="322" text-anchor="middle" fill="#fff" fill-opacity=".45" font-size="12">薄い丸は、前のセクションで見た攻撃側の11人</text>
+
+        <!-- 守備側 -->
+        <g class="player" data-pos="dl" tabindex="0" role="button" aria-label="ディフェンスライン">
+          <circle cx="248" cy="165" r="17" fill="#e8563f"/>
+          <text x="248" y="170" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">DL</text>
+        </g>
+        <g class="player" data-pos="dl" tabindex="0" role="button" aria-label="ディフェンスライン">
+          <circle cx="283" cy="165" r="17" fill="#e8563f"/>
+          <text x="283" y="170" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">DL</text>
+        </g>
+        <g class="player" data-pos="dl" tabindex="0" role="button" aria-label="ディフェンスライン">
+          <circle cx="318" cy="165" r="17" fill="#e8563f"/>
+          <text x="318" y="170" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">DL</text>
+        </g>
+        <g class="player" data-pos="dl" tabindex="0" role="button" aria-label="ディフェンスライン">
+          <circle cx="353" cy="165" r="17" fill="#e8563f"/>
+          <text x="353" y="170" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">DL</text>
+        </g>
+        <g class="player" data-pos="lb" tabindex="0" role="button" aria-label="ラインバッカー">
+          <circle cx="250" cy="115" r="17" fill="#f0943c"/>
+          <text x="250" y="120" text-anchor="middle" font-size="12" font-weight="800" fill="#40200a">LB</text>
+        </g>
+        <g class="player" data-pos="lb" tabindex="0" role="button" aria-label="ラインバッカー">
+          <circle cx="310" cy="115" r="17" fill="#f0943c"/>
+          <text x="310" y="120" text-anchor="middle" font-size="12" font-weight="800" fill="#40200a">LB</text>
+        </g>
+        <g class="player" data-pos="lb" tabindex="0" role="button" aria-label="ラインバッカー">
+          <circle cx="375" cy="115" r="17" fill="#f0943c"/>
+          <text x="375" y="120" text-anchor="middle" font-size="12" font-weight="800" fill="#40200a">LB</text>
+        </g>
+        <g class="player" data-pos="cb" tabindex="0" role="button" aria-label="コーナーバック">
+          <circle cx="95" cy="160" r="17" fill="#6fb3e0"/>
+          <text x="95" y="165" text-anchor="middle" font-size="12" font-weight="800" fill="#06263c">CB</text>
+        </g>
+        <g class="player" data-pos="cb" tabindex="0" role="button" aria-label="コーナーバック">
+          <circle cx="505" cy="160" r="17" fill="#6fb3e0"/>
+          <text x="505" y="165" text-anchor="middle" font-size="12" font-weight="800" fill="#06263c">CB</text>
+        </g>
+        <g class="player" data-pos="s" tabindex="0" role="button" aria-label="セーフティ">
+          <circle cx="230" cy="58" r="17" fill="#9d8cf0"/>
+          <text x="230" y="63" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">S</text>
+        </g>
+        <g class="player" data-pos="s" tabindex="0" role="button" aria-label="セーフティ">
+          <circle cx="390" cy="58" r="17" fill="#9d8cf0"/>
+          <text x="390" y="63" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">S</text>
+        </g>
+      </svg>
+      <div class="pos-info" id="posInfoDef">丸をタップすると、その選手の役割が表示されます。</div>
+    </div>
+
+    <div class="card rv">
+      <h3>守備の見どころはQBに届くかどうか</h3>
+      <p>慣れるまでは守備の11人がそれぞれ何をしているかを追う必要はありません。<br>見るべきは、<b>QBが投げ切れるか、投げる前に倒されるか</b>です。</p>
+      <p>QBがボールを持ってから投げるまでの時間は、およそ3秒。<br>その3秒のあいだに前線を突破してQBを倒せば守備の勝ちで、これを<b>サック</b>と呼びます。<br>この数秒の勝負が、1プレーごとに繰り返されています。</p>
+    </div>
+
+    <details class="more rv">
+      <summary>もっと詳しく：DL・LB・Sはさらに細かく分かれる</summary>
+      <div class="body">
+        <p>まとめて「DL」「LB」「S」と呼んだ選手たちには、さらに立ち位置ごとに別の呼び名があります。</p>
+        <ul>
+          <li><b>ディフェンスタックル（DT）</b>… 前線の内側に構える2人。<br>相手のセンターやガードと真正面からぶつかり、ランの進路を塞ぐのが主な仕事です。<br>チームでも最重量級の選手が務め、130kgを超えることも珍しくありません。</li>
+          <li><b>ディフェンスエンド（DE）</b>… 前線の両端に構える2人。<br>外から大きく回り込んでQBを狙う役で、速さとパワーの両方が要求されます。<br>サックを最も多く記録するのが、このポジションです。</li>
+          <li><b>インサイドLB（ILB／MLB）</b>… 中央に構えるラインバッカー。守備全体に指示を出す司令塔で、ランを止める中心にもなります。</li>
+          <li><b>アウトサイドLB（OLB）</b>… 外側のラインバッカー。陣形によって役割が大きく変わり、QBを狙って突進する役を任されることも多いポジションです。</li>
+          <li><b>フリーセーフティ（FS）</b>… 最後方で全体を見渡す役。深いパスへの備えが主な仕事で、守備の最終防衛線です。</li>
+          <li><b>ストロングセーフティ（SS）</b>… FSより前寄りに構える役。ランを止めに前へ出たり、タイトエンドに付いたりと、力仕事も担います。</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="more rv">
+      <summary>もっと詳しく：守備の陣形</summary>
+      <div class="body">
+        <p>守備の話をしていると「4-3」「3-4」という言葉が出てきます。<br>この数字は<b>DLの人数 ― LBの人数</b>を表しています。</p>
+        <ul>
+          <li><b>4-3</b>… DLが4人、LBが3人。DLの4人だけでQBを倒しにいける、オーソドックスで崩れにくい形です。</li>
+          <li><b>3-4</b>… DLが3人、LBが4人。DLが1人少ないぶん、LBの誰がQBに突っ込むのかを直前まで隠せます。</li>
+        </ul>
+        <p>どちらを土台にするかで、チームが集める選手の体格まで変わります。</p>
+        <p>また、現代のNFLはパスが増えたため、LBを1人減らしてCBとSを計5人に増やす<b>ニッケル</b>という形も多く使われるようになりました。</p>
+      </div>
+    </details>
+
+    <details class="more rv">
+      <summary>もっと詳しく：ブリッツ</summary>
+      <div class="body">
+        <p>QBを倒しにいくのは、通常はDLの4人だけです。<br>ところが、そこにLBやSまで加えて、5人・6人で一斉に襲いかかることがあります。<br>これを<b>ブリッツ</b>と呼びます。</p>
+        <p>人数を増やせば当然QBを倒せる確率は上がります。<br>しかし、前に人を送り込んだぶん、後ろで守る人数は減ります。<br>もし投げ切られてしまえば、受け手を止める人間が足りず、一気に大きく進まれてしまいます。</p>
+        <p>つまりブリッツは、<b>ハイリスクハイリターンな作戦</b>なのです。</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<script>
+/* ===== 守備ポジションの解説表示 ===== */
+(function(){
+  var DATA = {
+    dl: {
+      name:'ディフェンスライン', en:'DL / Defensive Line',
+      desc:'守備の最前線に並ぶ4人。攻撃ラインと正面からぶつかり合い、その壁を突破してQBに襲いかかるのが仕事です。<br>パスを投げる前にQBを倒せば、攻撃側を大きく後退させられます。<br>ランで来た時は押し返して走る道を塞ぎます。<br>チームで最も体の大きい選手たちが並ぶ場所です。'
+    },
+    lb: {
+      name:'ラインバッカー', en:'LB / Linebacker',
+      desc:'前線の少し後ろに構える、守備の要。ランで来れば前へ出て止め、パスで来れば下がって受け手を潰します。<br>相手が何をしようとしているかを瞬時に理解して動き出さなければなりません。<br>守備の司令塔を務めることも多く、パワーと戦術理解の両方が問われる役割です。'
+    },
+    cb: {
+      name:'コーナーバック', en:'CB / Cornerback',
+      desc:'相手のワイドレシーバーと1対1で向き合う役。フィールドの外側で、相手チームで最も足の速い選手に張り付き、パスを防ぎます。<br>CBが振り切られてしまうと一発でタッチダウンに繋がるため、守備側でも特にスピードがある選手が務めます。'
+    },
+    s: {
+      name:'セーフティ', en:'S / Safety',
+      desc:'守備の最後方に構える最後の砦。全体を見渡して空いた場所を埋め、抜けてきた選手を止めます。<br>状況によっては前に出てランを止めることもあり、守備の中で特に広い範囲を任される、総合力が必要な役割です。'
+    }
+  };
+
+  var info = document.getElementById('posInfoDef');
+  var players = document.querySelectorAll('#defense .player');
+
+  function show(node){
+    var key = node.getAttribute('data-pos');
+    var d = DATA[key];
+    if (!d) return;
+    for (var i = 0; i < players.length; i++) players[i].classList.remove('on');
+    var same = document.querySelectorAll('#defense .player[data-pos="' + key + '"]');
+    for (var j = 0; j < same.length; j++) same[j].classList.add('on');
+    info.innerHTML = '<b>' + d.name + ' <span class="en">' + d.en + '</span></b>' + d.desc;
+  }
+
+  for (var k = 0; k < players.length; k++) {
+    players[k].addEventListener('click', function(){ show(this); });
+    players[k].addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(this); }
+    });
+  }
+})();
+</script>
+
+<!-- ===== 7. スペシャルチーム ===== -->
+<section id="special" class="dark">
+  <div class="wrap">
+    <p class="eyebrow rv">POSITION 03 ／ SPECIAL TEAMS</p>
+    <h2 class="rv">第3のチーム</h2>
+    <p class="lead rv">ここまで攻撃の11人と守備の11人を見てきましたが、アメフトにはもう1組まったく別の役割を持った選手たちがいます。<br>ボールを蹴る場面にだけ登場する、その名も<b>「スペシャルチーム」</b>は、攻撃でも守備でもない3つ目のユニットです。</p>
+
+    <ol class="three">
+      <li class="rv"><b>キックオフ</b><small>試合の前半と後半の開始時と、どちらかが得点した後のゲーム再開時、ボールを遠くへ蹴って相手に攻撃権を渡します。<br>受け取った側は、そこから走って戻せるだけ戻します。</small></li>
+      <li class="rv"><b>パント</b><small>4回目の攻撃をあきらめるとき、できるだけ遠くへ蹴り返し、相手の攻撃開始地点を奥へと押し戻します。</small></li>
+      <li class="rv"><b>フィールドゴールとTFP</b><small>蹴って点を取る場面。ゴールポストの間に通せば、フィールドゴールなら3点、タッチダウン直後のTFPなら1点が入ります。</small></li>
+    </ol>
+
+    <figure class="rv">
+      <svg class="field-svg" viewBox="0 0 600 215" role="img" aria-labelledby="koT koD">
+        <title id="koT">キックオフとリターン</title>
+        <desc id="koD">キッカーが遠くへ蹴り、受け取ったリターナーが逆方向へ走って戻す流れ。</desc>
+        <defs>
+          <marker id="arw3" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+            <path d="M0 0 L9 4.5 L0 9 Z" fill="#ffc23c"/>
+          </marker>
+        </defs>
+
+        <rect x="0" y="65" width="600" height="95" fill="#166d3b"/>
+        <rect x="540" y="65" width="60" height="95" fill="#0e4a28"/>
+        <line x1="540" y1="65" x2="540" y2="160" stroke="#fff" stroke-width="2"/>
+        <g stroke="#fff" stroke-opacity=".3" stroke-width="1.5">
+          <line x1="180" y1="65" x2="180" y2="160"/>
+          <line x1="300" y1="65" x2="300" y2="160"/>
+          <line x1="420" y1="65" x2="420" y2="160"/>
+        </g>
+
+        <!-- ボールの軌跡 -->
+        <path d="M88 128 Q300 -5 522 105" stroke="#fff" stroke-width="2" stroke-dasharray="7 6" fill="none" stroke-opacity=".65"/>
+        <!-- 走って戻す矢印 -->
+        <path d="M512 143 L400 143" stroke="#ffc23c" stroke-width="3" fill="none" marker-end="url(#arw3)"/>
+
+        <!-- キッカー -->
+        <circle cx="75" cy="130" r="16" fill="#ffc23c"/>
+        <text x="75" y="135" text-anchor="middle" font-size="12" font-weight="800" fill="#3d2a00">K</text>
+        <!-- リターナー -->
+        <circle cx="528" cy="108" r="16" fill="#7dd3a0"/>
+        <text x="528" y="113" text-anchor="middle" font-size="11" font-weight="800" fill="#0b3a22">KR</text>
+
+        <text x="75" y="190" text-anchor="middle" fill="#e8eef5" font-size="13" font-weight="700">① 蹴る</text>
+        <text x="528" y="190" text-anchor="middle" fill="#e8eef5" font-size="13" font-weight="700">② 受ける</text>
+        <text x="440" y="176" text-anchor="middle" fill="#ffc23c" font-size="13" font-weight="700">③ 走って戻す</text>
+        <text x="300" y="205" text-anchor="middle" fill="#9fb3c6" font-size="12">戻した地点から、次の攻撃が始まります</text>
+      </svg>
+    </figure>
+
+    <h3 class="rv">蹴る場面を支える4つの役割</h3>
+    <ul class="score-list">
+      <li class="rv">
+        <div class="pts">K<small>KICKER</small></div>
+        <div>
+          <b>キッカー</b>
+          <span>フィールドゴールとキックオフを蹴る専門。「プレースキッカー」とも呼ばれる。<br>体格は一般の人とさほど変わらないことも多く、チームの中では明らかに異質な存在です。<br>しかし、試合終了間際の勝敗を分ける1本を任されることもあります。</span>
+        </div>
+      </li>
+      <li class="rv">
+        <div class="pts">P<small>PUNTER</small></div>
+        <div>
+          <b>パンター</b>
+          <span>パントを蹴る専門。ただ遠くへ飛ばすだけではなく、高く蹴り上げて味方がボールに追いつく時間を稼いだり、狙った地点に落として相手を苦しい位置に置いたりと、繊細な技術が問われます。</span>
+        </div>
+      </li>
+      <li class="rv">
+        <div class="pts">LS<small>LONG SNAPPER</small></div>
+        <div>
+          <b>ロングスナッパー</b>
+          <span>5〜10mほど後方で待つキッカーへ、股の下から正確にボールを送る専門。<br>そのためだけに多くのチームが限りある選手枠の1つを使うほど、専門性が高く失敗の代償が大きい仕事です。</span>
+        </div>
+      </li>
+      <li class="rv">
+        <div class="pts">H<small>HOLDER</small></div>
+        <div>
+          <b>ホルダー</b>
+          <span>フィールドゴールやTFPで、ボールを地面に立てて押さえる役。<br>スナップを受け取り、わずかな時間でキッカーが求める位置・角度に置き、少しでも手間取ればキック失敗に繋がる非常に繊細なポジションです。</span>
+        </div>
+      </li>
+      <li class="rv">
+        <div class="pts">KR<small>RETURNER</small></div>
+        <div>
+          <b>リターナー</b>
+          <span>蹴られたボールを受け取り、走って戻す役。<br>相手チームの11人が全力で走ってくる中へ真正面から突っ込み、時にはそのままタッチダウンまで走り切ります。</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="card rv">
+      <h3>地味に見えて、試合を決めている</h3>
+      <p>スペシャルチームは、しばしば「試合の3分の1」と言われます。<br>攻撃と守備に比べて話題になりにくいのですが、勝敗を分ける場面はここに集中しています。</p>
+      <p>キッカーが最後の1本を外して負ける。リターナーが走り切って試合をひっくり返す。パンターが蹴り損じて、一気に攻め込まれる。いずれも一瞬で流れが変わります。<br>だからこのユニットは、地味なのに最も緊張感のある場面を担っているのです。</p>
+    </div>
+
+    <details class="more rv">
+      <summary>もっと詳しく：一瞬で試合が変わるプレー</summary>
+      <div class="body">
+        <p>スペシャルチームの場面には、他では起こらない劇的なプレーがあります。</p>
+        <ul>
+          <li><b>リターンタッチダウン</b>… 蹴られたボールを受けたリターナーが、そのまま誰にも捕まらず走り切ってしまうこと。攻撃を1回もせずに得点が入るため、相手にとっては最も痛い失点です。</li>
+          <li><b>ブロックドキック</b>… 蹴る瞬間に守備側が突っ込み、手や体でボールを叩き落とすこと。成功すればその場でボールを奪えることもあり、蹴る側は一気に窮地に陥ります。</li>
+          <li><b>フェイク</b>… 蹴るふりをして、そのまま走ったり投げたりする奇襲。成功すれば相手の意表を突けますが、失敗すればその場で攻撃権を失います。</li>
+        </ul>
+        <p>どれも数秒で決着がつき、しかも試合の流れを丸ごとひっくり返します。「蹴るだけの地味な場面」と思って油断していると、いちばん驚かされるのがこの瞬間です。</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== 8. 試合時間 ===== -->
+<section id="clock">
+  <div class="wrap">
+    <p class="eyebrow rv">RULE 04</p>
+    <h2 class="rv">「時間」の重要性</h2>
+    <p class="lead rv">アメフトの試合時間は15分×4クォーター、合わせて60分です。<br>ところが実際に中継を見ると、試合が終わるまでに3時間以上かかります。<br>アメフトでは1プレーごとに時計が止まり、全員が並び直して次の攻撃へと移ります。</p>
+
+    <h3 class="rv">プレーの流れ</h3>
+    <ol class="flow">
+      <li class="rv"><b>作戦を決める</b><small>攻撃側は全員で集まり、次に何をするかを確認します。これを「ハドル」と呼びます。<br>守備側も同時に、どう守るかを決めています。</small></li>
+      <li class="rv"><b>横一列に並ぶ</b><small>ボールが置かれた線（スクリメージライン）を挟んで、両チームが向かい合って構えます。<br>この線を越えて動き出すと反則です。</small></li>
+      <li class="rv"><b>スナップで全員が動き出す</b><small>センターが股の下からQBへボールを送ります。これが「スナップ」。<br>この瞬間に22人が一斉に動き出し、プレーが始まります。</small></li>
+      <li class="rv"><b>数秒で決着する</b><small>ボールを持った選手が倒される、フィールドの外に出る、パスが地面に落ちる、得点する。<br>このどれかが起きた瞬間に1プレーが終了です。<span class="tick">動いている時間は平均5〜6秒</span></small></li>
+      <li class="rv"><b>40秒以内に、次を始める</b><small>プレーが終わってから次のスナップまでは40秒。<br>この短い時間で作戦を決め、並び直さなければなりません。間に合わなければ反則です。<span class="tick">1プレーごとに、この繰り返し</span></small></li>
+    </ol>
+
+    <p class="rv">つまり試合の大部分は、<b>次のプレーの準備をしている時間</b>です。<br>実際にボールが動いている時間を合計すると、3時間の試合でわずか10分ほどにしかならないと言われています。<br>裏を返せば、その10分のために残りの時間すべてを使って考えている競技だということです。</p>
+
+    <h3 class="rv">時計が止まる場合と動き続ける場合</h3>
+    <p class="rv">プレーが終わっても時計が動き続ける場合と、その場で止まる場合があります。止まるのは主に次のときです。</p>
+    <ul class="notes rv">
+      <li><b>パスが失敗</b>投げたボールが誰にも捕られず地面に落ちると、その瞬間に時計が止まります。</li>
+      <li><b>外に出る</b>ボールを持った選手がフィールドの外へ出ると止まります。</li>
+      <li><b>得点</b>タッチダウンやフィールドゴールが決まると止まります。</li>
+      <li><b>タイムアウト</b>各チームが前半・後半それぞれ3回ずつ持っている、時間を止める権利です。</li>
+      <li><b>反則</b>反則があった場合も止まります。</li>
+    </ul>
+    <p class="rv">逆に、ボールを持っている選手がフィールドの中で倒された場合は<b>時計は止まりません</b>。<br>この違いは試合終盤に特に大きな意味を持ってきます。</p>
+
+    <div class="card rv">
+      <h3>時間そのものが武器になる</h3>
+      <p>試合時間が残りわずかな時、勝っているチームは残り時間を1秒でも減らしたい。負けているチームは1秒でも残したい。ここで両者の狙いがぶつかります。</p>
+      <p><b>勝っている側</b>はランで攻めようとします。フィールドの中で倒れれば時計は止まらず、並び直しで時間が溶けていくからです。<br>
+         <b>負けている側</b>はパスを投げようとします。失敗すれば時計が止まるうえ、成功すれば一度で大きく進めるからです。</p>
+      <p>つまり終盤に何を仕掛けてくるかは点差と残り時間から半ば決まっています。<br><b>時間の使い方そのものが作戦</b>になる。<br>アメフトではこの<b>「クロックマネジメント」</b>も非常に重要な要素の一つです。</p>
+    </div>
+
+    <details class="more rv">
+      <summary>もっと詳しく：試合の枠組み（クォーターと延長戦）</summary>
+      <div class="body">
+        <p>試合は15分のクォーターを4回行います。第1・第2クォーターが前半、第3・第4が後半。<br>そして前半と後半のあいだには10分あまりの<b>ハーフタイム</b>が入ります。</p>
+        <p>また、<b>クォーターが変わるごとに、攻める方向が入れ替わります</b>。<br>風の強い日や、日差しの向きに差がある屋外の会場では、この入れ替えが有利不利を平らにする役目を果たします。</p>
+        <p>試合の始まりはコイントスです。表か裏かを当てたチームが、先に攻めるか後にするかを選びます。そこからキックオフで試合が動き出します。</p>
+        <p>60分を終えて同点だった場合は、延長戦（オーバータイム）に入ります。<br>ここのルールは細かく、しかもたびたび見直されているので、初めのうちは「同点なら延長がある」と覚えておけば十分です。</p>
+      </div>
+    </details>
+
+    <details class="more rv">
+      <summary>もっと詳しく：タイムアウトと「2ミニッツ・ウォーニング」</summary>
+      <div class="body">
+        <p><b>タイムアウト</b>は、時計を止めて作戦を練り直すための権利です。<br>各チームが前半に3回、後半に3回行うことができ、使い切ってしまうと終盤に時計を止める手段がパスと外へ出ることだけになります。<br>そのため「タイムアウトをいくつ残しているか」は、終盤の中継で必ず言及される情報です。</p>
+        <p>また、前半と後半それぞれ<b>残り2分になった時点で、自動的に時計が止まります</b>。これを「2ミニッツ・ウォーニング」と呼び、ここから試合の密度が一段上がります。</p>
+        <p>中継で「2ミニッツ」という言葉が出てきたら、そこから先が最後の勝負だと思って見てみてください。</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== 9. 反則 ===== -->
+<section id="penalty">
+  <div class="wrap">
+    <p class="eyebrow rv">RULE 05</p>
+    <h2 class="rv">反則</h2>
+    <p class="lead rv">試合を見ていると、審判が黄色い布をフィールドに投げ込み、プレーが取り消されることがあります。これが反則の合図です。<br>アメフトの反則は種類が多く、1試合で両チーム合わせて10回以上取られるのが普通です。<br>最初は名前を覚える必要はないので、その特徴的な仕組みを見ていきましょう。</p>
+
+    <h3 class="rv">罰はヤードで支払う</h3>
+    <p class="rv">アメフトでは「反則で退場」という場面はほとんどありません。<br>反則があった際に支払うのは<b>距離</b>です。<br>攻撃側が反則すればボールが後ろへ下げられ、守備側が反則すれば前へ進められます。<br>これを「罰退」と言い、アメフトの大きな特徴となっています。</p>
+
+    <ul class="score-list">
+      <li class="rv">
+        <div class="pts">5<small>YARDS</small></div>
+        <div>
+          <b>軽い反則</b>
+          <span>スナップの前に動いてしまった、40秒以内に始められなかった、フィールド上の人数が多かった、などの反則です。</span>
+        </div>
+      </li>
+      <li class="rv">
+        <div class="pts">10<small>YARDS</small></div>
+        <div>
+          <b>プレー中の反則</b>
+          <span>相手をつかんで引き止めた、押し倒して進路を妨げた、など。<br>プレーの最中に起きる反則で、罰も一段重くなります。</span>
+        </div>
+      </li>
+      <li class="rv">
+        <div class="pts">15<small>YARDS</small></div>
+        <div>
+          <b>危険な行為</b>
+          <span>頭から突っ込む、無防備な相手を狙う、乱暴なふるまいをする、など。<br>選手の安全を脅かす反則で、最も重く罰せられます。</span>
+        </div>
+      </li>
+    </ul>
+
+    <p class="rv">さらに守備側の反則には、罰のヤードに加えて<b>攻撃権のやり直し</b>が与えられるものがあります。<br>攻撃がうまく繋がらず追い込まれていた攻撃側が、反則ひとつで1回目からやり直せる。<br>守備側にとっては、あと一歩まで追い詰めた努力が消えてしまう瞬間です。</p>
+
+    <h3 class="rv">よく見る反則5選</h3>
+    <ul class="notes rv">
+      <li><b>フォルススタート</b>攻撃側の選手がスナップの前に動いてしまう反則。<br>全員が同時に動き出さなければならないため、わずかな動きでも取られます。攻撃側は5ヤード後退します。</li>
+      <li><b>オフサイド</b>守備側の選手が、スナップの前に線を越えてしまう反則。<br>攻撃側に5ヤード前進を与えます。</li>
+      <li><b>ホールディング</b>相手のユニフォームや体をつかんで止める反則。<br>アメフトではボールを持っていない選手をつかんだり抱き込んだりすると反則になります。</li>
+      <li><b>パスインターフェア</b>パスを捕ろうとしている選手を、ボールが届く前に妨害する反則。<br>攻撃側・守備側どちらにも適用されますが、守備側が取られると大きく前進を与えるため、試合を左右することもある重い反則です。</li>
+      <li><b>ラフィング・ザ・パサー</b>投げ終えたQBに、遅れて当たってしまう反則。<br>無防備な状態のQBを守るための規定で、攻撃側に15ヤードと攻撃権のやり直しが与えられます。</li>
+    </ul>
+
+    <div class="card rv">
+      <h3>反則も作戦のうち</h3>
+      <p>意外に思われるかもしれませんが、反則は「してはいけないもの」であると同時に、<b>計算して選ばれるもの</b>でもあります。</p>
+      <p>たとえば守備の選手が、WRに抜かれそうになったとします。<br>ここでつかんで止めれば反則ですが、罰は10ヤード。抜かれて一発タッチダウンになるより、10ヤードの罰で止めたほうが安い。という計算です。</p>
+      <p>さらに面白いのが、<b>反則を受けた側は罰を断れる</b>という仕組みです。<br>例えば守備側に反則があったプレーで攻撃側がその間に20ヤード進んでいたとしたら、10ヤードの罰をもらうより実際の結果を取ったほうが得です。<br>そういった時には「罰は受け取らず、プレーの結果を選ぶ（Decline）」と宣言できます。</p>
+      <p>反則の罰をどう使うか、どう断るか。ここまで含めて駆け引きの一部になっているのがアメフトの反則の面白さです。</p>
+    </div>
+
+    <details class="more rv">
+      <summary>もっと詳しく：選手の安全に関する反則が厳しい理由</summary>
+      <div class="body">
+        <p>アメフトの反則の中で、頭部への接触に関するものは特別に厳しく扱われます。<br>頭から突っ込むタックル、無防備な選手への打撃、頭部や首への接触などは、いずれも15ヤードという重い罰が与えられ、悪質な場合は退場や出場停止、罰金にもなります。</p>
+        <p>背景には、頭部（＝脳）への衝撃が選手の引退後の健康に深刻な影響を及ぼすという問題があります。<br>この認識が広まってから、ルールは選手を守る方向へ何度も改められてきました。<br>とくにQBやキッカー、パスを捕ろうとして無防備になっている選手には、手厚い保護が設けられています。</p>
+        <p>「あの程度でこんなに重いペナルティなのか」と思う場面があるかもしれませんが、その多くは選手の身体を守るために意図して厳しくしている部分です。</p>
+      </div>
+    </details>
+
+    <details class="more rv">
+      <summary>もっと詳しく：「不必要な乱暴行為」</summary>
+      <div class="body">
+        <p>アメフトの反則のひとつに、<b>アンネセサリーラフネス（Unnecessary Roughness）</b>があります。日本語に訳せば「不必要な乱暴行為」。15ヤードという重い罰が与えられる反則です。</p>
+        <p>注目したいのは、禁じられているのが「乱暴行為」ではなく「<b>不必要な</b>乱暴行為」だという点です。裏を返せば、<b>必要な乱暴さは認められている</b>ということになります。</p>
+        <p>実際そのとおりで、ボールを持った相手を全力で地面に倒すことも、前線で相手を力ずくで押しのけることも、アメフトではまったく正当なプレーです。<br>アメフトにおいて乱暴さは取り除くべき不純物ではなく、この競技を成り立たせている要素そのものなのです。</p>
+        <p>では、何が「不必要」とされるのかというと、例えばプレーが終わったあとに当たる、無防備な相手を狙う、倒れている相手に追い打ちをかける、フィールドの外に出た選手に手を出すなどの行為です。<br>いずれも<b>勝つために必要のない暴力</b>です。</p>
+        <p>100kgを超える選手たちが全力でぶつかり合うことを前提として認めたうえで、それでも越えてはならない一線を定める。<br>アメフトという競技の性格は、この反則の名前ひとつに凝縮されています。</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== 10. NFLの仕組み ===== -->
+<section id="nfl" class="dark">
+  <div class="wrap">
+    <p class="eyebrow rv">THE LEAGUE</p>
+    <h2 class="rv">32チームが17試合を戦う</h2>
+    <p class="lead rv">アメフトの最高峰が、アメリカのプロリーグ「NFL」です。<br>32チームが所属し、1試合の平均観客数もテレビ視聴者数も、世界のスポーツリーグで最大規模を誇ります。</p>
+
+    <div class="grid g2">
+      <div class="card rv">
+        <h3>AFC</h3>
+        <p>アメリカン・フットボール・カンファレンス。東・北・南・西の4地区に、それぞれ4チーム。合わせて16チームです。</p>
+      </div>
+      <div class="card rv">
+        <h3>NFC</h3>
+        <p>ナショナル・フットボール・カンファレンス。同じく4地区×4チームの16チーム。AFCとは別のグループとして戦います。</p>
+      </div>
+    </div>
+
+    <p class="rv">この2つのグループは、シーズン中はほとんど別々に戦います。<br>そしてシーズンの最後にAFCの王者とNFCの王者が頂点を決める。それが<b>スーパーボウル</b>です。</p>
+
+    <h3 class="rv">1年の流れ</h3>
+    <ol class="flow">
+      <li class="rv"><b>9月上旬：開幕</b><small>週に1試合、日曜日を中心に行われます。18週かけて17試合。1週だけ試合のない休みが与えられます。<span class="tick">日本時間では日曜の深夜から月曜の朝</span></small></li>
+      <li class="rv"><b>1月上旬：レギュラーシーズン終了</b><small>各カンファレンスの上位7チーム、合わせて14チームがプレーオフに進みます。半分以上のチームは、ここでシーズンを終えます。</small></li>
+      <li class="rv"><b>1月：プレーオフ</b><small>一発勝負のトーナメント。1回負ければそこで終わりです。<br>勝ち上がった各カンファレンスの1チームが、最後の舞台へ進みます。</small></li>
+      <li class="rv"><b>2月上旬：スーパーボウル</b><small>AFC王者とNFC王者による、年に一度の決戦。<br>その人気と注目度の高さから様々な逸話があります。</small></li>
+    </ol>
+
+    <div class="card rv">
+      <h3>17試合しかない、ということ</h3>
+      <p>日本のプロ野球は年に140試合以上、サッカーのリーグ戦も30試合以上あります。<br>それに対してNFLは<b>17試合</b>しかないため、1試合1試合の重みがまったく違います。</p>
+      <p>消化試合と呼べるものがほとんどなく、どのチームも毎週が正念場です。</p>
+      <p>そして<b>週に1試合しかないということは、次の相手を1週間かけて研究できるということ</b>でもあります。<br>相手の癖を洗い出し、対策を組み、専用の作戦を用意して日曜を迎える。<br>頭脳戦になるだけの時間が、この競技には与えられています。</p>
+    </div>
+
+    <details class="more rv">
+      <summary>もっと詳しく：弱いチームが、数年で強くなる仕組み</summary>
+      <div class="body">
+        <p>NFLの大きな特徴が、<b>戦力を均衡させる仕組み</b>を徹底している点です。柱は2つあります。</p>
+        <ul>
+          <li><b>ドラフト</b>… 大学から新人選手を獲得する制度で、指名の順番は<b>前年の下位チームから</b>です。<br>つまり最下位のチームが、その年いちばんの有望選手を最初に選べます。</li>
+          <li><b>サラリーキャップ</b>… 各チームが選手に払える人件費の総額に、上限が定められています。<br>資金力のあるチームが有力選手を買い集めることができません。</li>
+        </ul>
+        <p>この2つがあるため、順位はめまぐるしく入れ替わります。<br>数年前に最下位だったチームが優勝を争い、王者が翌年に負け続けることも普通に起こります。</p>
+        <p>これから応援先を選ぶなら、強さで選ぶ必要はありません。<br>街の雰囲気でも、ヘルメットの色でも、好きな選手でも構いません。</p>
+      </div>
+    </details>
+
+    <details class="more rv">
+      <summary>もっと詳しく：スーパーボウル</summary>
+      <div class="body">
+        <p>スーパーボウルは、単なる決勝戦ではありません。<br>アメリカで最も多くの人が見るテレビ番組であり、毎年1億人以上が視聴します。</p>
+        <p>試合以外の見どころも豊富で、ハーフタイムには世界的なアーティストが大規模なショーを行い、これ目当てに見る人も少なくありません。<br>またコマーシャル枠は30秒あたり数億円規模。各社が1年で最も力を入れた広告を投入するため、CMそのものもかなり話題になります。</p>
+        <p>日本時間では月曜の午前中にあたるため、この日だけ休みを取るファンもいます。</p>
+        <p>この日ならではの逸話をいくつか紹介します。</p>
+        <ul>
+          <li><b>街から人が消える</b>… 誰もが家や店に集まって観戦するため、試合中の通りは静まり返ります。「外を走っているのは宅配ピザの車だけ」と言われるほどで、実際この日は宅配ピザの注文が年間で最も多い日のひとつです。</li>
+          <li><b>水道管が悲鳴を上げる</b>… 全米が同じ試合を見ているため、ハーフタイムになると人々が一斉にトイレへ立ちます。その結果、水道設備に想定外の負荷が集中します。<br>過去には水道管の破損まで報告されており、自治体が事前に警戒を呼びかけることもあるほどです。</li>
+          <li><b>ハーフタイムショーはノーギャラ</b>… 世界的なアーティストを起用する豪華なステージですが、出演するアーティストに出演料は支払われません。<br>それでも一流アーティストが出たがるのは、その舞台に立つことそれ自体が報酬に値する名誉だからです。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== 11. まとめ ===== -->
+<section id="outro">
+  <div class="wrap">
+    <p class="eyebrow rv">LET'S WATCH</p>
+    <h2 class="rv">あとは試合を見るだけ</h2>
+    <p class="lead rv">ここまでお付き合いいただきありがとうございました。<br>たくさんの用語が出てきましたが、いきなり全部を覚える必要はありません。<br>試合を追うために本当に必要なのはたった3つだけです。</p>
+
+    <ol class="three">
+      <li class="rv"><b>4回で10ヤード</b><small>攻撃側は4回の攻撃で10ヤード進めば、また新しく攻撃権が4回もらえる。届かなければ攻撃権を失う。<br>この繰り返しで前へと進んでいきます。</small></li>
+      <li class="rv"><b>画面の「1st &amp; 10」を見る</b><small>何回目の攻撃で、更新まで残り何ヤードか。<br>この2つの数字が、その攻撃の状況をそのまま表しています。</small></li>
+      <li class="rv"><b>まずはQBとボールだけを追う</b><small>22人を見る必要はありません。<br>誰がボールを持っているか。それだけ追っていれば、試合の筋は十分に追えます。</small></li>
+    </ol>
+
+    <div class="card rv">
+      <h3>はじめて見るときの、3つのコツ</h3>
+      <p><b>全部を理解しようとしないこと。</b>反則の名前も、選手の名前も、あとから覚えれば十分です。<br>分からない場面は気にせず流してください。それでも試合は楽しめます。</p>
+      <p><b>3回目の攻撃で身を乗り出すこと。</b>画面に「3rd &amp; ○○」と出たら、そこが山場です。<br>ここだけ集中して見ていると、試合の起伏が自然と掴めてきます。</p>
+      <p><b>点差を7と3で数えること。</b>7点差ならタッチダウン1本、3点差ならフィールドゴール1本で追いつけます。<br>点差を「あと何回の得点が必要か」に読み替えると、終盤の緊張がまるで違って見えてきます。</p>
+    </div>
+
+    <p class="pull rv">作戦で個の力を封じる<br>個の力で作戦をねじ伏せる</p>
+
+    <p class="rv">この応酬が、1プレーごとに繰り返されています。<br>アメフトは、体格に恵まれた者だけの競技ではありません。<br>速い者、大きい者、正確に投げる者、遠くまで蹴る者…… まったく違う才能を持った選手たちが、それぞれの持ち場で自分の仕事をこなし、11人でひとつの作戦を成立させる。<br>だからこそ、<b>緻密な設計と規格外の身体能力が噛み合った瞬間</b>に、あれほどの興奮が生まれるのです。</p>
+
+  </div>
+</section>
+
+<footer>
+  <b>Enjoy Football</b>
+  <p>アメリカンフットボールの面白さが、少しでも伝わればうれしいです。<br>
+     なおルールは年ごとに細かく改められています。観戦の際は、最新の情報もあわせてご確認ください。</p>
+</footer>
+
+<script>
+/* ===== ページ全体の共通処理 ===== */
+(function(){
+  // JavaScriptが動く環境でのみ、出現アニメーションを有効にする
+  document.body.classList.add('js');
+
+  var items = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          entries[i].target.classList.add('in');
+          io.unobserve(entries[i].target);
+        }
+      }
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.04 });
+    for (var i = 0; i < items.length; i++) io.observe(items[i]);
+  } else {
+    // 古いブラウザではアニメーションなしで全部表示する
+    for (var j = 0; j < items.length; j++) items[j].classList.add('in');
+  }
+
+  // 上部のスクロール進捗バー
+  var bar = document.getElementById('progress');
+  function draw(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? (window.pageYOffset / h) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', draw, { passive:true });
+  window.addEventListener('resize', draw);
+  draw();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+部門,順位,選手名,ポジション,2026年所属,2026年所属_チーム名,2025年記録
+パス獲得ヤード,1,Matthew Stafford,QB,LAR,ロサンゼルス・ラムズ,4707
+パス獲得ヤード,2,Jared Goff,QB,DET,デトロイト・ライオンズ,4564
+パス獲得ヤード,3,Dak Prescott,QB,DAL,ダラス・カウボーイズ,4552
+パス獲得ヤード,4,Drake Maye,QB,NE,ニューイングランド・ペイトリオッツ,4394
+パス獲得ヤード,5,Sam Darnold,QB,SEA,シアトル・シーホークス,4048
+パス獲得ヤード,6,Trevor Lawrence,QB,JAX,ジャクソンビル・ジャガーズ,4007
+ラン獲得ヤード,1,James Cook III,RB,BUF,バッファロー・ビルズ,1621
+ラン獲得ヤード,2,Derrick Henry,RB,BAL,ボルチモア・レイブンズ,1595
+ラン獲得ヤード,3,Jonathan Taylor,RB,IND,インディアナポリス・コルツ,1585
+ラン獲得ヤード,4,Bijan Robinson,RB,ATL,アトランタ・ファルコンズ,1478
+ラン獲得ヤード,5,De'Von Achane,RB,MIA,マイアミ・ドルフィンズ,1350
+ラン獲得ヤード,6,Kyren Williams,RB,LAR,ロサンゼルス・ラムズ,1252
+レシーブ獲得ヤード,1,Jaxon Smith-Njigba,WR,SEA,シアトル・シーホークス,1793
+レシーブ獲得ヤード,2,Puka Nacua,WR,LAR,ロサンゼルス・ラムズ,1715
+レシーブ獲得ヤード,3,George Pickens,WR,DAL,ダラス・カウボーイズ,1429
+レシーブ獲得ヤード,4,Ja'Marr Chase,WR,CIN,シンシナティ・ベンガルズ,1412
+レシーブ獲得ヤード,5,Amon-Ra St. Brown,WR,DET,デトロイト・ライオンズ,1401
+レシーブ獲得ヤード,6,Trey McBride,TE,ARI,アリゾナ・カージナルス,1239
+タックル,1,Jordyn Brooks,LB,MIA,マイアミ・ドルフィンズ,183
+タックル,2,Jack Campbell,LB,DET,デトロイト・ライオンズ,176
+タックル,3,Devin White,LB,DET,デトロイト・ライオンズ,174
+タックル,4,Cedric Gray,LB,TEN,テネシー・タイタンズ,164
+タックル,5,Bobby Wagner,LB,(2026年時点で所属外),,162
+タックル,6,Carson Schwesinger,LB,CLE,クリーブランド・ブラウンズ,156
+サック,1,Myles Garrett,DE,LAR,ロサンゼルス・ラムズ,23
+サック,2,Brian Burns,LB,NYG,ニューヨーク・ジャイアンツ,16
+サック,3,Danielle Hunter,DE,HOU,ヒューストン・テキサンズ,15
+サック,4,Aidan Hutchinson,DE,DET,デトロイト・ライオンズ,14
+サック,5,Nik Bonitto,LB,DEN,デンバー・ブロンコス,14
+サック,6,Tuli Tuipulotu,LB,LAC,ロサンゼルス・チャージャーズ,13
+インターセプト,1,Kevin Byard,S,NE,ニューイングランド・ペイトリオッツ,7
+インターセプト,2,Devin Lloyd,LB,CAR,カロライナ・パンサーズ,5
+インターセプト,3,Jaycee Horn,CB,CAR,カロライナ・パンサーズ,5
+インターセプト,4,Ernest Jones IV,LB,SEA,シアトル・シーホークス,5
+インターセプト,5,Antonio Johnson,S,JAX,ジャクソンビル・ジャガーズ,5
+インターセプト,6,Xavier Watts,S,ATL,アトランタ・ファルコンズ,5
+パスTD,1,Matthew Stafford,QB,LAR,ロサンゼルス・ラムズ,46
+パスTD,2,Jared Goff,QB,DET,デトロイト・ライオンズ,34
+パスTD,3,Drake Maye,QB,NE,ニューイングランド・ペイトリオッツ,31
+パスTD,4,Dak Prescott,QB,DAL,ダラス・カウボーイズ,30
+パスTD,5,Trevor Lawrence,QB,JAX,ジャクソンビル・ジャガーズ,29
+パスTD,6,Caleb Williams,QB,CHI,シカゴ・ベアーズ,27
+ランTD,1,Jonathan Taylor,RB,IND,インディアナポリス・コルツ,18
+ランTD,2,Derrick Henry,RB,BAL,ボルチモア・レイブンズ,16
+ランTD,3,Josh Allen,QB,BUF,バッファロー・ビルズ,14
+ランTD,4,Josh Jacobs,RB,GB,グリーンベイ・パッカーズ,13
+ランTD,5,Jahmyr Gibbs,RB,DET,デトロイト・ライオンズ,13
+ランTD,6,James Cook III,RB,BUF,バッファロー・ビルズ,12
+キャッチ数,1,Puka Nacua,WR,LAR,ロサンゼルス・ラムズ,129
+キャッチ数,2,Trey McBride,TE,ARI,アリゾナ・カージナルス,126
+キャッチ数,3,Ja'Marr Chase,WR,CIN,シンシナティ・ベンガルズ,125
+キャッチ数,4,Jaxon Smith-Njigba,WR,SEA,シアトル・シーホークス,119
+キャッチ数,5,Amon-Ra St. Brown,WR,DET,デトロイト・ライオンズ,117
+キャッチ数,6,Christian McCaffrey,RB,SF,サンフランシスコ・フォーティナイナーズ,102
+レシーブTD,1,Davante Adams,WR,LAR,ロサンゼルス・ラムズ,14
+レシーブTD,2,Dallas Goedert,TE,PHI,フィラデルフィア・イーグルス,11
+レシーブTD,3,Tee Higgins,WR,CIN,シンシナティ・ベンガルズ,11
+レシーブTD,4,Trey McBride,TE,ARI,アリゾナ・カージナルス,11
+レシーブTD,5,Amon-Ra St. Brown,WR,DET,デトロイト・ライオンズ,11
+レシーブTD,6,Puka Nacua,WR,LAR,ロサンゼルス・ラムズ,10
